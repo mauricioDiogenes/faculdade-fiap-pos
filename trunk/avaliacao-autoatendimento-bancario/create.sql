@@ -10,3 +10,6 @@ insert into historico_conta(dataOperacao, tipoOperacao, valor, conta_numConta) v
 insert into cliente(nome, cpf, dataNascimento) values ('Jose Teste', '33391918892', '1962-05-18');
 insert into conta(tipoConta, cliente_idcliente, saldoEmConta, data) values ('P', 3, 10000, CURDATE());
 insert into historico_conta(dataOperacao, tipoOperacao, valor, conta_numConta) values (CURDATE(),  'DEPOSITO', 10000, 3);
+insert into cliente(nome, cpf, dataNascimento) values ('Pedro Jose da Silva', '33391918882', '1962-06-18');
+insert into conta(tipoConta, cliente_idcliente, saldoEmConta, data) values ('P', 4, 10000, CURDATE());
+insert into historico_conta(dataOperacao, tipoOperacao, valor, conta_numConta) values (CURDATE(),  'DEPOSITO', 10000, 4);
