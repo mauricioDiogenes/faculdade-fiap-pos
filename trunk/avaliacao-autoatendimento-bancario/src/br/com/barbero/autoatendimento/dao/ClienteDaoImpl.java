@@ -15,13 +15,20 @@ import br.com.barbero.autoatendimento.bean.Conta;
 import br.com.barbero.autoatendimento.bean.Extrato;
 import br.com.barbero.autoatendimento.bean.TipoConta;
 import br.com.barbero.autoatendimento.bean.TipoOperacao;
-
+/***
+ * Classe de Implementacao de DAO, responsavel por disponibilizar insformacoes referente a manipulacao com banco de dados.
+ * @author Alexandre Genka
+ *
+ */
 public class ClienteDaoImpl implements GenericDAO<Cliente> {
 	
 	private Logger logger = Logger.getLogger(ClienteDaoImpl.class.getName());
 	private PreparedStatement preparedStatement = null;
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see br.com.barbero.autoatendimento.dao.GenericDAO#consultar(java.lang.Long)
+	 */
 	@Override
 	public Cliente consultar(Long id) {
 		Cliente cliente = null;

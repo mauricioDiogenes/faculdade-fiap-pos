@@ -50,16 +50,26 @@ public class BancoUtil {
 	
 	public static void impressaoNomeBanco(){
 		System.out.println("************|-------------|****************");
-		System.out.println("************|BANCO BARBERO|****************");
+		System.out.println("************|     BANCO   |****************");
 		System.out.println("************|-------------|****************");
 		System.out.println("Horário: "+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 	}
 	
+	/***
+	 * Metodo responsavel por retornar o valor formatado para moeda Brasileira.
+	 * @param valor {@link BigDecimal}
+	 * @return {@link String}
+	 */
 	public static String getValorFormatado(BigDecimal valor){
 		DecimalFormat decimalFormat =  new DecimalFormat("R$ #,###,##0.00");
 		return decimalFormat.format(valor);
 	}
 	
+	/***
+	 * Metodo responsavel por validar valores negativos para saque e deposito
+	 * @param value {@link BigDecimal}
+	 * @return {@link Boolean}
+	 */
 	public static boolean isValidSaqueDeposito(BigDecimal value){
 		boolean validacao = false;
 		if(value.signum() == -1){

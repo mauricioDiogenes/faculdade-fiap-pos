@@ -3,6 +3,11 @@ package br.com.barbero.autoatendimento.bean;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/***
+ * Classe que representa o bean de Extrato.
+ * @author Alexandre Genka
+ *
+ */
 public class Extrato {
 	
 	private Date dataOperacao;
