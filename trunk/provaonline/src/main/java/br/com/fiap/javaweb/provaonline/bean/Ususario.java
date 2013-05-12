@@ -2,10 +2,11 @@ package br.com.fiap.javaweb.provaonline.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,18 @@ public class Ususario {
 	
 	@Column
 	private String senha;
+	
+	@Column( nullable = false, columnDefinition="VARCHAR(10) DEFAULT 'ALUNO'")
+	@Enumerated(EnumType.STRING)
+	private TipoUsuario tipoUsuario;
+	
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
 	public Long getId() {
 		return id;
