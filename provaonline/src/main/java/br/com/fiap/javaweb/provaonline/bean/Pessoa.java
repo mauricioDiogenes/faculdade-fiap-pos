@@ -1,5 +1,6 @@
 package br.com.fiap.javaweb.provaonline.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Pessoa {
 	@Column
 	private String sobrenome;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Ususario usuario;
 	
 	public String getNome() {
