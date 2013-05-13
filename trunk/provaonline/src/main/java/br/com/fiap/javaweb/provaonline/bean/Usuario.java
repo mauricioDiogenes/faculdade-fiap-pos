@@ -11,13 +11,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="usuarios")
-public class Ususario {
+public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column
+	@Column(unique=true)
 	private String email;
 	
 	@Column

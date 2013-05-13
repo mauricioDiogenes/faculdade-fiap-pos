@@ -7,9 +7,18 @@
 <!-- CSS -->
 <link href="css/structure.css" rel="stylesheet">
 <link href="css/form.css" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 
 <!-- JavaScript -->
 <script src="scripts/wufoo.js"></script>
+<script>
+$(document).ready(function(){
+  $("#voltar").click(function(){
+      parent.history.back();
+      return false;
+  });
+});
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -61,6 +70,8 @@
 
 						<input id="saveForm" name="salvar" class="btTxt submit"
 							type="submit" value="Submit" />
+							
+							 <button id="voltar" type="button" class="btTxt submit">Voltar</button> 
 					</div>
 				</li>
 
