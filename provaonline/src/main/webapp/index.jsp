@@ -13,7 +13,7 @@
 	<div id="box">
 		<div class="elements">
 			<div class="avatar"></div>
-			<form action="" method="post">
+			<form action="login" method="post">
 				<input type="text" name="username" class="username"
 					placeholder="Username" /> <input type="password" name="password"
 					class="password" placeholder="•••••••••" />

@@ -39,6 +39,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="pessoaDao" class="br.com.fiap.javaweb.provaonline.dao.PessoaDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="usuarioDao" class="br.com.fiap.javaweb.provaonline.dao.UsuarioDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 
 </beans>

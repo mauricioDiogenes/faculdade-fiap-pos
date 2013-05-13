@@ -25,7 +25,7 @@ public class Pessoa {
 	private String sobrenome;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	private Ususario usuario;
+	private Usuario usuario;
 	
 	
 	@OneToMany
@@ -44,10 +44,10 @@ public class Pessoa {
 		this.sobrenome = sobrenome;
 	}
 	
-	public Ususario getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Ususario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	

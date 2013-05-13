@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.javaweb.provaonline.bean.Pessoa;
 import br.com.fiap.javaweb.provaonline.bean.TipoUsuario;
-import br.com.fiap.javaweb.provaonline.bean.Ususario;
+import br.com.fiap.javaweb.provaonline.bean.Usuario;
 import br.com.fiap.javaweb.provaonline.dao.PessoaDaoImpl;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
@@ -41,7 +41,7 @@ public class CadastrarUsuarioServlet extends GenericServlet {
 		ShaPasswordEncoder sha = new ShaPasswordEncoder();
 		
 		Pessoa pessoa = new Pessoa();
-		Ususario usuario = new Ususario();
+		Usuario usuario = new Usuario();
 		pessoa.setNome(request.getParameter("nome"));
 		pessoa.setSobrenome(request.getParameter("sobrenome"));
 		usuario.setEmail(request.getParameter("email"));
