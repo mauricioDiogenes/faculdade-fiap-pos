@@ -46,7 +46,7 @@ public class CadastrarUsuarioServlet extends GenericServlet {
 		pessoa.setSobrenome(request.getParameter("sobrenome"));
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setSenha(sha.encodePassword(request.getParameter("password"), "256"));
-		usuario.setTipoUsuario(TipoUsuario.ALUNO);
+		usuario.setTipoUsuario(request.getParameter("tipoAluno").equals("ALUNO") ?  TipoUsuario.ALUNO : TipoUsuario.ADMIN);
 		pessoa.setUsuario(usuario);
 		pessoaDaoImpl.save(pessoa);
 		response.sendRedirect("usuarioCadastradoComSucesso.jsp");

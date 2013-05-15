@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.fiap.javaweb.provaonline.bean.TipoUsuario;
 import br.com.fiap.javaweb.provaonline.bean.Usuario;
 
 /**
  * Servlet Filter implementation class FiltraLogin
  */
-@WebFilter("/provaonline/*")
+@WebFilter(urlPatterns={"/paginas/*"})
 public class FiltraLogin implements Filter {
 
     /**
@@ -45,6 +46,16 @@ public class FiltraLogin implements Filter {
 		 Usuario user = (Usuario) session.getAttribute("userSession");
 		 if(user == null){
 			 httpRes.sendRedirect("index.jsp");
+
+		 }
+		 
+		 if(user != null && user.getTipoUsuario().equals(TipoUsuario.ALUNO.getDescricao())){
+		    request.getRequestDispatcher("/paginas/cadastrarPerguntas.jsp").forward(request, response);
+
+		 }
+		 else if(user != null && user.getTipoUsuario().equals(TipoUsuario.ADMIN.getDescricao())){
+				request.getRequestDispatcher("/paginas/prova.jsp").forward(request, response);
+
 		 }else{
 			 chain.doFilter(request, response);
 		 }
