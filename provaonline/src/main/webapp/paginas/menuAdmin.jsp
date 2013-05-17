@@ -23,7 +23,7 @@
 		<ul>
 
 			<li id="foli1" class="notranslate      "><label class="desc"
-				id="title1" for="Field1"> <a href="paginas/cadastroCategorias.jsp">Cadastrar Categoria</a> <span id="req_1"
+				id="title1" for="Field1"> <a href="paginas/CadastroCategorias">Cadastrar Categoria</a> <span id="req_1"
 					class="req"></span>
 			<li id="foli1" class="notranslate      "><label class="desc"
 				id="title1" for="Field1"> <a href="paginas/cadastrarPerguntas.jsp">Cadastrar Perguntas</a> <span id="req_1"
