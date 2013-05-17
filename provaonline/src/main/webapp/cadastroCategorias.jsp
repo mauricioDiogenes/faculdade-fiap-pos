@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 	<%@ page import="br.com.fiap.javaweb.provaonline.bean.Categoria" %>
 	<%@ page import="java.util.List" %>
+	
+<%
+Categoria categoria = (Categoria)session.getAttribute("categoria");
+if(categoria == null){
+	categoria = new Categoria();
+	categoria.setDescricao("");
+}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,11 +39,10 @@
 		</h1>
 
 		<form id="form64" name="form64" class="wufoo topLabel page" autocomplete="off" method="post" novalidate action="CadastroCategorias">
-
 			<header id="header" class="info">
 				<h2>Cadastro de Categorias</h2>
 			</header>
-
+			<input type="hidden" id="id" name="id" value="<% if(categoria.getId() != null) out.print(categoria.getId()); %>" />
 			<ul>
 
 				<li id="foli1" class="notranslate">
@@ -44,7 +51,8 @@
 						<span id="req_1" class="req">*</span>
 				    </label>
 					<div>
-						<input id="descr" name="descr" type="text" size="100" class="field text medium" maxlength="255" tabindex="2" required />
+						<input id="descr" name="descr" type="text" size="100" class="field text medium" maxlength="255" tabindex="2" required
+						value="<% out.print(categoria.getDescricao()); %>" />
 					</div>
 				</li>
 				<li class="buttons">
@@ -68,7 +76,7 @@
 				</header>
 		<% 
 				for(Categoria c : categorias){
-					out.print("<a href=cadastroCategorias.jsp?id="+ c.getId() + ">" + c.getDescricao() + "</a><br />");
+					out.print("<a href=CadastroCategorias?id="+ c.getId() + ">" + c.getDescricao() + "</a><br />");
 				}
 					
 			} %>

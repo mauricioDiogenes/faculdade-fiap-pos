@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import br.com.fiap.javaweb.provaonline.bean.Categoria;
 
@@ -28,7 +29,8 @@ public class CategoriaDaoImpl implements GenericDAO<Categoria> {
 
 	@Override
 	public Categoria update(Categoria t) {
-		session.saveOrUpdate(t);
+		session.merge(t);
+		session.flush();
 		return t;
 	}
 
