@@ -38,7 +38,11 @@ public class CadastroCategoriasServlet extends GenericServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Categoria categoria = new Categoria();
 		categoria.setDescricao(request.getParameter("descr"));
-		categoriaDaoImpl.save(categoria);
+		if(request.getParameter("id") != null){
+			categoria.setId(Long.parseLong(request.getParameter("id")));
+		}
+		categoriaDaoImpl.update(categoria);
+		request.getSession().setAttribute("categorias", null);
 		response.sendRedirect("CadastroCategorias");
 	}
 	
@@ -46,8 +50,15 @@ public class CadastroCategoriasServlet extends GenericServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Categoria> lista = categoriaDaoImpl.listAll();
-		request.getSession().setAttribute("categorias", lista);
+		if(request.getParameter("id") != null){
+			Long id = Long.parseLong(request.getParameter("id"));
+			System.out.println(id + " id");
+			Categoria c = categoriaDaoImpl.find(id);
+			request.getSession().setAttribute("categoria", c);
+		}else{
+			List<Categoria> lista = categoriaDaoImpl.listAll();
+			request.getSession().setAttribute("categorias", lista);
+		}
 		response.sendRedirect("cadastroCategorias.jsp");
 	}
 
