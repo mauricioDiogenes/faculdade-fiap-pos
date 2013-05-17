@@ -14,6 +14,9 @@
 		<div class="elements">
 			<div class="avatar"></div>
 			<form action="login" method="post">
+				<%if(request.getParameter("e")!= null){ %>
+					<p style="color:red;font-size:12px;">Incorrect login or password</p>
+				<%}else{out.print("<p />");} %>
 				<input type="text" name="username" class="username"
 					placeholder="Username" /> <input type="password" name="password"
 					class="password" placeholder="•••••••••" />

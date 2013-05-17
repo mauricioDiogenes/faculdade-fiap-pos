@@ -45,7 +45,7 @@ public class FiltraLogin implements Filter {
 		 HttpSession session = httpReq.getSession();
 		 Usuario user = (Usuario) session.getAttribute("userSession");
 		 if(user == null){
-			 httpRes.sendRedirect("index.jsp");
+			 httpRes.sendRedirect("../index.jsp");
 
 		 }
 		 

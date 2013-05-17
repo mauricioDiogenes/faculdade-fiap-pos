@@ -43,7 +43,8 @@ public class CadastroCategoriasServlet extends GenericServlet {
 		}
 		categoriaDaoImpl.update(categoria);
 		request.getSession().setAttribute("categorias", null);
-		response.sendRedirect("cadastroCategorias.jsp");
+		request.getSession().setAttribute("categoria", null);
+		response.sendRedirect("CadastroCategorias");
 
 	}
 	
@@ -51,16 +52,24 @@ public class CadastroCategoriasServlet extends GenericServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("id") != null){
+		Categoria c;
+		if("del".equals(request.getParameter("op"))){
+			Long id = Long.parseLong(request.getParameter("id"));
+			c = new Categoria();
+			c.setId(id);
+			categoriaDaoImpl.delete(c);
+			response.sendRedirect("CadastroCategorias");
+		}else if(request.getParameter("id") != null){
 			Long id = Long.parseLong(request.getParameter("id"));
 			System.out.println(id + " id");
-			Categoria c = categoriaDaoImpl.find(id);
+			c = categoriaDaoImpl.find(id);
 			request.getSession().setAttribute("categoria", c);
+			response.sendRedirect("cadastroCategorias.jsp");
 		}else{
 			List<Categoria> lista = categoriaDaoImpl.listAll();
 			request.getSession().setAttribute("categorias", lista);
+			response.sendRedirect("cadastroCategorias.jsp");
 		}
-		response.sendRedirect("cadastroCategorias.jsp");
 	}
 
 }
