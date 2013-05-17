@@ -16,7 +16,7 @@ import br.com.fiap.javaweb.provaonline.dao.CategoriaDaoImpl;
 /**
  * Servlet implementation class CadastroCategoriasServlet
  */
-@WebServlet("/CadastroCategorias")
+@WebServlet("/paginas/CadastroCategorias")
 public class CadastroCategoriasServlet extends GenericServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,12 +38,13 @@ public class CadastroCategoriasServlet extends GenericServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Categoria categoria = new Categoria();
 		categoria.setDescricao(request.getParameter("descr"));
-		if(request.getParameter("id") != null){
+		if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 			categoria.setId(Long.parseLong(request.getParameter("id")));
 		}
 		categoriaDaoImpl.update(categoria);
 		request.getSession().setAttribute("categorias", null);
-		response.sendRedirect("CadastroCategorias");
+		response.sendRedirect("cadastroCategorias.jsp");
+
 	}
 	
 	/**

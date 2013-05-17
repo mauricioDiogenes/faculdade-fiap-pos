@@ -16,7 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/provaonline" />
 		<property name="username" value="root" />
-		<property name="password" value="123456" />
+		<property name="password" value="" />
 		<property name="initialSize" value="2" />
 		<property name="maxActive" value="5" />
 	</bean>

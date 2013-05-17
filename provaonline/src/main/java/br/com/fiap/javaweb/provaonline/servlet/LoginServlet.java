@@ -49,7 +49,8 @@ public class LoginServlet extends GenericServlet {
 
 		}
 		 else{
-			request.getRequestDispatcher("/paginas/cadastrarPerguntas.jsp").forward(request, response);
+			request.getSession().setAttribute("userSession", usuarioValidado);
+			request.getRequestDispatcher("/paginas/menuAdmin.jsp").forward(request, response);
 		}
 	
 	}
