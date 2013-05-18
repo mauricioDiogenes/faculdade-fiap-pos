@@ -105,10 +105,19 @@
 			
 			<table cellspacing="0">
 				 <c:forEach items="${listaQuestoes}" var="questoes">
-				 	<tr>${questoes.categoria}</tr>
+				 	<tr><c:out value="${questoes.categoria}" /></tr>
 					<tr style="background:#dddddd;">
-						${questoes.questao}
+						<c:out value="${questoes.questao}" />
+					</tr>
+					<tr>
+					<c:forEach items="${questoes.alternativas}" var="alternativa">
+						<c:out value="${alternativa.altervativa}"/>
+					</c:forEach>
+					
 					</tr>  
+					<tr>
+						<a href=CadastrarPerguntas?id=${questoes.id}&operacao=del> X </a><br />
+					</tr>
 				</c:forEach>
 			</table>
 		

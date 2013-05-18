@@ -42,6 +42,12 @@ public class CadastrarPerguntasServlet extends GenericServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("operacao") != null){
+			if(request.getParameter("operacao").equals("del")){
+				Questoes questoes = perguntasDaoImpl.find(Long.parseLong(request.getParameter("id")));
+				perguntasDaoImpl.delete(questoes);
+			}
+		}
 		getListCategoria(request);
 		request.getRequestDispatcher("cadastrarPerguntas.jsp").forward(request, response);
 
@@ -50,6 +56,8 @@ public class CadastrarPerguntasServlet extends GenericServlet {
 	private void getListCategoria(HttpServletRequest request) {
 		List<Categoria> categoria  = categoriaDaoImpl.listAll();
 		request.setAttribute("listaCategoria", categoria);
+		List<Questoes> listaQuestoes =  perguntasDaoImpl.listAll();
+		request.setAttribute("listaQuestoes", listaQuestoes);
 	}
 
 	/**

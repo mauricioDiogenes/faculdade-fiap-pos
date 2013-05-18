@@ -15,9 +15,9 @@ if(categoria == null){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
-<link href="css/structure.css" rel="stylesheet">
-<link href="css/form.css" rel="stylesheet">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+<link href="../css/structure.css" rel="stylesheet">
+<link href="../css/form.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 <!-- JavaScript -->
 	<script src="scripts/wufoo.js">
 </script>
