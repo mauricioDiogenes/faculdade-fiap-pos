@@ -47,6 +47,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="categoriaDao" class="br.com.fiap.javaweb.provaonline.dao.CategoriaDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="perguntasDao" class="br.com.fiap.javaweb.provaonline.dao.PerguntasDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 
 </beans>
