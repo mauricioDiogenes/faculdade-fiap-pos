@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,11 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
-<link href="css/structure.css" rel="stylesheet">
-<link href="css/form.css" rel="stylesheet">
+<link href="../css/structure.css" rel="stylesheet">
+<link href="../css/form.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 <!-- JavaScript -->
-	<script src="scripts/wufoo.js">
+	<script src="../scripts/wufoo.js">
 </script>
 <script>
 	$(document).ready(function() {
@@ -41,7 +42,41 @@
 					id="title1" for="Field1"> Pergunta <span id="req_1" class="req">*</span>
 				</label>
 				
+				<select  name="categoria">
+				    <c:forEach items="${listaCategoria}" var="categoria">
+				        <option value="${categoria.id}" >${categoria.descricao}</option>
+				    </c:forEach>
+				</select>
+				
 				<textarea rows="6" cols="70" name="questao">Digite sua pergunta....</textarea> 
+				
+				<li id="foli3" class="notranslate      "><label class="desc"
+					id="title3" for="Field3"> Alternativa 1 <span id="req_3"
+						class="req">*</span>
+				</label>
+					<div>
+						<input id="alternativa1" name="alternativa1" type="text" spellcheck="false" size="150"
+							class="field text large" maxlength="255" tabindex="3" required />
+					</div></li>
+					
+				<li id="foli3" class="notranslate      "><label class="desc"
+					id="title3" for="Field3">Alternativa 2 <span id="req_3"
+						class="req">*</span>
+				</label>
+					<div>
+						<input id="alternativa2" name="alternativa2" type="text" spellcheck="false" size="150"
+							class="field text large" maxlength="255" tabindex="3" required />
+					</div></li>
+					
+					
+				<li id="foli3" class="notranslate      "><label class="desc"
+					id="title3" for="Field3">Alternativa 3<span id="req_3"
+						class="req">*</span>
+				</label>
+					<div>
+						<input id="alternativa2" name="alternativa2" type="text" spellcheck="false" size="150"
+							class="field text large" maxlength="255" tabindex="3" required />
+					</div></li>
 						
 			</li>
 				<li class="buttons ">
@@ -57,10 +92,18 @@
 			</ul>
 		</form>
 
-	</div>
+	
 	<!--container-->
+	<c:if test="${not empty listaQuestoes}">
+		<div style="margin:15px;">
+			<header id="header" class="info wufoo">
+						<h2>Perguntas Cadastradas</h2>
+			</header>
+		
+		</div>
+	</c:if>
 
-
+</div>
 
 </body>
 </html>
