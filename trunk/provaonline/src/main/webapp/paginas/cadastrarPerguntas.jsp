@@ -111,7 +111,7 @@
 					</tr>
 					<tr>
 					<c:forEach items="${questoes.alternativas}" var="alternativa">
-						<c:out value="${alternativa.altervativa}"/>
+						<c:out value="${alternativa.alternativa}"/>
 					</c:forEach>
 					
 					</tr>  
