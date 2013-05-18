@@ -15,11 +15,11 @@ if(categoria == null){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- CSS -->
-<link href="../css/structure.css" rel="stylesheet">
-<link href="../css/form.css" rel="stylesheet">
+<link href="css/structure.css" rel="stylesheet">
+<link href="css/form.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 <!-- JavaScript -->
-	<script src="../scripts/wufoo.js">
+	<script src="scripts/wufoo.js">
 </script>
 <script>
 	$(document).ready(function() {
@@ -47,7 +47,7 @@ if(categoria == null){
 
 				<li id="foli1" class="notranslate">
 					<label class="desc" id="title1" for="Field1">
-						Descrição da Categoria
+						Descrição da categoria
 						<span id="req_1" class="req">*</span>
 				    </label>
 					<div>
@@ -64,36 +64,30 @@ if(categoria == null){
 
 			</ul>
 		</form>
-	
+		<hr />
+		
 		<div style="margin:15px;">
+			<table>
 		<%
-			@SuppressWarnings("unchecked")
 			List<Categoria> categorias = (List<Categoria>)session.getAttribute("categorias");
-			if(categorias != null && categorias.size() > 0){
+			if(categorias != null){
 		%>
-				<hr />
 				<header id="header" class="info wufoo">
 					<h2>Lista de categorias</h2>
 				</header>
-				<table cellspacing="0">
-		<%
-				boolean cor = true;
+		<% 
 				for(Categoria c : categorias){
-					out.print("<tr");
-					if(cor){
-						out.print(" style=\"background:#dddddd;\"");
+					if(c.getId() != null){
+						out.print("<tr><td>");
+						out.print("<a href=CadastroCategorias?id="+ c.getId() + ">" + c.getDescricao() + "</a> ");
+						out.print("</td><td>");
+						out.print("<a href=CadastroCategorias?id="+ c.getId() + "&operacao=del> X </a><br />");
+						out.print("</td></tr>");
 					}
-					out.print("><td><a href=CadastroCategorias?id="+ c.getId() + ">" + c.getDescricao() + "</a></td>");
-					out.print("<td>&nbsp;&nbsp;&nbsp;</td>");
-					out.print("<td><a href=CadastroCategorias?id="+ c.getId() + "&op=del><img src=\"../images/x.png\" /></a></td></tr>");
-					cor = !cor;
 				}
 					
 			} %>
-				</table>
-				<br />
-				<br />
-				<br />
+			</table>
 		</div>
 	</div>
 	<!--container-->
