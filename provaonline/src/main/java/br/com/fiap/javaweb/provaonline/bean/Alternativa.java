@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,16 +20,6 @@ public class Alternativa {
 	@Column
 	private Boolean correta;
 	
-	@ManyToOne
-	private Questoes questao;
-	
-	public Questoes getQuestao() {
-		return questao;
-	}
-
-	public void setQuestao(Questoes questao) {
-		this.questao = questao;
-	}
 
 	public Long getId() {
 		return id;
