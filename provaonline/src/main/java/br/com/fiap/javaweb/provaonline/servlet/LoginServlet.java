@@ -43,17 +43,16 @@ public class LoginServlet extends GenericServlet {
 		ShaPasswordEncoder sha = new ShaPasswordEncoder();
 		usuario.setSenha(sha.encodePassword(request.getParameter("password"), "256"));
 		Usuario usuarioValidado = usuarioDaoImpl.validaUsuario(usuario);
-		 if(usuarioValidado != null && usuarioValidado.getTipoUsuario().getDescricao().equals(TipoUsuario.ALUNO.getDescricao())){
+		if(usuarioValidado != null && usuarioValidado.getTipoUsuario().getDescricao().equals(TipoUsuario.ALUNO.getDescricao())){
 			request.getSession().setAttribute("userSession", usuarioValidado);
-			request.getRequestDispatcher("/paginas/prova.jsp").forward(request, response);
-
+			response.sendRedirect("paginas/prova");
 		}else if(usuarioValidado != null){
 			request.getSession().setAttribute("userSession", usuarioValidado);
 			request.getRequestDispatcher("/paginas/menuAdmin.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("index.jsp?e=true").forward(request, response);
 		}
-	
+	System.out.println();
 	}
 
 }
