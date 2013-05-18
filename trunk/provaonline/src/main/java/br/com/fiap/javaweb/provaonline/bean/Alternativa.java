@@ -15,7 +15,7 @@ public class Alternativa {
 	private Long id;
 	
 	@Column(length=2000)
-	private String altervativa;
+	private String alternativa;
 	
 	@Column
 	private Boolean correta;
@@ -29,12 +29,12 @@ public class Alternativa {
 		this.id = id;
 	}
 
-	public String getAltervativa() {
-		return altervativa;
+	public String getAlternativa() {
+		return alternativa;
 	}
 
-	public void setAltervativa(String altervativa) {
-		this.altervativa = altervativa;
+	public void setAlternativa(String alternativa) {
+		this.alternativa = alternativa;
 	}
 
 	public Boolean getCorreta() {
