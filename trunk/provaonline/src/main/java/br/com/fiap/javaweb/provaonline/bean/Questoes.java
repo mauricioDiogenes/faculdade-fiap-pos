@@ -2,6 +2,7 @@ package br.com.fiap.javaweb.provaonline.bean;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Questoes {
 	@Column(nullable=false, length=2000)
 	private String questao;
 	
-	@OneToMany(mappedBy="questao", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="questao", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Alternativa> alternativas;
 	
 	@Column
