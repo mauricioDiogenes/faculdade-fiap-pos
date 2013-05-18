@@ -42,16 +42,21 @@ public class CadastrarPerguntasServlet extends GenericServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Categoria> categoria  = categoriaDaoImpl.listAll();
-		request.setAttribute("listaCategoria", categoria);
+		getListCategoria(request);
 		request.getRequestDispatcher("cadastrarPerguntas.jsp").forward(request, response);
 
+	}
+
+	private void getListCategoria(HttpServletRequest request) {
+		List<Categoria> categoria  = categoriaDaoImpl.listAll();
+		request.setAttribute("listaCategoria", categoria);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		getListCategoria(request);
 		Questoes questoes = new Questoes();
 		questoes.setQuestao(request.getParameter("questao"));
 		Categoria categoria = categoriaDaoImpl.find(Long.parseLong(request.getParameter("categoria")));
@@ -60,7 +65,7 @@ public class CadastrarPerguntasServlet extends GenericServlet {
 		List<Alternativa> alternativas = new ArrayList<Alternativa>();
 		alternativas.add(alternativa1);
 		questoes.setAlternativas(alternativas);
-		questoes.setCategoria(categoria);
+		questoes.setCategoria(categoria.getDescricao());
 		perguntasDaoImpl.save(questoes);
 		List<Questoes> listaQuestoes =  perguntasDaoImpl.listAll();
 		request.setAttribute("listaQuestoes", listaQuestoes);

@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +20,13 @@ public class Questoes {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne
-	private Categoria categoria;
+	@Column
+	private String categoria;
 	
 	@Column(nullable=false, length=2000)
 	private String questao;
 	
-	@OneToMany(mappedBy="questao", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<Alternativa> alternativas;
 	
 	@Column
@@ -50,13 +49,6 @@ public class Questoes {
 		this.id = id;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 
 	public String getQuestao() {
 		return questao;
@@ -72,6 +64,14 @@ public class Questoes {
 
 	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	
 	
