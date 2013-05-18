@@ -62,8 +62,18 @@ public class CadastrarPerguntasServlet extends GenericServlet {
 		Categoria categoria = categoriaDaoImpl.find(Long.parseLong(request.getParameter("categoria")));
 		Alternativa alternativa1 = new Alternativa();
 		alternativa1.setAltervativa(request.getParameter("alternativa1"));
+		alternativa1.setCorreta(request.getParameter("correta").equals("correta1") ? true : false);
+		Alternativa alternativa2 = new Alternativa();
+		alternativa2.setAltervativa(request.getParameter("alternativa2"));
+		alternativa2.setCorreta(request.getParameter("correta").equals("correta2") ? true :false);
+		Alternativa alternativa3 = new Alternativa();
+		alternativa3.setAltervativa(request.getParameter("alternativa3"));
+		alternativa3.setCorreta(request.getParameter("correta").equals("correta3") ? true :false);
+		
 		List<Alternativa> alternativas = new ArrayList<Alternativa>();
 		alternativas.add(alternativa1);
+		alternativas.add(alternativa2);
+		alternativas.add(alternativa3);
 		questoes.setAlternativas(alternativas);
 		questoes.setCategoria(categoria.getDescricao());
 		perguntasDaoImpl.save(questoes);
