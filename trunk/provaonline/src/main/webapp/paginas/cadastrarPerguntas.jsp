@@ -57,6 +57,7 @@
 					<div>
 						<input id="alternativa1" name="alternativa1" type="text" spellcheck="false" size="150"
 							class="field text large" maxlength="255" tabindex="3" required />
+							Correta <input type="radio" name="correta" value="correta1">
 					</div></li>
 					
 				<li id="foli3" class="notranslate      "><label class="desc"
@@ -66,6 +67,7 @@
 					<div>
 						<input id="alternativa2" name="alternativa2" type="text" spellcheck="false" size="150"
 							class="field text large" maxlength="255" tabindex="3" required />
+							Correta <input type="radio" name="correta" value="correta2">
 					</div></li>
 					
 					
@@ -74,8 +76,9 @@
 						class="req">*</span>
 				</label>
 					<div>
-						<input id="alternativa2" name="alternativa2" type="text" spellcheck="false" size="150"
+						<input id="alternativa3" name="alternativa3" type="text" spellcheck="false" size="150"
 							class="field text large" maxlength="255" tabindex="3" required />
+						Correta <input type="radio" name="correta" value="correta3">
 					</div></li>
 						
 			</li>
