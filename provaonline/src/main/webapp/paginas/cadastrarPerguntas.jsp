@@ -99,6 +99,15 @@
 			<header id="header" class="info wufoo">
 						<h2>Perguntas Cadastradas</h2>
 			</header>
+			
+			<table cellspacing="0">
+				 <c:forEach items="${listaQuestoes}" var="questoes">
+				 	<tr>${questoes.categoria}</tr>
+					<tr style="background:#dddddd;">
+						${questoes.questao}
+					</tr>  
+				</c:forEach>
+			</table>
 		
 		</div>
 	</c:if>
