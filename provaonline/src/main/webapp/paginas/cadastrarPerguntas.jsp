@@ -116,7 +116,7 @@
 					
 					</tr>  
 					<tr>
-						<a href=CadastrarPerguntas?id=${questoes.id}&operacao=del> X </a><br />
+						<a href=CadastrarPerguntas?id=${questoes.id}&operacao=del> Deletar </a><br />
 					</tr>
 				</c:forEach>
 			</table>
