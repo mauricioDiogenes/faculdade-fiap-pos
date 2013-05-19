@@ -1,7 +1,7 @@
 package br.com.fiap.javaweb.provaonline.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.javaweb.provaonline.bean.Alternativa;
-import br.com.fiap.javaweb.provaonline.bean.Categoria;
 import br.com.fiap.javaweb.provaonline.bean.Questoes;
 import br.com.fiap.javaweb.provaonline.dao.CategoriaDaoImpl;
 import br.com.fiap.javaweb.provaonline.dao.PerguntasDaoImpl;
@@ -42,8 +41,8 @@ public class ProvaServlet extends GenericServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Questoes> listaQuestoes = perguntasDaoImpl.listAll();
-		request.setAttribute("questoes", listaQuestoes);
 		request.getSession().setAttribute("questoes", listaQuestoes);
+		request.getSession().setAttribute("result", null);
 		response.sendRedirect("prova.jsp");
 	}
 
@@ -51,10 +50,36 @@ public class ProvaServlet extends GenericServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		for(int j=0;j<request.getParameterMap().size();j++){
-			String resposta = request.getParameter("questao"+(j+1));
-			System.out.println(resposta);
+		List<Questoes> listaQuestoes = (List<Questoes>)request.getSession().getAttribute("questoes");
+		Double qtdCertas = 0D;
+		Double qtdQuestoes = Double.valueOf(request.getParameterMap().size());
+		for(int j=0;j<qtdQuestoes;j++){
+			Questoes q = listaQuestoes.get(j);
+			Long resposta = Long.parseLong(request.getParameter("questao"+(j+1)));
+			if(getCorreta(q).equals(resposta)){
+				qtdCertas++;
+			}else{
+				System.out.println(resposta + "  errada");
+			}
 		}
+		Double result = (qtdCertas/qtdQuestoes);
+		result *= 100;
+		DecimalFormat df = new DecimalFormat("#,###.00");
+		if(result == 0){
+			request.getSession().setAttribute("result", 0);
+		}else{
+			request.getSession().setAttribute("result", df.format(result));
+		}
+		request.getSession().setAttribute("questoes", null);
+		response.sendRedirect("prova.jsp");
 	}
-
+	
+	public Long getCorreta(Questoes q){
+		for(Alternativa a:q.getAlternativas()){
+			if(a.getCorreta()){
+				return a.getId();
+			}
+		}
+		return null;
+	}
 }
