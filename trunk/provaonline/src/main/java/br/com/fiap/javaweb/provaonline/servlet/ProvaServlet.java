@@ -50,6 +50,7 @@ public class ProvaServlet extends GenericServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		@SuppressWarnings("unchecked")
 		List<Questoes> listaQuestoes = (List<Questoes>)request.getSession().getAttribute("questoes");
 		Double qtdCertas = 0D;
 		Double qtdQuestoes = Double.valueOf(request.getParameterMap().size());
@@ -58,8 +59,6 @@ public class ProvaServlet extends GenericServlet {
 			Long resposta = Long.parseLong(request.getParameter("questao"+(j+1)));
 			if(getCorreta(q).equals(resposta)){
 				qtdCertas++;
-			}else{
-				System.out.println(resposta + "  errada");
 			}
 		}
 		Double result = (qtdCertas/qtdQuestoes);
@@ -75,11 +74,12 @@ public class ProvaServlet extends GenericServlet {
 	}
 	
 	public Long getCorreta(Questoes q){
+		Long value = null;
 		for(Alternativa a:q.getAlternativas()){
 			if(a.getCorreta()){
-				return a.getId();
+				value = a.getId();
 			}
 		}
-		return null;
+		return value;
 	}
 }

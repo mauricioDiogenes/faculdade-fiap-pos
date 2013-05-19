@@ -61,7 +61,6 @@ public class CadastroCategoriasServlet extends GenericServlet {
 			response.sendRedirect("CadastroCategorias");
 		}else if(request.getParameter("id") != null){
 			Long id = Long.parseLong(request.getParameter("id"));
-			System.out.println(id + " id");
 			c = categoriaDaoImpl.find(id);
 			request.getSession().setAttribute("categoria", c);
 			response.sendRedirect("cadastroCategorias.jsp");

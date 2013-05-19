@@ -18,8 +18,6 @@ private Session  session;
 	}
 	
 	public Usuario validaUsuario(Usuario us){
-		System.out.println(us.getEmail());
-		System.out.println(us.getSenha());
 		Query query = this.session.createQuery("from Usuario u where u.email = :email and u.senha = :senha");
 		query.setParameter("email", us.getEmail());
 		query.setParameter("senha", us.getSenha());

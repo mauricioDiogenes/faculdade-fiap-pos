@@ -52,7 +52,6 @@ public class LoginServlet extends GenericServlet {
 		}else{
 			request.getRequestDispatcher("index.jsp?e=true").forward(request, response);
 		}
-	System.out.println();
 	}
 
 }
