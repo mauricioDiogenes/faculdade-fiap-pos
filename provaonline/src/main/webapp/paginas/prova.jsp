@@ -79,6 +79,7 @@
 				</c:forEach>
 			</form>
 			<input type="button" id="submit"  value="Terminar Prova" />
+			
 		</c:if>
 	</div>
 	<!--container-->

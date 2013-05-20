@@ -33,6 +33,12 @@
 			</li>
 
 		</ul>
+		<form action="Navegacao">
+			<input type="hidden" value="logout" name="logout">
+			<input type="submit" value="Logout">
+		</form>
+
+		
 
 	</div>
 	<!--container-->
