@@ -2,8 +2,6 @@ package br.com.dietapontos.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-
 public interface GenericDAO<T> {
 	
 	public List<T> listAll();

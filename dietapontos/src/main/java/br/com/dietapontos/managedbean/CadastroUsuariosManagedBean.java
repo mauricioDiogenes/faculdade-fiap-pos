@@ -11,7 +11,6 @@ import br.com.dietapontos.dao.UsuarioDaoImpl;
 
 @ManagedBean(name = "cadastroUsuariosManagedBean")
 @SessionScoped
-@ApplicationScoped
 @SuppressWarnings("unused")
 public class CadastroUsuariosManagedBean {
 
@@ -25,7 +24,7 @@ public class CadastroUsuariosManagedBean {
 		usuario.setTipoUsuario(tipoU);
 		usuarioDao.save(usuario);
 		br.com.dietapontos.bean.TipoUsuario.values();
-		return "/cadastroUsuarios.faces";
+		return "index.faces";
 	}
 
 	public static UsuarioDaoImpl getUsuarioDao() {

@@ -9,6 +9,7 @@ import br.com.dietapontos.dao.UsuarioDaoImpl;
 
 @ManagedBean(name = "loginManagedBean")
 @SessionScoped
+@SuppressWarnings("static-access")
 public class LoginManagedBean {
 	
 	@Inject
@@ -19,6 +20,7 @@ public class LoginManagedBean {
 	public UsuarioDaoImpl getUsuarioDao() {
 		return usuarioDao;
 	}
+	
 	public void setUsuarioDao(UsuarioDaoImpl usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
@@ -33,7 +35,7 @@ public class LoginManagedBean {
 	 public String login(){
 		 usuario = usuarioDao.validaUsuario(usuario);
 		 if(usuario != null){
-			 return "/hello.faces";
+			 return "/paginas/menu.faces";
 		 }else{
 			 return "/loginError.faces";
 		 }

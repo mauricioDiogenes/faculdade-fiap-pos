@@ -21,16 +21,16 @@ input{
 	margin-bottom:10px;
 }
 #box{
-	background:url(../images/shape.png) no-repeat center;
+	background-color:white;
 	margin:150px auto 0 auto;
 	width:360px;
 	height:260px;
 }
 #boxCadastro{
-	background:url(../images/shapeCadastro.png) no-repeat center;
+	background-color:white;
 	margin:150px auto 0 auto;
 	width:360px;
-	height:340px;
+	height:500px;
 }
 .elements{
 	width:222px;
