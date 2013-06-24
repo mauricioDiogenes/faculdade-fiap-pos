@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @SuppressWarnings("unused")
 @Entity
 @Table(name = "usuarios")
-public class Cliente {
+public class Usuario {
 	
 	private static final long serialVersionUID = 123456L;
 	
@@ -23,6 +23,9 @@ public class Cliente {
 
 	@Column(nullable = false)
 	private String senha;
+	
+	@Column(columnDefinition = "NUMBER(10) DEFAULT 'USUARIO'")
+	private int nivel;
 
 	public String getEmail() {
 		return email;
@@ -39,4 +42,13 @@ public class Cliente {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
+	}
+	
 }

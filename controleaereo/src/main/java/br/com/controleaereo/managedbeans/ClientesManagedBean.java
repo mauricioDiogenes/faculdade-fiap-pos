@@ -5,10 +5,10 @@ import javax.faces.bean.ManagedBean;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
-import br.com.controleaereo.bean.Cliente;
-import br.com.controleaereo.bo.ClienteBO;
+import br.com.controleaereo.bean.Usuario;
+import br.com.controleaereo.bo.UsuarioBO;
 
-@ManagedBean(name = "clientes")
+@ManagedBean(name = "usuario")
 public class ClientesManagedBean {
 	private String email;
 	private String senha;
@@ -31,8 +31,8 @@ public class ClientesManagedBean {
 
 	public String cadastrar() {
 		Mapper mapper = new DozerBeanMapper();
-		Cliente destObject = mapper.map(this, Cliente.class);
-		ClienteBO.getInstance().cadastra(destObject);
+		Usuario destObject = mapper.map(this, Usuario.class);
+		UsuarioBO.getInstance().cadastra(destObject);
 		return "";
 	}
 }

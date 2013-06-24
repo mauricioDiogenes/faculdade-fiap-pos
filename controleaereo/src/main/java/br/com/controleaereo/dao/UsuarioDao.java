@@ -8,19 +8,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
-import br.com.controleaereo.bean.Cliente;
+import br.com.controleaereo.bean.Usuario;
 
 @SuppressWarnings("static-access")
-public class ClienteDao implements GenericDAO<Cliente> {
+public class UsuarioDao implements GenericDAO<Usuario> {
 
 	@Inject
 	private SessionFactory sessionFactory;
 	
-	private static ClienteDao INSTANCE;
+	private static UsuarioDao INSTANCE;
 	
 	private static Session session;
 	
-	private ClienteDao() {
+	private UsuarioDao() {
 		if (INSTANCE == null) {
 			INSTANCE = this;
 		}
@@ -35,30 +35,30 @@ public class ClienteDao implements GenericDAO<Cliente> {
 		this.session = sessionFactory.openSession();
 	}
 
-	public static ClienteDao getInstance() {
+	public static UsuarioDao getInstance() {
 		return INSTANCE;
 	}
 
 	@Override
-	public List<Cliente> listAll() {
+	public List<Usuario> listAll() {
 
 		return null;
 	}
 
 	@Override
-	public Cliente find(Long id) {
-		Cliente c = (Cliente) session.get(Cliente.class, id);
+	public Usuario find(Long id) {
+		Usuario c = (Usuario) session.get(Usuario.class, id);
 		return c;
 	}
 
 	@Override
-	public Cliente update(Cliente t) {
+	public Usuario update(Usuario t) {
 		session.update(t);
 		return t;
 	}
 
 	@Override
-	public Cliente save(Cliente t) {
+	public Usuario save(Usuario t) {
 		ShaPasswordEncoder sha = new ShaPasswordEncoder();
 		t.setSenha(sha.encodePassword(t.getSenha(), "256"));
 		session.save(t);
@@ -66,7 +66,7 @@ public class ClienteDao implements GenericDAO<Cliente> {
 	}
 
 	@Override
-	public void delete(Cliente t) {
+	public void delete(Usuario t) {
 		session.delete(t);
 	}
 

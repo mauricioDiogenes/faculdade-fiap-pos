@@ -41,6 +41,4 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="clienteBO" class="br.com.controleaereo.bo.ClienteBO">
 		<property name="clienteDao" ref="clienteDAO" />
 	</bean>
-
-
 </beans>
