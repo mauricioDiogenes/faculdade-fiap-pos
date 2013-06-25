@@ -8,5 +8,4 @@ public interface GenericDAO<T> {
 	public T update(T t);
 	public T save(T t);
 	public void delete(T t);
-
 }

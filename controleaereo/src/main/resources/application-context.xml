@@ -35,10 +35,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			</props>
 		</property>
 	</bean>
-	<bean id="clienteDAO" class="br.com.controleaereo.dao.ClienteDao">
+	
+	<bean id="usuarioDAO" class="br.com.controleaereo.dao.UsuarioDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="clienteBO" class="br.com.controleaereo.bo.ClienteBO">
-		<property name="clienteDao" ref="clienteDAO" />
+	<bean id="usuarioBO" class="br.com.controleaereo.bo.UsuarioBO">
+		<property name="usuarioDao" ref="usuarioDAO" />
 	</bean>
 </beans>

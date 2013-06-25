@@ -1,9 +1,13 @@
 package br.com.controleaereo.managedbeans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.eclipse.jetty.server.session.HashedSession;
 
 import br.com.controleaereo.bean.Usuario;
 import br.com.controleaereo.bo.UsuarioBO;
@@ -13,6 +17,10 @@ public class ClientesManagedBean {
 	private String email;
 	private String senha;
 
+	private HashedSession getSession(){
+		return (HashedSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -35,4 +43,27 @@ public class ClientesManagedBean {
 		UsuarioBO.getInstance().cadastra(destObject);
 		return "";
 	}
+
+	public String redireciona(){
+		if(getSession().getAttribute("userSession") != null){
+			return "paginas/index.faces";
+		}else{
+			return null;
+		}
+	}
+	
+	public void login(ActionEvent actionEvent){
+		Mapper mapper = new DozerBeanMapper();
+		Usuario destObject = mapper.map(this, Usuario.class);
+		Usuario u = UsuarioBO.getInstance().find(destObject);
+		if(u == null){
+			addError(actionEvent);
+		}else{
+			getSession().setAttribute("userSession", u);
+		}
+	}
+
+    public void addError(ActionEvent actionEvent) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Usuário ou senha inválidos", ""));  
+    }  
 }
