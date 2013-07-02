@@ -10,7 +10,7 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 
 import br.com.controleaereo.bean.Usuario;
 
-
+@SuppressWarnings("unchecked")
 public class UsuarioDao implements GenericDAO<Usuario> {
 
 	@Inject

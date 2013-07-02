@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<title>Teste</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<style>
+.ui-messages-error-summary {
+	font-size: 12px;
+}
+
+.ui-messages {
+	width: 300px;
+	position: relative;
+	left: -50px;
+	top: -10px;
+}
+</style>
+</h:head>
+<h:body>
+
+	<div class="quadro" style="height: 600px; width: 700px;">
+		<div style="padding: 20px;">
+			<br /> <br />
+			<h3>CADASTRO DE VOOS</h3>
+			<h:form id="form1">
+				<table>
+					<tr>
+					<td>
+						<p:message id="trechoMessage1" for="trecho1" display="text"/>
+						<p:message id="trechoMessage2" for="trecho2" display="text"/>
+						<p:message id="precoMessage" for="preco" display="text"/>
+					</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							Trecho:
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p:watermark for="trecho1" value="Saida" />
+							<p:inputText id="trecho1" name="trecho1" value="#{voo.trecho.nomeTrecho1}" required="true" requiredMessage="Preencha a saida" />
+						</td>
+						<td>
+							<p:watermark for="trecho2" value="Destino" />
+							<p:inputText id="trecho2" name="trecho2" value="#{voo.trecho.nomeTrecho2}" required="true" requiredMessage="Preencha o destino" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p:watermark id="watermarkpreco" for="preco" value="Preço" />
+							<pe:inputNumber id="preco" value="#{voo.trecho.preco}" symbol="R$ " required="true" requiredMessage="Preencha o Preço"  />
+						</td>
+					</tr>
+				</table>
+				
+				<p:commandButton id="cadastrarButton" value="Trecho"
+								icon="ui-icon-plusthick" styleClass="btn"
+								actionListener="#{voo.addTrecho}" update="listaTrechos, precoMessage, trechoMessage1, trechoMessage2" />
+				<br /><br />
+				<b>Trechos Adicionados</b>
+				<p:dataTable id="listaTrechos" var="trechoVoo"
+					value="#{voo.trechos}">
+					<p:column headerText="Trecho">
+						<h:outputText value="#{trechoVoo.nomeTrecho1} - #{trechoVoo.nomeTrecho1}" />
+					</p:column>
+					<p:column headerText="Preço">
+						<h:outputText value="#{trechoVoo.preco}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>
