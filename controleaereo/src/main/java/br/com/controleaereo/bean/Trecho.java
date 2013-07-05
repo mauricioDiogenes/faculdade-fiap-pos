@@ -5,6 +5,7 @@ public class Trecho {
 	private String nomeTrecho2;
 	private Double preco;
 	private int idVoo;
+	private String dataHora;
 
 	public String getNomeTrecho1() {
 		return nomeTrecho1;
@@ -30,10 +31,19 @@ public class Trecho {
 	public void setIdVoo(int idVoo) {
 		this.idVoo = idVoo;
 	}
+	public String getDataHora() {
+		return dataHora;
+	}
+	public void setDataHora(String dataHora) {
+		this.dataHora = dataHora;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((dataHora == null) ? 0 : dataHora.hashCode());
 		result = prime * result + idVoo;
 		result = prime * result
 				+ ((nomeTrecho1 == null) ? 0 : nomeTrecho1.hashCode());
@@ -54,6 +64,13 @@ public class Trecho {
 			return false;
 		}
 		Trecho other = (Trecho) obj;
+		if (dataHora == null) {
+			if (other.dataHora != null) {
+				return false;
+			}
+		} else if (!dataHora.equals(other.dataHora)) {
+			return false;
+		}
 		if (idVoo != other.idVoo) {
 			return false;
 		}
