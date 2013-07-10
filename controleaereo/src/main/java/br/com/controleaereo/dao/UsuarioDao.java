@@ -7,10 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.stereotype.Repository;
 
 import br.com.controleaereo.bean.Usuario;
 
 @SuppressWarnings("unchecked")
+@Repository
 public class UsuarioDao implements GenericDAO<Usuario> {
 
 	@Inject
@@ -65,6 +67,7 @@ public class UsuarioDao implements GenericDAO<Usuario> {
 		session.save(t);
 		return t;
 	}
+	
 
 	@Override
 	public void delete(Usuario t) {

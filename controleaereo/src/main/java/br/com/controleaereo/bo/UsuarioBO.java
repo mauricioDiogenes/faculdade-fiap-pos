@@ -2,9 +2,12 @@ package br.com.controleaereo.bo;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import br.com.controleaereo.bean.Usuario;
 import br.com.controleaereo.dao.UsuarioDao;
 
+@Service
 public class UsuarioBO {
 
 	@Inject
