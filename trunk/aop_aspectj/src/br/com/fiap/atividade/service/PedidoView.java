@@ -2,6 +2,7 @@ package br.com.fiap.atividade.service;
 
 public class PedidoView {
 	
+	private String idPedido;
 	private String idProduto;
 	private String descricaoProduto;
 	private String valorUnitario;
@@ -54,13 +55,26 @@ public class PedidoView {
 	public void setTotalPedido(String totalPedido) {
 		this.totalPedido = totalPedido;
 	}
+	
+	public String getIdPedido() {
+		return idPedido;
+	}
+	
+	public void setIdPedido(String idPedido) {
+		this.idPedido = idPedido;
+	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return String
-				.format("PedidoView [idProduto=%s, descricaoProduto=%s, valorUnitario=%s, quantidade=%s, desconto=%s, total=%s, totalPedido=%s]",
-						idProduto, descricaoProduto, valorUnitario, quantidade,
-						desconto, total, totalPedido);
+				.format("PedidoView [idPedido=%s, idProduto=%s, descricaoProduto=%s, valorUnitario=%s, quantidade=%s, desconto=%s, total=%s, totalPedido=%s]",
+						idPedido, idProduto, descricaoProduto, valorUnitario,
+						quantidade, desconto, total, totalPedido);
 	}
+	
+	
 	
 	
 	
