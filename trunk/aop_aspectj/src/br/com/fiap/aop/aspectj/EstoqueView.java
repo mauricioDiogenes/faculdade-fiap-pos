@@ -30,6 +30,8 @@ import br.com.fiap.atividade.dao.ClienteDao;
 import br.com.fiap.atividade.dao.ClienteDaoImpl;
 import br.com.fiap.atividade.dao.EstoqueDao;
 import br.com.fiap.atividade.dao.EstoqueDaoImpl;
+import br.com.fiap.atividade.service.PedidoService;
+import br.com.fiap.atividade.service.PedidoView;
 
 /***
  * Classe que define a interface do sistema.
@@ -46,7 +48,7 @@ public class EstoqueView {
 	private Text textQuantidade;
 	private Text txtTotalGeral;
 	private Table table;
-	private Pedido pedido = null;
+	private List<Pedido> pedidoList = null;
 	private Double totalGeral = new Double(0);
 
 	/**
@@ -146,8 +148,19 @@ public class EstoqueView {
 		
 		final Cliente cliente = new Cliente();
 		
+		final ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setBounds(30, 199, 452, 150);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		
+		table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		
+		
 		Button btnAdicionarProdutor = new Button(shell, SWT.NONE);
 		btnAdicionarProdutor.addSelectionListener(new SelectionAdapter() {
+			int primeiraVez = 0;
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				getClient(comboCliente, cliente);
@@ -163,19 +176,29 @@ public class EstoqueView {
 				Date dataSistema = new Date(dateTime.getYear(), dateTime.getMonth(), dateTime.getDay());
 				
 				try {
-					pedido = estoqueDao.salvarCompras(cliente, dataSistema );
-					TableItem tableItem = new TableItem(table, SWT.NO);
-					tableItem.setText(0, String.valueOf(pedido.getIdProduto()));
-					tableItem.setText(1, String.valueOf(pedido.getDescricao()));
-					DecimalFormat decimalFormat = new DecimalFormat("R$ #,##0.00");
-					tableItem.setText(2,decimalFormat.format(pedido.getValorUnitario()));
-					tableItem.setText(3,pedido.getQuantidade().toString());
-					tableItem.setText(4,decimalFormat.format(pedido.getDesconto()));
-					tableItem.setText(5,decimalFormat.format(pedido.getTotal()));
-					nrPedido.setText(pedido.getIdCompra().toString());
-					DecimalFormat decimalFormatTotal = new DecimalFormat("R$ #,##0.00");
-					totalGeral += pedido.getTotal();
-					txtTotalGeral.setText(decimalFormatTotal.format(totalGeral));
+					pedidoList = estoqueDao.salvarCompras(cliente, dataSistema );
+					if(primeiraVez > 0){
+						table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
+						table.setHeaderVisible(true);
+						table.setLinesVisible(true);
+					}
+					
+					
+					List<PedidoView> lisPedidoViews = new PedidoService().sumarizar(pedidoList);
+					
+					for (PedidoView pedido : lisPedidoViews) {
+						primeiraVez++;
+						TableItem tableItem = new TableItem(table, SWT.NO);
+						tableItem.setText(0, String.valueOf(pedido.getIdProduto()));
+						tableItem.setText(1, pedido.getDescricaoProduto());
+						tableItem.setText(2, pedido.getValorUnitario());
+						tableItem.setText(3, pedido.getQuantidade());
+						tableItem.setText(4, pedido.getDesconto() );
+						tableItem.setText(5, pedido.getTotal());
+						//nrPedido.setText(pedido.getIdCompra().toString());
+						txtTotalGeral.setText(pedido.getTotalPedido());
+					}
+					
 					
 				} catch (ClassNotFoundException | SQLException e1) {
 					logger.error("Erro: ", e1);
@@ -246,14 +269,7 @@ public class EstoqueView {
 		txtTotalGeral = new Text(shell, SWT.BORDER);
 		txtTotalGeral.setBounds(304, 169, 148, 19);
 		
-		ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(30, 199, 452, 150);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
 		
-		table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
 		
 		TableColumn tblclmnNewColumn = new TableColumn(table, SWT.NONE);
 		tblclmnNewColumn.setWidth(74);

@@ -30,7 +30,7 @@ public interface EstoqueDao {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public Pedido salvarCompras(Cliente cliente, Date dataSistema) throws ClassNotFoundException, SQLException ;
+	public List<Pedido> salvarCompras(Cliente cliente, Date dataSistema) throws ClassNotFoundException, SQLException ;
 	
 	/***
 	 * Metodo responsavel por selecionar o {@link Cliente} por nome;
@@ -59,6 +59,6 @@ public interface EstoqueDao {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public Pedido somarPedido(Long idProduto, Long idCliente, Date data) throws ClassNotFoundException, SQLException;
+	public List<Pedido> somarPedido(Long idProduto, Long idCliente, Date data) throws ClassNotFoundException, SQLException;
 
 }
