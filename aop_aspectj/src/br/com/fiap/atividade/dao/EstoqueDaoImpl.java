@@ -61,7 +61,7 @@ public class EstoqueDaoImpl implements EstoqueDao {
 	 * (non-Javadoc)
 	 * @see br.com.fiap.atividade.dao.EstoqueDao#salvarCompras(br.com.fiap.atividade.bean.Cliente)
 	 */
-	public Pedido salvarCompras(Cliente cliente, java.util.Date date) throws ClassNotFoundException,
+	public List<Pedido> salvarCompras(Cliente cliente, java.util.Date date) throws ClassNotFoundException,
 			SQLException {
 
 		Cliente clienteDataBase = selecionarClientePorNome(cliente.getNome());
@@ -93,8 +93,12 @@ public class EstoqueDaoImpl implements EstoqueDao {
 			new Conexao().closeConnection(con);
 		}
 
-		Pedido pedido = somarPedido(cliente.getProduto().getId(), cliente.getId(), date);
-		pedido.setIdCompra(idPedido);
+		List<Pedido> pedido = somarPedido(cliente.getProduto().getId(), cliente.getId(), date);
+		
+		for (Pedido pedido2 : pedido) {
+			pedido2.setIdCompra(idPedido);
+		}
+		
 		return pedido;
 	}
 
@@ -139,40 +143,35 @@ public class EstoqueDaoImpl implements EstoqueDao {
 	 * (non-Javadoc)
 	 * @see br.com.fiap.atividade.dao.EstoqueDao#somarPedido(java.lang.Long, java.lang.Long, java.util.Date)
 	 */
-	public Pedido somarPedido(Long idProduto, Long idCliente,
+	public List<Pedido> somarPedido(Long idProduto, Long idCliente,
 			java.util.Date data) throws ClassNotFoundException, SQLException {
 		con = new Conexao().getConnection();
 		PreparedStatement pstmt = con
-				.prepareStatement("select p.id as id_produto, p.descricao, p.valorUnitario, (select count(*) "
-						+ "from pedido pe "
-						+ "where pe.cliente_id = ? and pe.produto_id=? )as quantidade, p.desconto, "
-						+ "if( p.desconto is null, ( "
-						+ "(select count(*) from pedido pe "
-						+ "where pe.cliente_id = ? and pe.produto_id= ? "
-						+ ")* p.valorUnitario) , "
-						+ "(select count(*) "
-						+ "from pedido pe "
-						+ "where pe.cliente_id = ? and pe.produto_id=? )* p.desconto) as total "
-						+ "from produto p ");
+				.prepareStatement(
+						"select pr.id as id_produto, pr.descricao, pr.valorUnitario, pr.desconto " +
+						"from pedido p " +
+						"inner join produto pr on pr.id = p.produto_id " +
+						"inner join cliente c on c.id = p.cliente_id " +
+						"where p.cliente_id = ? " +
+						"and p.data_compra = ?");
 		pstmt.setLong(1, idCliente);
-		pstmt.setLong(2, idProduto);
-		pstmt.setLong(3, idCliente);
-		pstmt.setLong(4, idProduto);
-		pstmt.setLong(5, idCliente);
-		pstmt.setLong(6, idProduto);
+		pstmt.setDate(2, new Date(data.getTime()));
+		
 		ResultSet rs = pstmt.executeQuery();
+		ArrayList<Pedido> retorno = new ArrayList<>();
 		Pedido pedido = null;
 		while (rs.next()) {
 			pedido = new Pedido();
 			pedido.setIdProduto(rs.getLong("id_produto"));
 			pedido.setDescricao(rs.getString("descricao"));
 			pedido.setValorUnitario(rs.getDouble("valorUnitario"));
-			pedido.setQuantidade(rs.getLong("quantidade"));
 			pedido.setDesconto(rs.getDouble("desconto"));
-			pedido.setTotal(rs.getDouble("total"));
-
+			retorno.add(pedido);
 		}
-		return pedido;
+		
+		
+		
+		return retorno;
 	}
 
 }

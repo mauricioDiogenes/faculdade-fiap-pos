@@ -18,7 +18,6 @@ public aspect LogVendasDiarias {
 	Logger log = Logger.getLogger("vendas");
 	
 	pointcut logTrace() : call( public * br.com.fiap.atividade.dao.ClienteDaoImpl.salvarCompras(..));
-	
 	after() returning(Object r)  : logTrace() {
 		try{
 		Pedido pedido = (Pedido) r;
