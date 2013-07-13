@@ -153,9 +153,7 @@ public class EstoqueView {
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
-		table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setHeaderVisible(true);
-		table.setLinesVisible(true);
+		createTable(scrolledComposite);
 		
 		
 		Button btnAdicionarProdutor = new Button(shell, SWT.NONE);
@@ -178,9 +176,8 @@ public class EstoqueView {
 				try {
 					pedidoList = estoqueDao.salvarCompras(cliente, dataSistema );
 					if(primeiraVez > 0){
-						table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
-						table.setHeaderVisible(true);
-						table.setLinesVisible(true);
+						table.dispose();
+						createTable(scrolledComposite);
 					}
 					
 					
@@ -195,7 +192,7 @@ public class EstoqueView {
 						tableItem.setText(3, pedido.getQuantidade());
 						tableItem.setText(4, pedido.getDesconto() );
 						tableItem.setText(5, pedido.getTotal());
-						//nrPedido.setText(pedido.getIdCompra().toString());
+						nrPedido.setText(pedido.getIdPedido().toString());
 						txtTotalGeral.setText(pedido.getTotalPedido());
 					}
 					
@@ -204,6 +201,8 @@ public class EstoqueView {
 					logger.error("Erro: ", e1);
 				} 
 			}
+
+			
 
 			private void getDataCompra(DateTime dateTime, Cliente cliente) {
 				cliente.setDataCompra((Date)dateTime.getData());
@@ -271,6 +270,25 @@ public class EstoqueView {
 		
 		
 		
+		
+		
+		
+		Button btnFinalizado = new Button(shell, SWT.CHECK);
+		btnFinalizado.setBounds(30, 359, 93, 18);
+		btnFinalizado.setText("Finalizado");
+		
+		Button btnAtualizarTotal = new Button(shell, SWT.NONE);
+		btnAtualizarTotal.setBounds(371, 355, 111, 28);
+		btnAtualizarTotal.setText("Atualizar Total");
+
+	}
+	
+	private void createTable(final ScrolledComposite scrolledComposite) {
+		table = new Table(scrolledComposite, SWT.BORDER | SWT.FULL_SELECTION);
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		
+		
 		TableColumn tblclmnNewColumn = new TableColumn(table, SWT.NONE);
 		tblclmnNewColumn.setWidth(74);
 		tblclmnNewColumn.setText("Id Produto");
@@ -296,15 +314,5 @@ public class EstoqueView {
 		tblclmnTotal.setText("Total");
 		scrolledComposite.setContent(table);
 		scrolledComposite.setMinSize(table.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		
-		
-		Button btnFinalizado = new Button(shell, SWT.CHECK);
-		btnFinalizado.setBounds(30, 359, 93, 18);
-		btnFinalizado.setText("Finalizado");
-		
-		Button btnAtualizarTotal = new Button(shell, SWT.NONE);
-		btnAtualizarTotal.setBounds(371, 355, 111, 28);
-		btnAtualizarTotal.setText("Atualizar Total");
-
 	}
 }

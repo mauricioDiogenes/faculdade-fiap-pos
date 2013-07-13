@@ -23,6 +23,7 @@ public class PedidoService {
 		
 		for (Group<Pedido> listaP : lista.subgroups()) {
 			PedidoView pedidoView = new PedidoView();
+			pedidoView.setIdPedido(String.valueOf(listaP.findAll().get(0).getIdCompra()));
 			pedidoView.setTotalPedido(UtilFormatter.converToString(valorTotal));
 			pedidoView.setQuantidade(String.valueOf(listaP.getSize()));
 			pedidoView.setDescricaoProduto(listaP.findAll().get(0).getDescricao());
