@@ -12,11 +12,10 @@ import static ch.lambdaj.Lambda.*;
 
 public class PedidoService {
 	
-	static Double valorTotal;
 	
 	public  List<PedidoView> sumarizar(List<Pedido> pedidos){
 		
-		valorTotal = sum(pedidos, on(Pedido.class).getValorUnitario());
+		Double valorTotal = somar(pedidos);
 		
 		Group<Pedido> lista = group(pedidos, by(on(Pedido.class).getDescricao()));  
 		ArrayList<PedidoView> listaPedidoViews = new ArrayList<PedidoView>();
@@ -29,6 +28,7 @@ public class PedidoService {
 			pedidoView.setDescricaoProduto(listaP.findAll().get(0).getDescricao());
 			pedidoView.setIdProduto(String.valueOf(listaP.findAll().get(0).getIdProduto()));
 			pedidoView.setValorUnitario(UtilFormatter.converToString(listaP.findAll().get(0).getValorUnitario()));
+			pedidoView.setDesconto(UtilFormatter.converToString(listaP.findAll().get(0).getDesconto()));
 			Double total = 0d;
 			for (int i = 0; i < listaP.getSize(); i++) {
 				total+= listaP.findAll().get(i).getValorUnitario();
@@ -39,6 +39,11 @@ public class PedidoService {
 		
 		return listaPedidoViews;
 		
+	}
+
+	private Double somar(List<Pedido> pedidos) {
+		Double valDouble = sum(pedidos, on(Pedido.class).getValorUnitario());
+		return valDouble;
 	}
 	
 	
