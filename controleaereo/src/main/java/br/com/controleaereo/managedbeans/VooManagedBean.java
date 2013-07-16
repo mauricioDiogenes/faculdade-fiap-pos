@@ -10,7 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+
+import br.com.controleaereo.bean.Assentos;
 import br.com.controleaereo.bean.Trecho;
+import br.com.controleaereo.bean.Voo;
+import br.com.controleaereo.bo.VooBO;
 
 @ManagedBean(name="voo")
 @ViewScoped
@@ -18,9 +24,27 @@ public class VooManagedBean {
 	
 	private Trecho trecho = new Trecho();
 	
-	private double valorTotal;
+	private List<Trecho> trechos;
 	
-	private static List<Trecho> trechos;
+	private Integer assentosEconomica;
+	
+	private Integer assentosExecutiva;
+
+	public Integer getAssentosEconomica() {
+		return assentosEconomica;
+	}
+
+	public void setAssentosEconomica(Integer assentosEconomica) {
+		this.assentosEconomica = assentosEconomica;
+	}
+
+	public Integer getAssentosExecutiva() {
+		return assentosExecutiva;
+	}
+
+	public void setAssentosExecutiva(Integer assentosExecutiva) {
+		this.assentosExecutiva = assentosExecutiva;
+	}
 
 	public Trecho getTrecho() {
 		return trecho;
@@ -30,27 +54,36 @@ public class VooManagedBean {
 		this.trecho = trecho;
 	}
 
-	public double getValorTotal() {
-		return valorTotal;
-	}
-
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
 	public List<Trecho> getTrechos() {
-		if(VooManagedBean.trechos == null){
-			VooManagedBean.trechos = new ArrayList<Trecho>();
+		if(this.trechos == null){
+			this.trechos = new ArrayList<Trecho>();
 		}
-		return VooManagedBean.trechos;
+		return this.trechos;
 	}
 
 	public void setTrechos(List<Trecho> trechos) {
-		VooManagedBean.trechos = trechos;
+		this.trechos = trechos;
 	}
 
-	public String cadastrar(){
-		return "../login.faces";
+	public String cadastrarVoo(){
+		if(trechos.size() != 0 && assentosEconomica != 0 && assentosExecutiva != 0){
+			Mapper mapper = new DozerBeanMapper();
+			Voo destObject = mapper.map(this, Voo.class);
+			List<Assentos> assentos = new ArrayList<Assentos>();
+			for (int i = 0; i < assentosEconomica; i++) {
+				assentos.add(new Assentos("economica"));
+			}
+			for (int i = 0; i < assentosExecutiva; i++) {
+				assentos.add(new Assentos("executiva"));
+			}
+			destObject.setAssentos(assentos);
+			try {
+				VooBO.getInstance().cadastra(destObject);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "CadastroVoo.jsf";
 	}
 
 	public String addTrecho(){
@@ -60,6 +93,11 @@ public class VooManagedBean {
 			setTrechos(new ArrayList<Trecho>(list));
 		}
 		trecho = new Trecho();
+		return null;
+	}
+	
+	public String remTrecho(){
+		getTrechos().remove(trecho);
 		return null;
 	}
 	
@@ -103,4 +141,10 @@ public class VooManagedBean {
 		}
 		return false;
 	}
+	
+	public List<Voo> getVoos(){
+		List<Voo> voos = VooBO.getInstance().recuperaVoos();
+		return voos;
+	}
+	
 }

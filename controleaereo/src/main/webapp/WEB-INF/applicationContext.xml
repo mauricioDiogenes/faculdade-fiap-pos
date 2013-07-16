@@ -16,7 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/controleaereo" />
 		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="password" value="123456" />
 		<property name="initialSize" value="2" />
 		<property name="maxActive" value="5" />
 	</bean>
@@ -24,10 +24,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="br.com.controleaereo" />
+		<property name="packagesToScan" value="br.com.controleaereo.bean" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
@@ -36,5 +36,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			</props>
 		</property>
 	</bean>
-	
+	<bean id="sessionFac" class="br.com.controleaereo.dao.SessionFac">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

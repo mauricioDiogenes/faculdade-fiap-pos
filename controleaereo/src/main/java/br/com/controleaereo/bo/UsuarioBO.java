@@ -1,5 +1,7 @@
 package br.com.controleaereo.bo;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ public class UsuarioBO {
 
 	@Inject
 	private UsuarioDao usuarioDao;
-	
+
 	private static UsuarioBO INSTANCE;
 
 	private UsuarioBO() {
@@ -25,7 +27,7 @@ public class UsuarioBO {
 		return INSTANCE;
 	}
 
-	public void cadastra(Usuario usuario){
+	public void cadastra(Usuario usuario) throws Exception{
 		usuarioDao.save(usuario);
 	}
 
@@ -36,9 +38,8 @@ public class UsuarioBO {
 	public void setUsuarioDao(UsuarioDao usuarioDao) {
 		this.usuarioDao = usuarioDao;
 	}
-	//www.free-codecs.com/download/3gp_player.htm
 
-	public Usuario find(Usuario usuario){
+	public Usuario find(Usuario usuario) {
 		return usuarioDao.validaUsuario(usuario);
 	}
 }

@@ -31,10 +31,26 @@
 	</script>
 </h:head>
 <h:body>
+<h:form>
 	<div class="quadro" style="height: 400px;">
 		<div class="form">
-			teste
+			<div style="float:right;">
+				<p:commandLink id="sairBtn" action="#{clientes.sair}">  
+	        		Sair  
+	    		</p:commandLink>
+			</div>
+			<p:dataTable id="listaTrechos" var="listVoos" value="#{voo.voos}"
+				rowKey="#{voo.voos}" selectionMode="single">
+				<p:column headerText="Trecho">
+					<h:outputText
+						value="#{listVoos.id}" />
+				</p:column>
+				<p:column headerText="">
+
+				</p:column>
+			</p:dataTable>
 		</div>
 	</div>
+</h:form>
 </h:body>
 </html>

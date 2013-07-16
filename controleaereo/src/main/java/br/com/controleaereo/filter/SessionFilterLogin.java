@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import br.com.controleaereo.bean.Usuario;
 
-@WebFilter(urlPatterns={"/paginas/*"})
-public class SessionFilter implements Filter {
+@WebFilter(urlPatterns={"/login.jsf"})
+public class SessionFilterLogin implements Filter {
 
 	@Override
 	public void destroy() {
@@ -31,11 +31,17 @@ public class SessionFilter implements Filter {
 
 		HttpSession session = httpReq.getSession();
 		Usuario user = (Usuario) session.getAttribute("userSession");
-		if (user == null) {
-			httpRes.sendRedirect("../login.jsf");
-		} else {
+		
+		if (user != null) {
+			if ("adm".equals(user.getNivel())) {
+				httpRes.sendRedirect("PaginasAdm/menuAdm.jsf");
+			} else {
+				httpRes.sendRedirect("paginas/menuUsuario.jsf");
+			}
+		}else{
 			chain.doFilter(request, response);
 		}
+		
 	}
 
 	@Override
