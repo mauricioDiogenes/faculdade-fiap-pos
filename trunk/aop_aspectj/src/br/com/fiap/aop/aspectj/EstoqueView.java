@@ -50,6 +50,7 @@ public class EstoqueView {
 	private Table table;
 	private List<Pedido> pedidoList = null;
 	private Double totalGeral = new Double(0);
+	private Date dataSistema = new Date();
 
 	/**
 	 * Metodo principal da aplicao.
@@ -99,8 +100,17 @@ public class EstoqueView {
 		lblData.setBounds(202, 23, 59, 14);
 		lblData.setText("Data");
 		
-		final DateTime dateTime = new DateTime(shell, SWT.BORDER);
-		dateTime.setBounds(239, 20, 92, 27);
+		final DateTime dateTime = new DateTime(shell, SWT.DATE);
+		dateTime.setBounds(240, 10, 207, 27);
+		dateTime.setCapture(true);
+		
+		dateTime.addSelectionListener (new SelectionAdapter () {
+	        public void widgetSelected (SelectionEvent e) {
+	        	System.out.println(dateTime.getMonth());
+	            System.out.println(dateTime.getYear());
+	            dataSistema = new Date(dateTime.getYear() -1900, dateTime.getMonth(), dateTime.getDay());
+	        }
+	    });
 		
 		Label lblTipoCliente = new Label(shell, SWT.NONE);
 		lblTipoCliente.setBounds(30, 57, 67, 14);
@@ -170,8 +180,6 @@ public class EstoqueView {
 				
 				EstoqueDao estoqueDao = new EstoqueDaoImpl();
 				
-				@SuppressWarnings("deprecation")
-				Date dataSistema = new Date(dateTime.getYear(), dateTime.getMonth(), dateTime.getDay());
 				
 				try {
 					pedidoList = estoqueDao.salvarCompras(cliente, dataSistema );
@@ -181,7 +189,7 @@ public class EstoqueView {
 					}
 					
 					
-					List<PedidoView> lisPedidoViews = new PedidoService().sumarizar(pedidoList);
+					List<PedidoView> lisPedidoViews = new PedidoService().sumarizar(pedidoList, dataSistema);
 					
 					for (PedidoView pedido : lisPedidoViews) {
 						primeiraVez++;

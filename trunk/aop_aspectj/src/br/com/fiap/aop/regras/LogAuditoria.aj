@@ -1,5 +1,6 @@
 package br.com.fiap.aop.regras;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,6 +33,10 @@ public aspect LogAuditoria {
 	private String impressaoHorario(Long horario){
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss.S");
 		return simpleDateFormat.format(new Date(horario));
+	}
+	
+	after() throwing(SQLException ex) : logTrace() {
+		log.error(String.format("Erro no Banco de Dados: %s", ex.getMessage()));
 	}
 	
 
