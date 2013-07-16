@@ -1,6 +1,7 @@
 package br.com.fiap.atividade.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ch.lambdaj.group.Group;
@@ -13,9 +14,10 @@ import static ch.lambdaj.Lambda.*;
 public class PedidoService {
 	
 	
-	public  List<PedidoView> sumarizar(List<Pedido> pedidos){
+	public  List<PedidoView> sumarizar(List<Pedido> pedidos, Date date){
 		
-		Double valorTotal = somar(pedidos);
+		
+		Double valorTotal = somar(pedidos, date);
 		
 		Group<Pedido> lista = group(pedidos, by(on(Pedido.class).getDescricao()));  
 		ArrayList<PedidoView> listaPedidoViews = new ArrayList<PedidoView>();
@@ -41,7 +43,7 @@ public class PedidoService {
 		
 	}
 
-	private Double somar(List<Pedido> pedidos) {
+	private Double somar(List<Pedido> pedidos, Date data) {
 		Double valDouble = sum(pedidos, on(Pedido.class).getValorUnitario());
 		return valDouble;
 	}
