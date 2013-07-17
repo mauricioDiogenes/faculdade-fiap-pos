@@ -36,4 +36,8 @@ public class VooBO {
 		return voos;
 	}
 	
+	public Voo recuperaVoo(Long id){
+		return vooDao.find(id);
+	}
+	
 }

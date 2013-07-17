@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "assentos")
-public class Assentos {
+@Table(name = "assento")
+public class Assento {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class Assentos {
 	@JoinColumn(name = "id_usuario", referencedColumnName="id")
 	private Long id_usuario;
 	
-	public Assentos(String tipo){
+	public Assento(String tipo){
 		this.tipo=tipo;
 	}
 	
@@ -34,6 +34,22 @@ public class Assentos {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(Long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	@Override
@@ -58,7 +74,7 @@ public class Assentos {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Assentos other = (Assentos) obj;
+		Assento other = (Assento) obj;
 		if (id == null) {
 			if (other.id != null) {
 				return false;

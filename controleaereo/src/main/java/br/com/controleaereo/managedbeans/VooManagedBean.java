@@ -3,6 +3,7 @@ package br.com.controleaereo.managedbeans;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.faces.application.FacesMessage;
@@ -13,22 +14,32 @@ import javax.faces.context.FacesContext;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
-import br.com.controleaereo.bean.Assentos;
+import br.com.controleaereo.bean.Assento;
 import br.com.controleaereo.bean.Trecho;
 import br.com.controleaereo.bean.Voo;
 import br.com.controleaereo.bo.VooBO;
 
-@ManagedBean(name="voo")
+@ManagedBean(name = "voo")
 @ViewScoped
 public class VooManagedBean {
+
+	private Assento assento;
 	
 	private Trecho trecho = new Trecho();
-	
+
 	private List<Trecho> trechos;
-	
+
 	private Integer assentosEconomica;
-	
+
 	private Integer assentosExecutiva;
+	
+	public Assento getAssento() {
+		return assento;
+	}
+
+	public void setAssento(Assento assento) {
+		this.assento = assento;
+	}
 
 	public Integer getAssentosEconomica() {
 		return assentosEconomica;
@@ -55,7 +66,7 @@ public class VooManagedBean {
 	}
 
 	public List<Trecho> getTrechos() {
-		if(this.trechos == null){
+		if (this.trechos == null) {
 			this.trechos = new ArrayList<Trecho>();
 		}
 		return this.trechos;
@@ -65,16 +76,17 @@ public class VooManagedBean {
 		this.trechos = trechos;
 	}
 
-	public String cadastrarVoo(){
-		if(trechos.size() != 0 && assentosEconomica != 0 && assentosExecutiva != 0){
+	public String cadastrarVoo() {
+		if (trechos.size() != 0 && assentosEconomica != 0
+				&& assentosExecutiva != 0) {
 			Mapper mapper = new DozerBeanMapper();
 			Voo destObject = mapper.map(this, Voo.class);
-			List<Assentos> assentos = new ArrayList<Assentos>();
+			List<Assento> assentos = new ArrayList<Assento>();
 			for (int i = 0; i < assentosEconomica; i++) {
-				assentos.add(new Assentos("economica"));
+				assentos.add(new Assento("economica"));
 			}
 			for (int i = 0; i < assentosExecutiva; i++) {
-				assentos.add(new Assentos("executiva"));
+				assentos.add(new Assento("executiva"));
 			}
 			destObject.setAssentos(assentos);
 			try {
@@ -86,8 +98,8 @@ public class VooManagedBean {
 		return "CadastroVoo.jsf";
 	}
 
-	public String addTrecho(){
-		if(validateFields()){
+	public String addTrecho() {
+		if (validateFields()) {
 			Set<Trecho> list = new LinkedHashSet<Trecho>(trechos);
 			list.add(trecho);
 			setTrechos(new ArrayList<Trecho>(list));
@@ -95,56 +107,70 @@ public class VooManagedBean {
 		trecho = new Trecho();
 		return null;
 	}
-	
-	public String remTrecho(){
+
+	public String remTrecho() {
 		getTrechos().remove(trecho);
 		return null;
 	}
-	
-	public boolean validateFields(){
+
+	public boolean validateFields() {
 		List<String> fields = new ArrayList<String>();
-		if("".equals(trecho.getNomeTrecho1())){
+		if ("".equals(trecho.getNomeTrecho1())) {
 			fields.add(" Origem");
 		}
-		if("".equals(trecho.getNomeTrecho2())){
+		if ("".equals(trecho.getNomeTrecho2())) {
 			fields.add(" Destino");
 		}
-		if(trecho.getPreco() == null){
+		if (trecho.getPreco() == null) {
 			trecho.setPreco(null);
 			fields.add(" Preço");
 		}
-		if("".equals(trecho.getDataHora())){
+		if ("".equals(trecho.getDataHora())) {
 			fields.add(" Data Hora");
 		}
-		if((!"".equals(trecho.getNomeTrecho1())) && (!"".equals(trecho.getNomeTrecho2())) && trecho.getNomeTrecho1().equals(trecho.getNomeTrecho2())){
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Origem e destinos não devem ser iguais", ""));
+		if ((!"".equals(trecho.getNomeTrecho1()))
+				&& (!"".equals(trecho.getNomeTrecho2()))
+				&& trecho.getNomeTrecho1().equals(trecho.getNomeTrecho2())) {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"Origem e destinos não devem ser iguais", ""));
 			return false;
 		}
-		if(fields.size() == 0){
+		if (fields.size() == 0) {
 			return true;
-		}else{
+		} else {
 			StringBuffer msg = new StringBuffer();
-			if(fields.size() > 1){
+			if (fields.size() > 1) {
 				msg.append("Preencha os campos");
-			}else{
+			} else {
 				msg.append("Preencha o campo");
 			}
 			for (int i = 0; i < fields.size(); i++) {
-				if(i != fields.size()-1 && i != 0){
+				if (i != fields.size() - 1 && i != 0) {
 					msg.append(", ");
-				}else if(i != 0){
+				} else if (i != 0) {
 					msg.append(" e ");
 				}
-				msg.append(fields.get(i));				
+				msg.append(fields.get(i));
 			}
-	        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,msg.toString(), ""));
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, msg
+							.toString(), ""));
 		}
 		return false;
 	}
-	
-	public List<Voo> getVoos(){
+
+	public List<Voo> getVoos() {
 		List<Voo> voos = VooBO.getInstance().recuperaVoos();
 		return voos;
 	}
-	
+
+	public Voo getVooById() {
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
+		Voo voo = VooBO.getInstance().recuperaVoo(new Long(params.get("voo")));
+		return voo;
+	}
 }

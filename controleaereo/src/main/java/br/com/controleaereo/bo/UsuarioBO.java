@@ -1,7 +1,5 @@
 package br.com.controleaereo.bo;
 
-import java.sql.SQLException;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;

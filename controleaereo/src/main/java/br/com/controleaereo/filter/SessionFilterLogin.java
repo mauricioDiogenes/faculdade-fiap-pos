@@ -2,6 +2,7 @@ package br.com.controleaereo.filter;
 
 import java.io.IOException;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;

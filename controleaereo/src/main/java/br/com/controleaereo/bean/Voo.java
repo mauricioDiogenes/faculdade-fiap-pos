@@ -25,7 +25,7 @@ public class Voo {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_voo", referencedColumnName="id", nullable=false)
-	private List<Assentos> assentos;
+	private List<Assento> assentos;
 
 	public Long getId() {
 		return id;
@@ -43,11 +43,11 @@ public class Voo {
 		this.trechos = trechos;
 	}
 
-	public List<Assentos> getAssentos() {
+	public List<Assento> getAssentos() {
 		return assentos;
 	}
 
-	public void setAssentos(List<Assentos> assentos) {
+	public void setAssentos(List<Assento> assentos) {
 		this.assentos = assentos;
 	}
 

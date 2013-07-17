@@ -23,6 +23,9 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
+	private String nome;
+	
 	@Column(unique = true, nullable = false)
 	private String email;
 
@@ -32,6 +35,14 @@ public class Usuario implements Serializable {
 	@Column(nullable = false, columnDefinition = "VARCHAR(10)")
 	private String nivel = "USUARIO";
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public Long getId() {
 		return id;
 	}

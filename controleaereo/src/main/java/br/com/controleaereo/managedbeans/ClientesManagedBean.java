@@ -1,5 +1,7 @@
 package br.com.controleaereo.managedbeans;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -13,10 +15,9 @@ import org.dozer.Mapper;
 import br.com.controleaereo.bean.Usuario;
 import br.com.controleaereo.bo.UsuarioBO;
 
-//import org.eclipse.jetty.server.session.HashedSession;
-
 @ManagedBean(name = "clientes")
 public class ClientesManagedBean {
+	private String nome;
 	private String email;
 	private String senha;
 
@@ -24,6 +25,21 @@ public class ClientesManagedBean {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 		return session;
+	}
+
+	public String getNome() {
+		Usuario u = (Usuario) getSession().getAttribute("userSession");
+		if (u != null) {
+			return u.getNome();
+		}
+		if(nome == null){
+			nome = "";
+		}
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -64,21 +80,31 @@ public class ClientesManagedBean {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			NavigationHandler navigationHandler = facesContext.getApplication()
 					.getNavigationHandler();
-			String str = "paginas/menuUsuario.jsf";
-			if ("adm".equals(u.getNivel())) {
-				navigationHandler.handleNavigation(facesContext, null,
-						"PaginasAdm/menuAdm.jsf");
-			} else {
-				navigationHandler.handleNavigation(facesContext, null,
-						str);
+			String dir = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/");
+			try {
+				if ("adm".equals(u.getNivel())) {
+					FacesContext.getCurrentInstance().getExternalContext()
+							.redirect("PaginasAdm/menuAdm.jsf");
+				} else {
+					FacesContext.getCurrentInstance().getExternalContext()
+							.redirect("paginas/menuUsuario.jsf");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
 
 	public String sair() {
 		getSession().setAttribute("userSession", null);
-		String login = "../login.jsf";
-		return login;
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("login.jsf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void addError(String msg) {

@@ -3,7 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 <h:head>
 	<link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -40,17 +41,24 @@
 	    		</p:commandLink>
 			</div>
 		<div class="form">
-			<p:dataTable id="listaTrechos" var="listVoos" value="#{voo.voos}"
-				rowKey="#{voo.voos}" selectionMode="single" style="width:350px;">
-				<p:column headerText="Voos">
-					<h:commandLink action="escolhaAssentos.jsf?voo=listVoos.id" value="#{listVoos.trechos[0].nomeTrecho1} - #{listVoos.trechos[fn:length(listVoos.trechos)-1].nomeTrecho2}">
-						<f:param name="voo" value="#{listVoos.id}" />
-					</h:commandLink>
-				</p:column>
+			<p:dataTable id="listaTrechos" var="trecho" value="#{voo.vooById.trechos}"
+				rowKey="#{voo}" selectionMode="single" style="width:370px;">
 				<p:column headerText="Trechos">
-					<h:outputText value="#{fn:length(listVoos.trechos)}" />
+					<h:outputText value="#{trecho.nomeTrecho1} - #{trecho.nomeTrecho2}" />
+				</p:column>
+				<p:column headerText="Valor">
+					R$ <h:outputText value="#{trecho.preco}" />
 				</p:column>
 			</p:dataTable>
+			<br />
+			Assentos Disponíveis
+			<p:dataTable var="assento" value="#{voo.vooById.assentos}">
+				<p:column rendered="#{assento.id_usuario == null}">
+					<p:selectManyCheckbox>
+		            	<f:selectItem itemLabel="Assento #{assento.id}" itemValue="#{assento.id}" />
+					</p:selectManyCheckbox>
+		        </p:column>
+		 	</p:dataTable>
 		</div>
 	</div>
 </h:form>
