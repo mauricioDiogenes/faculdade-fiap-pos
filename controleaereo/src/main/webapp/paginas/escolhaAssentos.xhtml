@@ -4,7 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 	<link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -53,11 +53,21 @@
 			<br />
 			Assentos Disponíveis
 			<p:dataTable var="assento" value="#{voo.vooById.assentos}">
-				<p:column rendered="#{assento.id_usuario == null}">
+			<c:if test="#{assento.id_usuario == 0}">
+				<p:column>
+					<h:outputText value="#{assento.id_usuario == null}" />
+				</p:column>
+				<p:column>
 					<p:selectManyCheckbox>
 		            	<f:selectItem itemLabel="Assento #{assento.id}" itemValue="#{assento.id}" />
 					</p:selectManyCheckbox>
+				</p:column>
+				<p:column>
+					<p:selectManyCheckbox>
+		            	<h:outputText value="#{assento.tipo}" />
+					</p:selectManyCheckbox>
 		        </p:column>
+		       </c:if>
 		 	</p:dataTable>
 		</div>
 	</div>
