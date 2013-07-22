@@ -1,6 +1,7 @@
 package br.com.fiap.aop.regras;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,8 +16,8 @@ public aspect VerificaData {
 		for (Object object : objetos) {
 			if(object instanceof Date){
 				Date objDate = (Date) object;
-				
-				if(objDate.before(new Date())){
+				Date date = new Date();
+				if(objDate.before(new Date(date.getYear(), date.getMonth(), date.getDay()))){
 					LogErroData logErroData = new LogErroData();
 					try {
 						logErroData.inserirTabelaDeLog("Data do pedido inferior a data do sistema");
