@@ -14,6 +14,7 @@
 	<bean id="estoqueDao" class="br.com.fiap.atividade.dao.EstoqueDaoImpl"/>
 	<bean id="pedidoService" class="br.com.fiap.atividade.service.PedidoService"></bean>
 	<bean class="br.com.fiap.aop.aspectj.regras.LogAuditoria"/>
+	<bean class="br.com.fiap.aop.aspectj.regras.LogVendasDiarias"/>
 	<bean id="conexao" class="br.com.fiap.atividade.dao.Conexao"/>
  
 </beans>
