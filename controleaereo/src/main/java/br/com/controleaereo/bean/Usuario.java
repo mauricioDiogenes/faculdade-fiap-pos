@@ -1,27 +1,22 @@
 package br.com.controleaereo.bean;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
-	private static final long serialVersionUID = -6255078262084251008L;
+	private static final long serialVersionUID = -4669840996024423214L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	
 	@Column(nullable = false)
 	private String nome;
@@ -43,11 +38,11 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

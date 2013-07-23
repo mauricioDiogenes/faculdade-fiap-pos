@@ -5,26 +5,34 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpSession;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 import br.com.controleaereo.bean.Assento;
 import br.com.controleaereo.bean.Trecho;
+import br.com.controleaereo.bean.Usuario;
 import br.com.controleaereo.bean.Voo;
 import br.com.controleaereo.bo.VooBO;
 
 @ManagedBean(name = "voo")
-@ViewScoped
+@SessionScoped
 public class VooManagedBean {
 
-	private Assento assento;
-	
+	private HttpSession getSession() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		return session;
+	}
+
 	private Trecho trecho = new Trecho();
 
 	private List<Trecho> trechos;
@@ -32,13 +40,15 @@ public class VooManagedBean {
 	private Integer assentosEconomica;
 
 	private Integer assentosExecutiva;
-	
-	public Assento getAssento() {
-		return assento;
+
+	private Set<String> selectedAssentos = new TreeSet<String>();
+
+	public Set<String> getSelectedAssentos() {
+		return selectedAssentos;
 	}
 
-	public void setAssento(Assento assento) {
-		this.assento = assento;
+	public void setSelectedAssentos(Set<String> selectedAssentos) {
+		this.selectedAssentos = selectedAssentos;
 	}
 
 	public Integer getAssentosEconomica() {
@@ -168,9 +178,39 @@ public class VooManagedBean {
 	}
 
 	public Voo getVooById() {
+		Voo voo = null;
 		Map<String, String> params = FacesContext.getCurrentInstance()
 				.getExternalContext().getRequestParameterMap();
-		Voo voo = VooBO.getInstance().recuperaVoo(new Long(params.get("voo")));
+		if (params.get("voo") != null) {
+			voo = VooBO.getInstance().recuperaVoo(new Long(params.get("voo")));
+		}
 		return voo;
+	}
+
+	private SelectItem[] assentoList;
+
+	public SelectItem[] getAssentoList() {
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
+		Usuario u = (Usuario) getSession().getAttribute("userSession");
+		List<Assento> assentosList = VooBO.getInstance()
+				.recuperaAssentosDisponiveis(u, new Long(params.get("voo")));
+		SelectItem[] assentos = new SelectItem[assentosList.size()];
+		int j = 0;
+		for (Assento assento : assentosList) {
+			assentos[j] = new SelectItem(assento.getId(), assento.getId()
+					.toString());
+			j++;
+		}
+		return assentos;
+	}
+
+	public void setAssentoList(SelectItem[] s) {
+		this.assentoList = s;
+	}
+
+	public String reservar() {
+		Usuario u = (Usuario) getSession().getAttribute("userSession");
+		return "result";
 	}
 }

@@ -1,9 +1,9 @@
 package br.com.controleaereo.bean;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +13,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "assento")
-public class Assento {
+public class Assento implements Serializable {
+
+	
+
+	private static final long serialVersionUID = -581312565544016508L;
+
 	public Assento() {
 
 	}
@@ -25,13 +30,12 @@ public class Assento {
 	@Column(nullable = false)
 	private String tipo;
 
-	@ManyToOne(targetEntity = Usuario.class)
-	@JoinColumn(name = "idUsuario", referencedColumnName = "id")
-	private Long idUsuario;
+	@Column(nullable = true)
+	private int idUsuario;
 
 	public Assento(String tipo) {
 		this.tipo = tipo;
-		this.idUsuario=new Long(0);
+		this.idUsuario=new Integer(0);
 	}
 
 	public String getTipo() {
@@ -50,11 +54,11 @@ public class Assento {
 		this.id = id;
 	}
 
-	public Long getIdUsuario() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -63,8 +67,7 @@ public class Assento {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		result = prime * result + idUsuario;
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
@@ -88,11 +91,7 @@ public class Assento {
 		} else if (!id.equals(other.id)) {
 			return false;
 		}
-		if (idUsuario == null) {
-			if (other.idUsuario != null) {
-				return false;
-			}
-		} else if (!idUsuario.equals(other.idUsuario)) {
+		if (idUsuario != other.idUsuario) {
 			return false;
 		}
 		if (tipo == null) {
@@ -105,4 +104,8 @@ public class Assento {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Assento [id=" + id + "]";
+	}
 }

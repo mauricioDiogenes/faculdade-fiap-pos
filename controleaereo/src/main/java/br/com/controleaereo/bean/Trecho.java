@@ -1,5 +1,7 @@
 package br.com.controleaereo.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "trecho")
-public class Trecho {
+public class Trecho implements Serializable {
+
+	private static final long serialVersionUID = 8549087160166926471L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -74,13 +78,9 @@ public class Trecho {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((dataHora == null) ? 0 : dataHora.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
 				+ ((nomeTrecho1 == null) ? 0 : nomeTrecho1.hashCode());
 		result = prime * result
 				+ ((nomeTrecho2 == null) ? 0 : nomeTrecho2.hashCode());
-		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
 		return result;
 	}
 
@@ -96,20 +96,6 @@ public class Trecho {
 			return false;
 		}
 		Trecho other = (Trecho) obj;
-		if (dataHora == null) {
-			if (other.dataHora != null) {
-				return false;
-			}
-		} else if (!dataHora.equals(other.dataHora)) {
-			return false;
-		}
-		if (id == null) {
-			if (other.id != null) {
-				return false;
-			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
 		if (nomeTrecho1 == null) {
 			if (other.nomeTrecho1 != null) {
 				return false;
@@ -122,13 +108,6 @@ public class Trecho {
 				return false;
 			}
 		} else if (!nomeTrecho2.equals(other.nomeTrecho2)) {
-			return false;
-		}
-		if (preco == null) {
-			if (other.preco != null) {
-				return false;
-			}
-		} else if (!preco.equals(other.preco)) {
 			return false;
 		}
 		return true;

@@ -1,5 +1,6 @@
 package br.com.controleaereo.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,8 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "voo")
-public class Voo {
-	
+public class Voo implements Serializable {
+
+	private static final long serialVersionUID = -195281099528947805L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;

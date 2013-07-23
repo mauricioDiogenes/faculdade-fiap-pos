@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.controleaereo.bean.Assento;
 import br.com.controleaereo.bean.Voo;
 
 @Repository
@@ -24,7 +25,8 @@ public class VooDao extends SessionFac implements GenericDAO<Voo> {
 
 	@Override
 	public List<Voo> listAll() {
-		List<Voo> voos = (List<Voo>)getSession().createQuery("from Voo").list();
+		List<Voo> voos = (List<Voo>) getSession().createQuery("from Voo")
+				.list();
 		return voos;
 	}
 
@@ -41,7 +43,7 @@ public class VooDao extends SessionFac implements GenericDAO<Voo> {
 	}
 
 	@Override
-	public Voo save(Voo t) throws Exception{
+	public Voo save(Voo t) throws Exception {
 		getSession().save(t);
 		return t;
 	}
@@ -49,6 +51,11 @@ public class VooDao extends SessionFac implements GenericDAO<Voo> {
 	@Override
 	public void delete(Voo t) {
 		getSession().delete(t);
+	}
+
+	public List<Assento> findAssentos(int idUsuario, Long idVoo) {
+		return (List<Assento>) getSession().createQuery(
+				"From Assento where Assento.idUsuario = 0");
 	}
 
 }
