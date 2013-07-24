@@ -27,4 +27,8 @@ public class SessionFac{
 		}
 		return session;
 	}
+	
+	public void setSession(Session s){
+		this.session = s;
+	}
 }

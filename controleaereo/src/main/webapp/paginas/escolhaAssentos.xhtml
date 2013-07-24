@@ -32,14 +32,29 @@
 		});
 		
 		
-		function check(id){
-			alert(id);
+		function selecteds(){
+			var inputs=document.getElementsByTagName("input");
+			var selecteds = new Array();
+			cont = inputs.length -1;
+			while(cont != 0){
+				i = inputs[cont];
+				if(i.type=='checkbox'){
+					if(i.checked){
+						selecteds.push(i.value);
+					}
+				}
+				cont--;
+			}
+			
+			document.getElementById("form1:selecteds").value=selecteds.toString();
 		}
 		
 	</script>
 </h:head>
 <h:body>
-<h:form>
+<h:form id="form1">
+<p:inputText id="selecteds" name="selecteds" value="#{voo.selectedAssentos}" style="display:none;" />
+
 	<div class="quadro" style="width:500px;padding:10px;">
 <div style="float:right;">
 				<p:commandLink id="sairBtn" actionListener="#{clientes.sair}">
@@ -59,14 +74,21 @@
 			<br /><br />
 			<h:outputText value="#{voo.vooById.assentos.size()}"/>
 			Assentos Disponíveis<br /><br />
-				<h:selectManyCheckbox value="#{voo.selectedAssentos}" layout="pageDirection" >
-					<f:selectItems value="#{voo.vooById.assentos}" var="assento"
-							itemValue="#{assento.id}" itemLabel="Assento #{assento.id} Classe:#{assento.tipo}" />
-				</h:selectManyCheckbox>
-			<p:commandButton value="Confirmar" action="#{voo.reservar}" />
+			
+			<p:dataTable var="assen" value="#{voo.assentoList}">
+				<p:column headerText="Assento">
+					<input type="checkbox" name="assento#{assen.id}" id="assento#{assen.id}" 
+						checked="#{assen.selected}" value="#{assen.id}" onClick="selecteds()" />
+					<label for="assento#{assen.id}"><h:outputText value="assento #{assen.id}"/></label>
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{assen.tipo}"/>
+				</p:column>
+			</p:dataTable>
+ 			<p:commandButton value="Confirmar" actionListener="#{voo.reservar}"
+            ajax="false" />  
 		</div>
 	</div>
-
 </h:form>
 </h:body>
 </html>

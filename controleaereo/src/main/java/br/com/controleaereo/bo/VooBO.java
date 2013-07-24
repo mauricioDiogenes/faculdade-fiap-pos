@@ -1,5 +1,6 @@
 package br.com.controleaereo.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ public class VooBO {
 	@Inject
 	private VooDao vooDao;
 
+	@Inject
 	private ReservaDao reservaDao;
 
 	private static VooBO INSTANCE;
@@ -45,12 +47,38 @@ public class VooBO {
 		return vooDao.find(id);
 	}
 
-	public void reservar(Usuario u, Voo voo) {
-		reservaDao.update(voo.getAssentos());
+	public void reservar(Usuario u, List<Assento> assentos, String[] selecteds) {
+		List<Assento> assentosAux = recuperaAssentosSelecionados(selecteds, assentos);
+		for (Assento assento : assentosAux) {
+			assento.setIdUsuario(u.getId());
+			reservaDao.update(assento);
+		}
 	}
 
 	public List<Assento> recuperaAssentosDisponiveis(Usuario u, Long idVoo) {
-		return vooDao.findAssentos(u.getId(), idVoo);
+		List<Assento> list = vooDao.findAssentos(u.getId(), idVoo);
+		for (Assento assento : list) {
+			if(assento.getIdUsuario().intValue() == u.getId()){
+				assento.setSelected("true");
+			}else{
+				assento.setSelected("false");
+			}
+		}
+		return list;
+	}
+
+	private List<Assento> recuperaAssentosSelecionados(
+			String[] assentosSelecionados, List<Assento> listAssentos) {
+		List<Assento> listSelectedAssentos = new ArrayList<Assento>();
+		for (Assento assento : listAssentos) {
+			for (int i = 0; i < assentosSelecionados.length; i++) {
+				if (assentosSelecionados[i].equals(assento.getId().toString())) {
+					listSelectedAssentos.add(assento);
+					continue;
+				}
+			}
+		}
+		return listSelectedAssentos;
 	}
 
 }

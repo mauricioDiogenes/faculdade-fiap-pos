@@ -2,6 +2,7 @@ package br.com.controleaereo.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.controleaereo.bean.Assento;
@@ -54,8 +55,13 @@ public class VooDao extends SessionFac implements GenericDAO<Voo> {
 	}
 
 	public List<Assento> findAssentos(int idUsuario, Long idVoo) {
-		return (List<Assento>) getSession().createQuery(
-				"From Assento where Assento.idUsuario = 0");
+		Query query = getSession().createQuery("From Assento where (idUsuario = :id0 or idUsuario = :idU) and id_voo = :idV");
+		query.setParameter("id0", 0);
+		query.setParameter("idU", idUsuario);
+		query.setParameter("idV", idVoo);
+		List<Assento> list = query.list();
+		return list; 	
+		
 	}
 
 }

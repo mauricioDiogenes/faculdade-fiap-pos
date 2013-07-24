@@ -32,6 +32,21 @@ public class Assento implements Serializable {
 
 	@Column(nullable = true)
 	private int idUsuario;
+	
+	@Column(insertable=false)
+	private String selected;
+	
+	public String getSelected() {
+		return selected;
+	}
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public Assento(String tipo) {
 		this.tipo = tipo;
@@ -68,7 +83,6 @@ public class Assento implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + idUsuario;
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -94,18 +108,7 @@ public class Assento implements Serializable {
 		if (idUsuario != other.idUsuario) {
 			return false;
 		}
-		if (tipo == null) {
-			if (other.tipo != null) {
-				return false;
-			}
-		} else if (!tipo.equals(other.tipo)) {
-			return false;
-		}
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Assento [id=" + id + "]";
-	}
 }

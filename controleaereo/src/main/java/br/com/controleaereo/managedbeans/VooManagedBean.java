@@ -5,7 +5,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -35,19 +34,42 @@ public class VooManagedBean {
 
 	private Trecho trecho = new Trecho();
 
+	private Voo voo;
+	
 	private List<Trecho> trechos;
+
+	private List<Assento> assentos;
 
 	private Integer assentosEconomica;
 
 	private Integer assentosExecutiva;
 
-	private Set<String> selectedAssentos = new TreeSet<String>();
+	private String selectedAssentos;
 
-	public Set<String> getSelectedAssentos() {
+	private List<Assento> assentoList;
+
+	
+	public Voo getVoo() {
+		return voo;
+	}
+
+	public void setVoo(Voo voo) {
+		this.voo = voo;
+	}
+
+	public List<Assento> getAssentos() {
+		return assentos;
+	}
+
+	public void setAssentos(List<Assento> assentos) {
+		this.assentos = assentos;
+	}
+
+	public String getSelectedAssentos() {
 		return selectedAssentos;
 	}
 
-	public void setSelectedAssentos(Set<String> selectedAssentos) {
+	public void setSelectedAssentos(String selectedAssentos) {
 		this.selectedAssentos = selectedAssentos;
 	}
 
@@ -183,34 +205,30 @@ public class VooManagedBean {
 				.getExternalContext().getRequestParameterMap();
 		if (params.get("voo") != null) {
 			voo = VooBO.getInstance().recuperaVoo(new Long(params.get("voo")));
+			setVoo(voo);
 		}
 		return voo;
 	}
 
-	private SelectItem[] assentoList;
-
-	public SelectItem[] getAssentoList() {
+	public List<Assento> getAssentoList() {
 		Map<String, String> params = FacesContext.getCurrentInstance()
 				.getExternalContext().getRequestParameterMap();
 		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		List<Assento> assentosList = VooBO.getInstance()
-				.recuperaAssentosDisponiveis(u, new Long(params.get("voo")));
-		SelectItem[] assentos = new SelectItem[assentosList.size()];
-		int j = 0;
-		for (Assento assento : assentosList) {
-			assentos[j] = new SelectItem(assento.getId(), assento.getId()
-					.toString());
-			j++;
-		}
+				.recuperaAssentosDisponiveis(u, getVoo().getId());
+		setAssentos(assentosList);
 		return assentos;
 	}
 
-	public void setAssentoList(SelectItem[] s) {
+	public void setAssentoList(List<Assento> s) {
 		this.assentoList = s;
 	}
 
 	public String reservar() {
 		Usuario u = (Usuario) getSession().getAttribute("userSession");
-		return "result";
+		String[] selecteds = selectedAssentos.split(",");
+		VooBO.getInstance().reservar(u, getAssentos(), selecteds);
+		return "confirmacao.jsf";
 	}
+
 }
