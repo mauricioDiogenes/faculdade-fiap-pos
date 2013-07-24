@@ -59,9 +59,9 @@ public class VooBO {
 		List<Assento> list = vooDao.findAssentos(u.getId(), idVoo);
 		for (Assento assento : list) {
 			if(assento.getIdUsuario().intValue() == u.getId()){
-				assento.setSelected("true");
+				assento.setSelected("checked");
 			}else{
-				assento.setSelected("false");
+				assento.setSelected("");
 			}
 		}
 		return list;

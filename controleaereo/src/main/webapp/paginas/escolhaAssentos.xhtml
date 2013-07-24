@@ -77,7 +77,7 @@
 			
 			<p:dataTable var="assen" value="#{voo.assentoList}">
 				<p:column headerText="Assento">
-					<input type="checkbox" name="assento#{assen.id}" id="assento#{assen.id}" 
+					<input type="checkbox" name="assento#{assen.id}" id="assento#{assen.id}"
 						checked="#{assen.selected}" value="#{assen.id}" onClick="selecteds()" />
 					<label for="assento#{assen.id}"><h:outputText value="assento #{assen.id}"/></label>
 				</p:column>
