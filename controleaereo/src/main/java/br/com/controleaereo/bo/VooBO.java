@@ -56,7 +56,7 @@ public class VooBO {
 	}
 
 	public List<Assento> recuperaAssentosDisponiveis(Usuario u, Long idVoo) {
-		List<Assento> list = vooDao.findAssentos(u.getId(), idVoo);
+		List<Assento> list = vooDao.recuperaAssentosDisponiveis(u.getId(), idVoo);
 		for (Assento assento : list) {
 			if(assento.getIdUsuario().intValue() == u.getId()){
 				assento.setSelected("checked");
@@ -64,6 +64,11 @@ public class VooBO {
 				assento.setSelected("");
 			}
 		}
+		return list;
+	}
+	
+	public List<Assento> recuperaAssentoSelecionados(Usuario u, Long idVoo) {
+		List<Assento> list = vooDao.recuperaAssentoSelecionados(u.getId(), idVoo);
 		return list;
 	}
 
@@ -79,6 +84,14 @@ public class VooBO {
 			}
 		}
 		return listSelectedAssentos;
+	}
+	
+	public void cancelar(Usuario u, Long idVoo) {
+		List<Assento> assentos = recuperaAssentosDisponiveis(u, idVoo);
+		for (Assento assento : assentos) {
+			assento.setIdUsuario(0);
+		}
+		reservaDao.update(assentos);
 	}
 
 }

@@ -34,12 +34,13 @@
 <h:body>
 <h:form>
 	<div class="quadro" style="height:400px;width:500px;padding:10px;">
-<div style="float:right;">
-				<p:commandLink id="sairBtn" action="#{clientes.sair}">  
-	        		Sair  
-	    		</p:commandLink>
-			</div>
+		<div style="float:right;">
+			<p:commandLink id="sairBtn" action="#{clientes.sair}">  
+	       		Sair  
+	    	</p:commandLink>
+		</div>
 		<div class="form">
+			<h3>Escolha o Vôo</h3>
 			<p:dataTable id="listaTrechos" var="listVoos" value="#{voo.voos}"
 				rowKey="#{voo.voos}" selectionMode="single" style="width:350px;">
 				<p:column headerText="Voos">

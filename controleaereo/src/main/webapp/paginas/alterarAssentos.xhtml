@@ -41,17 +41,12 @@
 				if(i.type=='checkbox'){
 					if(i.checked){
 						selecteds.push(i.value);
-						i.disabled=true;
+						//i.disabled=true;
 					}
 				}
 				cont--;
 			}
-			if(selecteds.length != 0){
-				document.getElementById("form1:selecteds").value=selecteds.toString();
-			}else{
-				document.getElementById("form1:cancelarBtn").style.display="none";
-				document.getElementById("form1:alterarBtn").style.display="none";
-			}
+			document.getElementById("form1:selecteds").value=selecteds.toString();
 		}
 	</script>
 </h:head>
@@ -89,13 +84,8 @@
 					<h:outputText value="#{assen.tipo}"/>
 				</p:column>
 			</p:dataTable>
-			<br />
- 			<p:commandButton value="Reservar" action="#{voo.reservar}"
+ 			<p:commandButton value="Confirmar" action="#{voo.reservar}"
            		ajax="false" />
-           	<p:commandButton value="Cancelar" action="#{voo.cancelar}"
-         		ajax="false" id="cancelarBtn" />
-           	<p:commandButton value="Alterar" action="#{voo.alterar}"
-           		ajax="false" id="alterarBtn" />
 		</div>
 	</div>
 </h:form>
