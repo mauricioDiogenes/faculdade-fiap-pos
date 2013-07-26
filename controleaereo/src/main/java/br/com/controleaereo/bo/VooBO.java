@@ -47,8 +47,13 @@ public class VooBO {
 		return vooDao.find(id);
 	}
 
-	public void reservar(Usuario u, List<Assento> assentos, String[] selecteds) {
+	public void reservar(Usuario u, List<Assento> assentos, String[] selecteds, Long idVoo) {
 		List<Assento> assentosAux = recuperaAssentosSelecionados(selecteds, assentos);
+		List<Assento> list = recuperaAssentoSelecionados(u, idVoo);
+		for (Assento assento : list) {
+			assento.setIdUsuario(0);
+			reservaDao.update(assento);
+		}
 		for (Assento assento : assentosAux) {
 			assento.setIdUsuario(u.getId());
 			reservaDao.update(assento);
@@ -90,6 +95,14 @@ public class VooBO {
 		List<Assento> assentos = recuperaAssentosDisponiveis(u, idVoo);
 		for (Assento assento : assentos) {
 			assento.setIdUsuario(0);
+		}
+		reservaDao.update(assentos);
+	}
+	
+	public void finalizar(Usuario u, Long idVoo) {
+		List<Assento> assentos = recuperaAssentoSelecionados(u, idVoo);
+		for (Assento assento : assentos) {
+			assento.setFechado(true);
 		}
 		reservaDao.update(assentos);
 	}

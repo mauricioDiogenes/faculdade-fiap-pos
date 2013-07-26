@@ -66,7 +66,7 @@ public class ClientesManagedBean {
 		} catch (Exception e) {
 			addError("Usuário já existente");
 		}
-		return "";
+		return "login.jsf";
 	}
 
 	public void login(ActionEvent actionEvent) {

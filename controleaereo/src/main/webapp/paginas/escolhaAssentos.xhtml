@@ -32,7 +32,7 @@
 		});
 		
 		
-		function selecteds(){
+		function selecteds(str){
 			var inputs=document.getElementsByTagName("input");
 			var selecteds = new Array();
 			cont = inputs.length -1;
@@ -41,13 +41,18 @@
 				if(i.type=='checkbox'){
 					if(i.checked){
 						selecteds.push(i.value);
-						i.disabled=true;
+						if(str=='onload'){
+							i.disabled=true;
+						}
 					}
 				}
 				cont--;
 			}
 			if(selecteds.length != 0){
 				document.getElementById("form1:selecteds").value=selecteds.toString();
+				if(str=='onload'){
+					window.location.href="confirmacao.jsf";
+				}
 			}else{
 				document.getElementById("form1:cancelarBtn").style.display="none";
 				document.getElementById("form1:alterarBtn").style.display="none";
@@ -55,7 +60,7 @@
 		}
 	</script>
 </h:head>
-<h:body onload="selecteds()">
+<h:body onload="selecteds('onload')">
 <h:form id="form1">
 <p:inputText id="selecteds" name="selecteds" value="#{voo.selectedAssentos}" style="display:block;" />
 <div class="quadro" style="width:500px;padding:10px;">
@@ -80,7 +85,7 @@
 			<p:dataTable var="assen" value="#{voo.assentoList}">
 				<p:column headerText="Assento">
 					<input type="checkbox" name="assento#{assen.id}" id="assento#{assen.id}"
-						checked="#{assen.selected}" value="#{assen.id}" onClick="selecteds()" />
+						checked="#{assen.selected}" value="#{assen.id}" onClick="selecteds('')" />
 					<label for="assento#{assen.id}">
 						<h:outputText value="assento #{assen.id}" />
 					</label>

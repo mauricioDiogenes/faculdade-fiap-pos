@@ -36,6 +36,17 @@ public class Assento implements Serializable {
 	@Column(insertable=false)
 	private String selected;
 	
+	@Column(nullable = true)
+	private boolean fechado;
+	
+	public boolean getFechado() {
+		return fechado;
+	}
+
+	public void setFechado(boolean fechado) {
+		this.fechado = fechado;
+	}
+
 	public String getSelected() {
 		return selected;
 	}

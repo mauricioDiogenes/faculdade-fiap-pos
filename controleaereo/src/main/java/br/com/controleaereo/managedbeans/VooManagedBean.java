@@ -31,6 +31,10 @@ public class VooManagedBean {
 				.getExternalContext().getSession(false);
 		return session;
 	}
+	private Usuario getUsuario(){
+		Usuario u = (Usuario) getSession().getAttribute("userSession");
+		return u;
+	}
 
 	private Trecho trecho = new Trecho();
 
@@ -51,6 +55,9 @@ public class VooManagedBean {
 	private Double multa;
 
 	public Double getMulta() {
+		if(multa == null){
+			return new Double(0);
+		}
 		return multa;
 	}
 
@@ -59,10 +66,15 @@ public class VooManagedBean {
 	}
 
 	public Double getValorTotal() {
-		return valorTotal;
+		int qtdAssentos = getAssentoSelecionados().size();
+		double total = 0;
+		for (Trecho trecho : getVoo().getTrechos()) {
+			total += trecho.getPreco();
+		}
+		return (total * qtdAssentos) + getMulta();
 	}
 
-	public void setValorTotal(Double valorTotal) {
+	public void setValorTotal(Double valorTotal) {	
 		this.valorTotal = valorTotal;
 	}
 
@@ -230,9 +242,8 @@ public class VooManagedBean {
 	public List<Assento> getAssentoList() {
 		Map<String, String> params = FacesContext.getCurrentInstance()
 				.getExternalContext().getRequestParameterMap();
-		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		List<Assento> assentosList = VooBO.getInstance()
-				.recuperaAssentosDisponiveis(u, getVoo().getId());
+				.recuperaAssentosDisponiveis(getUsuario(), getVoo().getId());
 		setAssentos(assentosList);
 		return assentos;
 	}
@@ -240,30 +251,33 @@ public class VooManagedBean {
 	public List<Assento> getAssentoSelecionados() {
 		Map<String, String> params = FacesContext.getCurrentInstance()
 				.getExternalContext().getRequestParameterMap();
-		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		List<Assento> assentosList = VooBO.getInstance()
-				.recuperaAssentoSelecionados(u, getVoo().getId());
-		return assentos;
+				.recuperaAssentoSelecionados(getUsuario(), getVoo().getId());
+		return assentosList;
 	}
 	
 	public String reservar() {
-		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		String[] selecteds = selectedAssentos.split(",");
-		VooBO.getInstance().reservar(u, getAssentos(), selecteds);
+		VooBO.getInstance().reservar(getUsuario(), getAssentos(), selecteds, voo.getId());
 		return "confirmacao.jsf";
 	}
 	
 	public String alterar(){
 		//acrescenta multa de 50 reais;
-		setMulta(50D);
-		return "alterar.jsf";
+		setMulta(50+getMulta());
+		return "alterarAssentos.jsf";
 	}
 	
 	public String cancelar() {
-		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		String[] selecteds = selectedAssentos.split(",");
-		VooBO.getInstance().cancelar(u, getVoo().getId());
+		setMulta(50D+getMulta());
+		VooBO.getInstance().cancelar(getUsuario(), getVoo().getId());
 		return "escolhaVoo.jsf"; 
+	}
+	
+	public String finalizar(){
+		VooBO.getInstance().finalizar(getUsuario(), getVoo().getId());
+		return "menuUsuario.jsf";
 	}
 	
 	
