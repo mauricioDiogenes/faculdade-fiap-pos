@@ -64,11 +64,16 @@
 <h:form id="form1">
 <p:inputText id="selecteds" name="selecteds" value="#{voo.selectedAssentos}" style="display:block;" />
 <div class="quadro" style="width:500px;padding:10px;">
-<div style="float:right;">
-				<p:commandLink id="sairBtn" actionListener="#{clientes.sair}">
-	        		Sair
-	    		</p:commandLink>
-			</div>
+		<div style="float:right;">
+			<p:commandLink id="sairBtn" actionListener="#{clientes.sair}">
+        		Sair
+    		</p:commandLink>
+		</div>
+		<div style="float:left;">
+			<p:commandLink id="menuBtn" action="menuUsuario.jsf">
+	        	Menu
+	    	</p:commandLink>
+		</div>
 		<div class="form" style="width:400px;">
 			<h3>Escolha os Assentos</h3>
 			<p:dataTable id="listaTrechos" var="trecho" value="#{voo.vooById.trechos}"

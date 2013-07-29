@@ -3,7 +3,6 @@ package br.com.controleaereo.managedbeans;
 import java.io.IOException;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -77,11 +76,6 @@ public class ClientesManagedBean {
 			addError("Usuário ou senha inválidos");
 		} else {
 			getSession().setAttribute("userSession", u);
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			NavigationHandler navigationHandler = facesContext.getApplication()
-					.getNavigationHandler();
-			String dir = FacesContext.getCurrentInstance().getExternalContext()
-					.getRealPath("/");
 			try {
 				if ("adm".equals(u.getNivel())) {
 					FacesContext.getCurrentInstance().getExternalContext()

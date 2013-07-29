@@ -46,10 +46,10 @@
 		</div>
 		<div class="form">
 			<h3>Escolha o Vôo</h3>
-			<p:dataTable id="listaTrechos" var="listVoos" value="#{voo.voos}"
+			<p:dataTable id="listaTrechos" var="listVoos" value="#{voo.voosReservados}"
 				rowKey="#{voo.voos}" selectionMode="single" style="width:350px;">
 				<p:column headerText="Voos">
-					<h:commandLink action="escolhaAssentos.jsf?voo=listVoos.id" value="#{listVoos.trechos[0].nomeTrecho1} - #{listVoos.trechos[fn:length(listVoos.trechos)-1].nomeTrecho2}">
+					<h:commandLink action="reservasRealizadas.jsf?voo=listVoos.id" value="#{listVoos.trechos[0].nomeTrecho1} - #{listVoos.trechos[fn:length(listVoos.trechos)-1].nomeTrecho2}">
 						<f:param name="voo" value="#{listVoos.id}" />
 					</h:commandLink>
 				</p:column>

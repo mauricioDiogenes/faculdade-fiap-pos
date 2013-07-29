@@ -10,9 +10,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
@@ -20,6 +21,7 @@ import br.com.controleaereo.bean.Assento;
 import br.com.controleaereo.bean.Trecho;
 import br.com.controleaereo.bean.Usuario;
 import br.com.controleaereo.bean.Voo;
+import br.com.controleaereo.bo.AssentoBO;
 import br.com.controleaereo.bo.VooBO;
 
 @ManagedBean(name = "voo")
@@ -35,6 +37,8 @@ public class VooManagedBean {
 		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		return u;
 	}
+	
+	private Logger log = LogManager.getLogger(VooManagedBean.class.getName());
 
 	private Trecho trecho = new Trecho();
 
@@ -50,6 +54,7 @@ public class VooManagedBean {
 
 	private String selectedAssentos;
 	
+	@SuppressWarnings("unused")
 	private Double valorTotal;
 	
 	private Double multa;
@@ -141,21 +146,24 @@ public class VooManagedBean {
 		if (trechos.size() != 0 && assentosEconomica != 0
 				&& assentosExecutiva != 0) {
 			Mapper mapper = new DozerBeanMapper();
-			Voo destObject = mapper.map(this, Voo.class);
+			Voo voo = mapper.map(this, Voo.class);
 			List<Assento> assentos = new ArrayList<Assento>();
 			for (int i = 0; i < assentosEconomica; i++) {
-				assentos.add(new Assento("economica"));
+				assentos.add(new Assento("economica", voo));
 			}
 			for (int i = 0; i < assentosExecutiva; i++) {
-				assentos.add(new Assento("executiva"));
+				assentos.add(new Assento("executiva", voo));
 			}
-			destObject.setAssentos(assentos);
 			try {
-				VooBO.getInstance().cadastra(destObject);
+				VooBO.getInstance().cadastra(voo, assentos);
 			} catch (Exception e) {
-				e.printStackTrace();
+				log.error(e.getMessage());
 			}
 		}
+		setAssentosEconomica(null);
+		setAssentosExecutiva(null);
+		setTrecho(new Trecho());
+		setTrechos(null);
 		return "CadastroVoo.jsf";
 	}
 
@@ -227,6 +235,11 @@ public class VooManagedBean {
 		List<Voo> voos = VooBO.getInstance().recuperaVoos();
 		return voos;
 	}
+	
+	public List<Voo> getVoosReservados() {
+		List<Voo> voos = VooBO.getInstance().recuperaVoosReservados(getUsuario());
+		return voos;
+	}
 
 	public Voo getVooById() {
 		Voo voo = null;
@@ -240,25 +253,24 @@ public class VooManagedBean {
 	}
 
 	public List<Assento> getAssentoList() {
-		Map<String, String> params = FacesContext.getCurrentInstance()
-				.getExternalContext().getRequestParameterMap();
-		List<Assento> assentosList = VooBO.getInstance()
+		List<Assento> assentosList = AssentoBO.getInstance()
 				.recuperaAssentosDisponiveis(getUsuario(), getVoo().getId());
 		setAssentos(assentosList);
 		return assentos;
 	}
 
 	public List<Assento> getAssentoSelecionados() {
-		Map<String, String> params = FacesContext.getCurrentInstance()
-				.getExternalContext().getRequestParameterMap();
-		List<Assento> assentosList = VooBO.getInstance()
+		if(getVoo() == null){
+			setVoo(getVooById());
+		}
+		List<Assento> assentosList = AssentoBO.getInstance()
 				.recuperaAssentoSelecionados(getUsuario(), getVoo().getId());
 		return assentosList;
 	}
 	
 	public String reservar() {
 		String[] selecteds = selectedAssentos.split(",");
-		VooBO.getInstance().reservar(getUsuario(), getAssentos(), selecteds, voo.getId());
+		AssentoBO.getInstance().reservar(getUsuario(), getAssentos(), selecteds, voo.getId());
 		return "confirmacao.jsf";
 	}
 	
@@ -269,14 +281,21 @@ public class VooManagedBean {
 	}
 	
 	public String cancelar() {
-		String[] selecteds = selectedAssentos.split(",");
 		setMulta(50D+getMulta());
-		VooBO.getInstance().cancelar(getUsuario(), getVoo().getId());
+		try {
+			AssentoBO.getInstance().cancelar(getUsuario(), getVoo().getId());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return "escolhaVoo.jsf"; 
 	}
 	
 	public String finalizar(){
-		VooBO.getInstance().finalizar(getUsuario(), getVoo().getId());
+		try {
+			AssentoBO.getInstance().finalizar(getUsuario(), getVoo().getId());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return "menuUsuario.jsf";
 	}
 	

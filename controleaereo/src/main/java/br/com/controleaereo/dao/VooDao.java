@@ -53,22 +53,13 @@ public class VooDao extends SessionFac implements GenericDAO<Voo> {
 	public void delete(Voo t) {
 		getSession().delete(t);
 	}
-
-	public List<Assento> recuperaAssentosDisponiveis(int idUsuario, Long idVoo) {
-		Query query = getSession().createQuery("From Assento where (idUsuario = :id0 or idUsuario = :idU) and id_voo = :idV");
-		query.setParameter("id0", 0);
-		query.setParameter("idU", idUsuario);
-		query.setParameter("idV", idVoo);
-		List<Assento> list = query.list();
-		return list; 	
-	}
 	
-	public List<Assento> recuperaAssentoSelecionados(int idUsuario, Long idVoo) {
-		Query query = getSession().createQuery("From Assento where idUsuario = :idU and id_voo = :idV");
+	public List<Assento> recuperaVoosReservados(int idUsuario) {
+		String q = "from Assento a where a.idUsuario = :idU group by a.voo.id";
+		Query query = getSession().createQuery(q);
 		query.setParameter("idU", idUsuario);
-		query.setParameter("idV", idVoo);
 		List<Assento> list = query.list();
-		return list; 	
+		return list;
 	}
 
 }

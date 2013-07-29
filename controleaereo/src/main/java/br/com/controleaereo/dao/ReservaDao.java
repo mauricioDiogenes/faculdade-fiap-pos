@@ -1,6 +1,5 @@
 package br.com.controleaereo.dao;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.SessionFactory;

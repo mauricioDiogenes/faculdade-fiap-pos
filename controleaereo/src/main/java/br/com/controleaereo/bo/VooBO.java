@@ -21,8 +21,12 @@ public class VooBO {
 
 	@Inject
 	private ReservaDao reservaDao;
-
+	
 	private static VooBO INSTANCE;
+	
+	private AssentoBO getAssentoBO(){
+		return AssentoBO.getInstance();
+	}
 
 	private VooBO() {
 		if (INSTANCE == null) {
@@ -34,77 +38,27 @@ public class VooBO {
 		return INSTANCE;
 	}
 
-	public void cadastra(Voo voo) throws Exception {
+	public void cadastra(Voo voo, List<Assento> assentos) throws Exception {
 		vooDao.save(voo);
+		getAssentoBO().save(assentos);
 	}
 
 	public List<Voo> recuperaVoos() {
 		List<Voo> voos = vooDao.listAll();
 		return voos;
 	}
+	
+	public List<Voo> recuperaVoosReservados(Usuario u) {
+		List<Voo> voos = new ArrayList<Voo>();
+		List<Assento> assentos= vooDao.recuperaVoosReservados(u.getId());
+		for (Assento assento : assentos) {
+			voos.add(assento.getVoo());
+		}
+		return voos;
+	}
 
 	public Voo recuperaVoo(Long id) {
 		return vooDao.find(id);
-	}
-
-	public void reservar(Usuario u, List<Assento> assentos, String[] selecteds, Long idVoo) {
-		List<Assento> assentosAux = recuperaAssentosSelecionados(selecteds, assentos);
-		List<Assento> list = recuperaAssentoSelecionados(u, idVoo);
-		for (Assento assento : list) {
-			assento.setIdUsuario(0);
-			reservaDao.update(assento);
-		}
-		for (Assento assento : assentosAux) {
-			assento.setIdUsuario(u.getId());
-			reservaDao.update(assento);
-		}
-	}
-
-	public List<Assento> recuperaAssentosDisponiveis(Usuario u, Long idVoo) {
-		List<Assento> list = vooDao.recuperaAssentosDisponiveis(u.getId(), idVoo);
-		for (Assento assento : list) {
-			if(assento.getIdUsuario().intValue() == u.getId()){
-				assento.setSelected("checked");
-			}else{
-				assento.setSelected("");
-			}
-		}
-		return list;
-	}
-	
-	public List<Assento> recuperaAssentoSelecionados(Usuario u, Long idVoo) {
-		List<Assento> list = vooDao.recuperaAssentoSelecionados(u.getId(), idVoo);
-		return list;
-	}
-
-	private List<Assento> recuperaAssentosSelecionados(
-			String[] assentosSelecionados, List<Assento> listAssentos) {
-		List<Assento> listSelectedAssentos = new ArrayList<Assento>();
-		for (Assento assento : listAssentos) {
-			for (int i = 0; i < assentosSelecionados.length; i++) {
-				if (assentosSelecionados[i].equals(assento.getId().toString())) {
-					listSelectedAssentos.add(assento);
-					continue;
-				}
-			}
-		}
-		return listSelectedAssentos;
-	}
-	
-	public void cancelar(Usuario u, Long idVoo) {
-		List<Assento> assentos = recuperaAssentosDisponiveis(u, idVoo);
-		for (Assento assento : assentos) {
-			assento.setIdUsuario(0);
-		}
-		reservaDao.update(assentos);
-	}
-	
-	public void finalizar(Usuario u, Long idVoo) {
-		List<Assento> assentos = recuperaAssentoSelecionados(u, idVoo);
-		for (Assento assento : assentos) {
-			assento.setFechado(true);
-		}
-		reservaDao.update(assentos);
 	}
 
 }

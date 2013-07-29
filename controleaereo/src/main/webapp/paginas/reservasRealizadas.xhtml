@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -43,8 +43,13 @@
 	        	Sair
 	    	</p:commandLink>
 		</div>
+		<div style="float:left;">
+			<p:commandLink id="menuBtn" action="menuUsuario.jsf">
+	        	Menu
+	    	</p:commandLink>
+		</div>
 		<div class="form" style="width:420px;">
-			<h3>Confirmação da reserva</h3>
+			<h3>Reserva Realizadas</h3>
 			<p:dataTable id="listaTrechos" var="trecho" value="#{voo.voo.trechos}"
 				rowKey="#{voo}" selectionMode="single" style="width:400px;">
 				<p:column headerText="Trechos">
@@ -70,12 +75,19 @@
 			<b><h:outputText value="Valor Total: #{voo.valorTotal}" id="precoTotal" /></b>
 			<br />
 			<br />
- 			<p:commandButton value="Finalizar" action="#{voo.finalizar}"
-           		ajax="false" />
- 			<p:commandButton value="Alterar" action="#{voo.alterar}"
-           		ajax="false" />
-			<p:commandButton value="Cancelar Reserva" action="#{voo.cancelar}"
-           		ajax="false" />
+       		<c:if test="${btns}">
+ 				<p:commandButton value="Finalizar" action="#{voo.finalizar}"
+           			ajax="false" />
+	 			<p:commandButton value="Alterar" action="#{voo.alterar}"
+	           		ajax="false" />
+				<p:commandButton value="Cancelar Reserva" action="#{voo.cancelar}"
+	           		ajax="false" />
+       		</c:if>
+       		<c:if test="${!btns}">
+				<script>
+					document.getElementById('titulo').textContent='Reserva Finalizada';
+				</script>
+			</c:if>
 		</div>
 
 	</div>

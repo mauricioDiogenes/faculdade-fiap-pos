@@ -15,8 +15,6 @@ import javax.persistence.Table;
 @Table(name = "assento")
 public class Assento implements Serializable {
 
-	
-
 	private static final long serialVersionUID = -581312565544016508L;
 
 	public Assento() {
@@ -27,6 +25,10 @@ public class Assento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@ManyToOne
+	@JoinColumn(name="idVoo", referencedColumnName="id")
+	private Voo voo;
+	
 	@Column(nullable = false)
 	private String tipo;
 
@@ -41,6 +43,14 @@ public class Assento implements Serializable {
 	
 	public boolean getFechado() {
 		return fechado;
+	}
+
+	public Voo getVoo() {
+		return voo;
+	}
+
+	public void setVoo(Voo voo) {
+		this.voo = voo;
 	}
 
 	public void setFechado(boolean fechado) {
@@ -59,9 +69,10 @@ public class Assento implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public Assento(String tipo) {
+	public Assento(String tipo, Voo voo) {
 		this.tipo = tipo;
 		this.idUsuario=new Integer(0);
+		this.voo = voo;
 	}
 
 	public String getTipo() {
