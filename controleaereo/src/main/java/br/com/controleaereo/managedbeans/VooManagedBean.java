@@ -33,17 +33,18 @@ public class VooManagedBean {
 				.getExternalContext().getSession(false);
 		return session;
 	}
-	private Usuario getUsuario(){
+
+	private Usuario getUsuario() {
 		Usuario u = (Usuario) getSession().getAttribute("userSession");
 		return u;
 	}
-	
+
 	private Logger log = LogManager.getLogger(VooManagedBean.class.getName());
 
 	private Trecho trecho = new Trecho();
 
 	private Voo voo;
-	
+
 	private List<Trecho> trechos;
 
 	private List<Assento> assentos;
@@ -53,14 +54,14 @@ public class VooManagedBean {
 	private Integer assentosExecutiva;
 
 	private String selectedAssentos;
-	
+
 	@SuppressWarnings("unused")
 	private Double valorTotal;
-	
+
 	private Double multa;
 
 	public Double getMulta() {
-		if(multa == null){
+		if (multa == null) {
 			return new Double(0);
 		}
 		return multa;
@@ -79,7 +80,7 @@ public class VooManagedBean {
 		return (total * qtdAssentos) + getMulta();
 	}
 
-	public void setValorTotal(Double valorTotal) {	
+	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
@@ -235,9 +236,10 @@ public class VooManagedBean {
 		List<Voo> voos = VooBO.getInstance().recuperaVoos();
 		return voos;
 	}
-	
+
 	public List<Voo> getVoosReservados() {
-		List<Voo> voos = VooBO.getInstance().recuperaVoosReservados(getUsuario());
+		List<Voo> voos = VooBO.getInstance().recuperaVoosReservados(
+				getUsuario());
 		return voos;
 	}
 
@@ -260,37 +262,43 @@ public class VooManagedBean {
 	}
 
 	public List<Assento> getAssentoSelecionados() {
-		if(getVoo() == null){
+		if (getVoo() == null) {
 			setVoo(getVooById());
 		}
 		List<Assento> assentosList = AssentoBO.getInstance()
 				.recuperaAssentoSelecionados(getUsuario(), getVoo().getId());
+		boolean fechado = false;
+		if (assentosList != null && assentosList.get(0) != null
+				&& assentosList.get(0).getFechado()) {
+			getSession().setAttribute("fechado", true);
+		}
 		return assentosList;
 	}
-	
+
 	public String reservar() {
 		String[] selecteds = selectedAssentos.split(",");
-		AssentoBO.getInstance().reservar(getUsuario(), getAssentos(), selecteds, voo.getId());
+		AssentoBO.getInstance().reservar(getUsuario(), getAssentos(),
+				selecteds, voo.getId());
 		return "confirmacao.jsf";
 	}
-	
-	public String alterar(){
-		//acrescenta multa de 50 reais;
-		setMulta(50+getMulta());
+
+	public String alterar() {
+		// acrescenta multa de 50 reais;
+		setMulta(50 + getMulta());
 		return "alterarAssentos.jsf";
 	}
-	
+
 	public String cancelar() {
-		setMulta(50D+getMulta());
+		setMulta(50D + getMulta());
 		try {
 			AssentoBO.getInstance().cancelar(getUsuario(), getVoo().getId());
 		} catch (Exception e) {
 			log.error(e.getMessage());
 		}
-		return "escolhaVoo.jsf"; 
+		return "escolhaVoo.jsf";
 	}
-	
-	public String finalizar(){
+
+	public String finalizar() {
 		try {
 			AssentoBO.getInstance().finalizar(getUsuario(), getVoo().getId());
 		} catch (Exception e) {
@@ -298,6 +306,5 @@ public class VooManagedBean {
 		}
 		return "menuUsuario.jsf";
 	}
-	
-	
+
 }

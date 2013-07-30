@@ -60,7 +60,7 @@
 				</p:column>
 			</p:dataTable>
 			<br /><br />
-			
+			<c:set var="fechado" scope="session" value="${false}"/>
 			<p:dataTable var="selecionados" value="#{voo.assentoSelecionados}" style="width:400px;">
 				<p:column headerText="Assento Escolhidos">
 					<h:outputText value="assento #{selecionados.id}" />
@@ -68,9 +68,9 @@
 				<p:column headerText="Tipo">
 					<h:outputText value="#{selecionados.tipo}"/>
 				</p:column>
-				<c:if test="${selecionados.fechado}">
-					<c:set var="btns" scope="session" value="${false}"/>
-				</c:if>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{fechado}"/>
+				</p:column>
 			</p:dataTable>
 			<br />
 			<b><h:outputText value="Multa: #{voo.multa}" id="multa" /></b>
@@ -78,22 +78,20 @@
 			<b><h:outputText value="Valor Total: #{voo.valorTotal}" id="precoTotal" /></b>
 			<br />
 			<br />
-       		<c:if test="${btns}">
  				<p:commandButton value="Finalizar" action="#{voo.finalizar}"
-           			ajax="false" />
+           			ajax="false" rendered="#{!fechado}" />
+           			
 	 			<p:commandButton value="Alterar" action="#{voo.alterar}"
-	           		ajax="false" />
+	           		ajax="false" rendered="#{!fechado}"  />
 				<p:commandButton value="Cancelar Reserva" action="#{voo.cancelar}"
-	           		ajax="false" />
-       		</c:if>
-       		<c:if test="${!btns}">
-				<script>
-					document.getElementById('titulo').textContent='Reserva Finalizada';
-				</script>
-			</c:if>
+	           		ajax="false" rendered="#{!fechado}"  />
 		</div>
 	</div>
-	<c:set var="btns" scope="session" value="${null}"/>
+	<script>
+		if(<h:outputText value="#{fechado}"/> == true){
+			document.getElementById('titulo').textContent='Reserva Finalizada';
+		}
+	</script>
 </h:form>
 </h:body>
 </html>
