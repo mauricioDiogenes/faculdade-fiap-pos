@@ -16,6 +16,14 @@ CREATE  TABLE IF NOT EXISTS `fiap`.`cliente` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `fiap`.`log_erro` ;
+
+CREATE  TABLE IF NOT EXISTS `fiap`.`log_erro` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `descricao` VARCHAR(255) NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `fiap`.`produto`
