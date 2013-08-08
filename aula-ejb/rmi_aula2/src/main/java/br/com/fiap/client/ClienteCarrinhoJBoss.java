@@ -26,7 +26,7 @@ public class ClienteCarrinhoJBoss {
 		item1.setPreco(3.0);
 
 		Item item2 = new Item();
-		item2.setNome("Dorflex");
+		item2.setNome("Dorflex CA");
 		item2.setPreco(5.0);
 
 		carrinho.cadastrarItem(item1);

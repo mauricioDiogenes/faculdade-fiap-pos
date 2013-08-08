@@ -16,9 +16,6 @@ public class RegistraCarrinhoJBoss {
 		InitialContext context = new InitialContext();
 		context.rebind("carrinho", new CarrinhoBean());
 		System.out.println("Carrinho registrado no JBoss");
-
-		
-
 	}
 
 }
