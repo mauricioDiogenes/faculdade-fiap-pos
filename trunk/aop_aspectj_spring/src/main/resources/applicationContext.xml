@@ -6,14 +6,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy  proxy-target-class="true"/>
  
 	<context:annotation-config />
 	
 	<bean id="clienteDao" class="br.com.fiap.atividade.dao.ClienteDaoImpl"/>
 	<bean id="estoqueDao" class="br.com.fiap.atividade.dao.EstoqueDaoImpl"/>
 	<bean id="pedidoService" class="br.com.fiap.atividade.service.PedidoService"/>
-	<bean id="regraDeNegocio" class="br.com.fiap.aop.aspectj.regras.RegraDeNegocio"/>
+	<bean id="utilSomar" class="br.com.fiap.atividade.service.UtilSomar"></bean>
+	<bean  class="br.com.fiap.aop.aspectj.regras.RegraDeNegocio"/>
 	<bean class="br.com.fiap.aop.aspectj.regras.LogAuditoria"/>
 	<bean class="br.com.fiap.aop.aspectj.regras.LogVendasDiarias"/>
 	<bean id="conexao" class="br.com.fiap.atividade.dao.Conexao"/>
