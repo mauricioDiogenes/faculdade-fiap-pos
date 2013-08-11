@@ -39,9 +39,9 @@ import br.com.fiap.atividade.service.PedidoView;
  * Data: Jul 9, 2013 - 8:10:27 PM
  *
  */
-public class EstoqueView {
+public class EstoqueMainView {
 	
-	private Logger logger = Logger.getLogger(EstoqueView.class);
+	private Logger logger = Logger.getLogger(EstoqueMainView.class);
 
 	protected Shell shell;
 	private Text nrPedido;
@@ -58,7 +58,7 @@ public class EstoqueView {
 	 */
 	public static void main(String[] args) {
 		try {
-			EstoqueView window = new EstoqueView();
+			EstoqueMainView window = new EstoqueMainView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
