@@ -6,6 +6,7 @@ import java.util.List;
 
 import ch.lambdaj.group.Group;
 
+import br.com.fiap.aop.aspectj.FactoryBeanSpring;
 import br.com.fiap.atividade.bean.Pedido;
 import br.com.fiap.atividade.util.UtilFormatter;
 import static ch.lambdaj.Lambda.*;
@@ -16,8 +17,9 @@ public class PedidoService {
 	
 	public  List<PedidoView> sumarizar(List<Pedido> pedidos, Date date){
 		
+		UtilSomar utilSomar = (UtilSomar) FactoryBeanSpring.getBean("utilSomar");
 		
-		Double valorTotal = somar(pedidos, date);
+		Double valorTotal = utilSomar.somar(pedidos, date);
 		
 		Group<Pedido> lista = group(pedidos, by(on(Pedido.class).getDescricao()));  
 		ArrayList<PedidoView> listaPedidoViews = new ArrayList<PedidoView>();
@@ -41,11 +43,6 @@ public class PedidoService {
 		
 		return listaPedidoViews;
 		
-	}
-
-	private Double somar(List<Pedido> pedidos, Date data) {
-		Double valDouble = sum(pedidos, on(Pedido.class).getValorUnitario());
-		return valDouble;
 	}
 	
 	
