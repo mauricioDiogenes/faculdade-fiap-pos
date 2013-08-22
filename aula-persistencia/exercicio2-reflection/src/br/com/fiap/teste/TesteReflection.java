@@ -24,6 +24,7 @@ public class TesteReflection {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite o nome da Classe: ");
 		String nomeDaClasse = sc.next();
+		out.format("%n%n ****************************** %n%n");
 		carregarClasseReflection(nomeDaClasse);
 	}
 
