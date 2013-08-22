@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TesteReflection {
 
@@ -20,8 +21,15 @@ public class TesteReflection {
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite o nome da Classe: ");
+		String nomeDaClasse = sc.next();
+		carregarClasseReflection(nomeDaClasse);
+	}
 
-		Class<?> c = Class.forName("br.com.fiap.Pessoa");
+	private static void carregarClasseReflection(String nomeDaClasse)
+			throws ClassNotFoundException {
+		Class<?> c = Class.forName(nomeDaClasse);
 
 		System.out.println(String.format("Class:%n  %s%n%n",
 				c.getCanonicalName()));
@@ -79,7 +87,6 @@ public class TesteReflection {
 		printMembers(c.getFields(), "Fields");
 		printMembers(c.getMethods(), "Methods");
 		printClasses(c);
-
 	}
 
 	private static void printAncestor(Class<?> c, List<Class> l) {
