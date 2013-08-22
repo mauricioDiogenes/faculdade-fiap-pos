@@ -26,6 +26,7 @@ public class TesteReflection {
 		String nomeDaClasse = sc.next();
 		out.format("%n%n ****************************** %n%n");
 		carregarClasseReflection(nomeDaClasse);
+		
 	}
 
 	private static void carregarClasseReflection(String nomeDaClasse)
