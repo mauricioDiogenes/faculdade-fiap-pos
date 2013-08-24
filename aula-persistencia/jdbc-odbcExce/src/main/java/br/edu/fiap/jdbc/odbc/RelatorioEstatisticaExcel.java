@@ -17,8 +17,12 @@ public class RelatorioEstatisticaExcel {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		ConexaoExcel  conexaoExcel =  new ConexaoExcel();
 		Connection connection = conexaoExcel.getConnection();
+		try{
+			ExcelDao excelDao = new ExcelDao();
+			excelDao.executeQuery(connection, SQL);
+		}catch(Exception ex){
+			conexaoExcel.closeConnection();
+		}
 		
-		ExcelDao excelDao = new ExcelDao();
-		excelDao.executeQuery(connection, SQL);
 	}
 }
