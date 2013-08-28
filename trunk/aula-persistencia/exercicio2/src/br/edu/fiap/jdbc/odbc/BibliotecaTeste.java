@@ -10,7 +10,7 @@ public class BibliotecaTeste {
 	 */
 	public static void main(String[] args) {
 		Random randomGenerator = new Random();
-		CategoriaDAO categoriaDAO = new CategoriaDAO();
+		CategoriaDAO categoriaDAO = new JDBCDAOFactory().createCategoriaDAO();
 		Categoria categoria = new Categoria();
 		categoria.setId(randomGenerator.nextInt(100));
 		categoria.setDescricao("Java");
