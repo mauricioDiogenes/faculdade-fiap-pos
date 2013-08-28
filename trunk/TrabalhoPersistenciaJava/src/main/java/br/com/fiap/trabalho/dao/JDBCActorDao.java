@@ -8,7 +8,7 @@ import br.com.fiap.trabalho.entity.Movie;
 /***
  * Classe Dao para JDBC
  * @author carlosrgomes@gmail.com
- *
+ *	
  */
 public class JDBCActorDao implements ActorDAO {
 
