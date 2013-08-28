@@ -55,6 +55,13 @@ public interface MovieDAO {
 	 */
 	public List<Movie> selectMoviesByCategoryName(String categoryName);
 	
+	/***
+	 * Metodo responsavel por selecionar {@link Movie} por nome do Studio
+	 * @param studioName {@link String}
+	 * @return {@link List} de {@link Movie}
+	 */
+	public List<Movie> selectMoviesByStudioName(String studioName);
+	
 	
 
 }
