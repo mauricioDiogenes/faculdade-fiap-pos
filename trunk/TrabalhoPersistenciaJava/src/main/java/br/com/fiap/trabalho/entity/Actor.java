@@ -2,22 +2,24 @@ package br.com.fiap.trabalho.entity;
 
 import java.util.Date;
 
-import javax.persistence.ManyToMany;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Actor {
+	
+	@Id @GeneratedValue
 	private int id;
+	
+	@Column
 	private String fullName;
+	
+	@Column
 	private Date birthDate;
-	@ManyToMany
-	private Movie movie;
+	
 
-	public Movie getMovie() {
-		return movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
 
 	public int getId() {
 		return id;
