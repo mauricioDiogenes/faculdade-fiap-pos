@@ -21,9 +21,8 @@ public class Tarefa {
 	@Qualifier("dataSource")
 	private DataSource dataSource;
 	
-	@Scheduled(fixedDelay=5000)
+	@Scheduled(fixedDelay=10000)
 	public synchronized void  insert() {
-		System.out.println("INSERT: "+new Date());
 		PreparedStatement pstmt;
 		try {
 			pstmt = dataSource.getConnection().prepareStatement("insert into URA(ID, DADOS, STATUS) values (?, ?, ?)");
@@ -38,7 +37,7 @@ public class Tarefa {
 		
 	}
 	
-	@Scheduled(fixedDelay=5000)
+	@Scheduled(fixedDelay=10000)
 	public synchronized void executarTarefa() throws SQLException{
 		System.out.println("Executando: "+new Date());
 		PreparedStatement pstmt = dataSource.getConnection().prepareStatement("select * from URA where STATUS = '0'");
@@ -53,9 +52,6 @@ public class Tarefa {
 			System.out.println( id + " " + rs.getString("DADOS"));
 		}
 		dataSource.getConnection().close();
-		
-		System.out.println("FIM: "+new Date());
-
 	}
 	
 	
