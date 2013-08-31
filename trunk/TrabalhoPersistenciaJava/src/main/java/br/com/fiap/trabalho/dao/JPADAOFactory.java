@@ -13,8 +13,7 @@ public class JPADAOFactory extends AbstractDAOFactory {
 	 */
 	@Override
 	public ActorDAO createActorDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAActorDAO();
 	}
 
 	/*
