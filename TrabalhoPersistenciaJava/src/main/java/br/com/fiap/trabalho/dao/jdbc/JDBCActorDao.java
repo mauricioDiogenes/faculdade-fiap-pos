@@ -1,7 +1,8 @@
-package br.com.fiap.trabalho.dao;
+package br.com.fiap.trabalho.dao.jdbc;
 
 import java.util.List;
 
+import br.com.fiap.trabalho.dao.ActorDAO;
 import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Movie;
 

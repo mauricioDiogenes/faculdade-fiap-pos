@@ -1,4 +1,10 @@
-package br.com.fiap.trabalho.dao;
+package br.com.fiap.trabalho.dao.jdbc;
+
+import br.com.fiap.trabalho.dao.AbstractDAOFactory;
+import br.com.fiap.trabalho.dao.ActorDAO;
+import br.com.fiap.trabalho.dao.CategoryDAO;
+import br.com.fiap.trabalho.dao.MovieDAO;
+import br.com.fiap.trabalho.dao.StudioDAO;
 
 /***
  * Classe  Factory para criacao dos objetos do JDBC
