@@ -15,10 +15,10 @@ public class Actor {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@Column
+	@Column(nullable=false)
 	private String fullName;
 	
-	@Column
+	@Column(nullable=false)
 	private Date birthDate;
 	
 
