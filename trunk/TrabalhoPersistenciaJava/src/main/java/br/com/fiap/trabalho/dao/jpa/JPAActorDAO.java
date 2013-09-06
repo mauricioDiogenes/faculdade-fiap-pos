@@ -1,9 +1,16 @@
-package br.com.fiap.trabalho.dao;
+package br.com.fiap.trabalho.dao.jpa;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
+import br.com.fiap.trabalho.dao.ActorDAO;
 import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Movie;
 
@@ -13,7 +20,7 @@ import br.com.fiap.trabalho.entity.Movie;
  * @author carlosrgomes@gmail.com
  * 
  */
-public class JPAActorDAO extends JPAConnection implements ActorDAO{
+public class JPAActorDAO extends JPAConnection implements ActorDAO {
 
 	/*
 	 * (non-Javadoc)
@@ -23,7 +30,9 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO{
 	 * .Actor)
 	 */
 	public Actor createActor(Actor actor) {
+		getEntityManager().getTransaction().begin();
 		getEntityManager().persist(actor);
+		getEntityManager().getTransaction().commit();
 		return actor;
 	}
 
@@ -35,8 +44,10 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO{
 	 * .Actor)
 	 */
 	public boolean deleteActor(Actor actor) {
-		// TODO Auto-generated method stub
-		return false;
+		getEntityManager().getTransaction().begin();
+		getEntityManager().remove(actor);
+		getEntityManager().getTransaction().commit();
+		return true;
 	}
 
 	/*
@@ -45,11 +56,13 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO{
 	 * @see
 	 * br.com.fiap.trabalho.dao.ActorDAO#selectActorByName(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Actor> selectActorByName(String name) {
-		Query query = getEntityManager().createQuery(
+		TypedQuery<Actor> query = getEntityManager().createQuery(
 				"SELECT A FROM Actor A WHERE fullName = :name", Actor.class);
 		query.setParameter("name", name);
-		return (List<Actor>) query.getSingleResult();
+
+		return (List<Actor>) query.getResultList();
 	}
 
 	/*
@@ -58,8 +71,19 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO{
 	 * @see br.com.fiap.trabalho.dao.ActorDAO#selectActorByAge(int)
 	 */
 	public List<Actor> selectActorByAge(int age) {
-		// TODO Auto-generated method stub
-		return null;
+		getEntityManager().getTransaction().begin();
+		TypedQuery<Actor> query = getEntityManager().createQuery(
+				"SELECT A FROM Actor A WHERE YEAR(birthDate) = :year",Actor.class);
+		query.setParameter("year", getYear(age));
+		getEntityManager().getTransaction().commit();
+
+		return (List<Actor>) query.getResultList();
+	}
+
+	private int getYear(int age) {
+		Calendar c = new GregorianCalendar();
+		int ano = c.get(Calendar.YEAR);
+		return ano - age;
 	}
 
 	/*
@@ -70,7 +94,7 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO{
 	 * .entity.Movie)
 	 */
 	public List<Actor> selectActorByMovie(Movie movie) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

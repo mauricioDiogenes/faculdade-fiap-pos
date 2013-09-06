@@ -1,4 +1,4 @@
-package br.com.fiap.trabalho.dao;
+package br.com.fiap.trabalho.dao.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
