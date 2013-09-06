@@ -1,13 +1,9 @@
 package br.com.fiap.trabalho.dao.jpa;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.fiap.trabalho.dao.ActorDAO;
@@ -56,12 +52,10 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO {
 	 * @see
 	 * br.com.fiap.trabalho.dao.ActorDAO#selectActorByName(java.lang.String)
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Actor> selectActorByName(String name) {
 		TypedQuery<Actor> query = getEntityManager().createQuery(
 				"SELECT A FROM Actor A WHERE fullName = :name", Actor.class);
 		query.setParameter("name", name);
-
 		return (List<Actor>) query.getResultList();
 	}
 
