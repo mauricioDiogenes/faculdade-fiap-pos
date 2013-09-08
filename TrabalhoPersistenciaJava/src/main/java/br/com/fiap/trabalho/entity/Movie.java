@@ -22,18 +22,15 @@ public class Movie {
 	private String title;
 
 	@Column(nullable=false)
-	private int year;
+	private int yearr;
 
-	@Column(nullable=false)
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Category category;
 
-	@Column(nullable=false)
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Studio studio;
 
-	@Column(nullable=false)
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "id", targetEntity = Actor.class)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Actor> actors;
 
 	public int getId() {
@@ -52,12 +49,12 @@ public class Movie {
 		this.title = title;
 	}
 
-	public int getYear() {
-		return year;
+	public int getYearr() {
+		return yearr;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setYearr(int year) {
+		this.yearr = year;
 	}
 
 	public Category getCategory() {

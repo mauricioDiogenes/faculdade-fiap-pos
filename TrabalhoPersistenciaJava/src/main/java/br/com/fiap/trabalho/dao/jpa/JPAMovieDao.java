@@ -32,26 +32,23 @@ public class JPAMovieDao extends JPAConnection implements MovieDAO {
 
 	public List<Movie> selectMoviesByYear(int year) {
 		TypedQuery<Movie> query = getEntityManager().createQuery(
-				"SELECT m FROM Movie m WHERE YEAR(year) = :year", Movie.class);
-		query.setParameter("year", year);
+				"SELECT m FROM Movie m WHERE yearr = :ano", Movie.class);
+		query.setParameter("ano", year);
 
 		return (List<Movie>) query.getResultList();
 	}
 
 	public List<Movie> selecMoviesByActorName(String actorName) {
 		TypedQuery<Movie> query = getEntityManager().createQuery(
-				"SELECT m FROM Movie m WHERE YEAR(year) = :name", Movie.class);
-		query.setParameter("name", year);
+				"SELECT m FROM Movie m INNER JOIN m.actor", Movie.class);
 		return null;
 	}
 
 	public List<Movie> selectMoviesByCategoryName(String categoryName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public List<Movie> selectMoviesByStudioName(String studioName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

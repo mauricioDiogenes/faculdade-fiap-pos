@@ -28,8 +28,7 @@ public class JPADAOFactory extends AbstractDAOFactory {
 	 */
 	@Override
 	public MovieDAO createMovieDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAMovieDao();
 	}
 
 	/*
