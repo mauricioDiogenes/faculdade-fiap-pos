@@ -19,6 +19,7 @@ import br.com.fiap.trabalho.entity.Actor;
 
 public class TestJPAActorDao {
 	private static ActorDAO actorDAO;
+	
 	@Before
 	public void init(){
 		AbstractDAOFactory abstractDAOFactory = new JPADAOFactory();
