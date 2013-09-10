@@ -46,7 +46,7 @@ public interface MovieDAO {
 	 * @param actorName {@link String}
 	 * @return {@link List} de {@link Movie}
 	 */
-	public List<Movie> selecMoviesByActorName(String actorName);
+	public List<Movie> selectMoviesByActorName(String actorName);
 	
 	/***
 	 * Metodo responsavel por selecionar os {@link Movie} por nome da {@link Category}
