@@ -38,7 +38,7 @@ public class TestJPAMovieDao {
 		actors.add(actor2);
 		
 		Movie movie = new Movie();
-		movie.setTitle("movie2");
+		movie.setTitle("movie select");
 		movie.setYearr(2013);
 		movie.setActors(actors);
 		movieDAO.createMovie(movie);
@@ -56,7 +56,7 @@ public class TestJPAMovieDao {
 
 	@Test
 	public void selectActorByTitle() {
-		List<Movie> movieList = movieDAO.selectMoviesByTitle("movie2");
+		List<Movie> movieList = movieDAO.selectMoviesByTitle("movie select");
 		assertNotNull(movieList);
 	}
 
@@ -86,6 +86,6 @@ public class TestJPAMovieDao {
 	@Test
 	public void selectMovieByActor(){
 		List<Movie> movies = movieDAO.selectMoviesByActorName("actor1");
-		System.out.println();
+		assertNotNull(movies);
 	}
 }
