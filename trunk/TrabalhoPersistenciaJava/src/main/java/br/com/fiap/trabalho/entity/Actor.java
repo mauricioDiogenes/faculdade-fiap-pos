@@ -1,12 +1,14 @@
-package br.com.fiap.trabalho.entity;
+	package br.com.fiap.trabalho.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Actor {
@@ -20,7 +22,17 @@ public class Actor {
 	
 	@Column
 	private Date birthDate;
+	
+	@ManyToMany(mappedBy="actors", targetEntity=Movie.class)
+	private List<Movie> movies;
 
+	public List<Movie> getMovies() {
+		return movies;
+	}
+
+	public void setMovies(List<Movie> movies) {
+		this.movies = movies;
+	}
 
 	public int getId() {
 		return id;
