@@ -40,7 +40,6 @@ public class TestJPAMovieDao {
 		Movie movie = new Movie();
 		movie.setTitle("movie select");
 		movie.setYearr(2013);
-		movie.setActors(actors);
 		movieDAO.createMovie(movie);
 		
 		Movie movie2 = new Movie();
