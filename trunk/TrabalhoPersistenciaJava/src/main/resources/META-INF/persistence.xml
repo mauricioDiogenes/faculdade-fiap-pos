@@ -3,6 +3,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
+	
+	 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.com.fiap.trabalho.entity.Actor</class>
+		<class>br.com.fiap.trabalho.entity.Category</class>
+		<class>br.com.fiap.trabalho.entity.Movie</class>
+		<class>br.com.fiap.trabalho.entity.Studio</class>
+	
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:simpleDB;create=true" />
@@ -14,7 +21,8 @@
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.connection.autocommit" value="true"/>
 		</properties>
-
+		
+		
 	</persistence-unit>
 </persistence>
 
