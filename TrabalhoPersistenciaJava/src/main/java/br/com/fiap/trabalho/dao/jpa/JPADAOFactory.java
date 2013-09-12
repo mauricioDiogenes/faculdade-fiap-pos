@@ -37,8 +37,7 @@ public class JPADAOFactory extends AbstractDAOFactory {
 	 */
 	@Override
 	public CategoryDAO createCategoryDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JPACategoryDAO();
 	}
 
 	/*
@@ -47,7 +46,6 @@ public class JPADAOFactory extends AbstractDAOFactory {
 	 */
 	@Override
 	public StudioDAO createStudioDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		return new JPAStudioDAO();
 	}
 }
