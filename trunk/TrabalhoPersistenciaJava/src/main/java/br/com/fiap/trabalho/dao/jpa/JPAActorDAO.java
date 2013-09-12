@@ -57,7 +57,6 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO {
 		TypedQuery<Actor> query = getEntityManager().createQuery(
 				"SELECT A FROM Actor A WHERE fullName = :name", Actor.class);
 		query.setParameter("name", name);
-
 		return (List<Actor>) query.getResultList();
 	}
 
