@@ -29,11 +29,11 @@ public class TestJPAMovieDao {
 		
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
-		actor.setFullName("actor1");
+		actor.setFullName("actor1 movie");
 		
 		Actor actor2 = new Actor();
 		actor2.setBirthDate(new Date("10/10/2011"));
-		actor2.setFullName("actor2");
+		actor2.setFullName("actor2 movie");
 		
 		Set<Actor> actors = new HashSet<Actor>();
 		actors.add(actor);
