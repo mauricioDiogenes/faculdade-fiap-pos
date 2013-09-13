@@ -62,6 +62,6 @@ public interface MovieDAO {
 	 */
 	public List<Movie> selectMoviesByStudioName(String studioName);
 	
-	
+	public Movie find(int id);	
 
 }

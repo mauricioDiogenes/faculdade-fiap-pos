@@ -1,17 +1,19 @@
 package br.com.fiap.trabalho.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -22,17 +24,21 @@ public class Movie {
 	@Column
 	private String title;
 
-	@Column
-	private int yearr;
+	@Column(name="yearr")
+	private int year;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idActor"))
 	private Set<Actor> actors;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idCategory"))
 	private Set<Category> categories;
 
+	@ManyToOne
+	@JoinColumn(referencedColumnName="id")
+	private Studio studio;
+	
 	public Set<Category> getCategories() {
 		return categories;
 	}
@@ -65,12 +71,12 @@ public class Movie {
 		this.title = title;
 	}
 
-	public int getYearr() {
-		return yearr;
+	public int getYear() {
+		return year;
 	}
 
-	public void setYearr(int yearr) {
-		this.yearr = yearr;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 }
