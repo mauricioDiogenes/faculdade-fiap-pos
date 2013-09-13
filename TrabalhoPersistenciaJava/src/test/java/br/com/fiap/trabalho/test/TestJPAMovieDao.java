@@ -1,7 +1,6 @@
 package br.com.fiap.trabalho.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -41,13 +40,13 @@ public class TestJPAMovieDao {
 		
 		Movie movie = new Movie();
 		movie.setTitle("movie select");
-		movie.setYearr(2013);
+		movie.setYear(2013);
 		movie.setActors(actors);
 		movieDAO.createMovie(movie);
 		
 		Movie movie2 = new Movie();
 		movie2.setTitle("movieDel");
-		movie2.setYearr(2013);
+		movie2.setYear(2013);
 		movieDAO.createMovie(movie2);
 	}
 
@@ -72,7 +71,7 @@ public class TestJPAMovieDao {
 	public void insertMovie() {
 		Movie movie = new Movie();
 		movie.setTitle("movie1");
-		movie.setYearr(2013);
+		movie.setYear(2013);
 		Movie m = movieDAO.createMovie(movie);
 		assertNotNull(m);
 	}
@@ -80,9 +79,10 @@ public class TestJPAMovieDao {
 	@Test
 	public void deleteMovie() {
 		List<Movie> movieList = movieDAO.selectMoviesByTitle("movieDel");
+		int id = movieList.get(0).getId();
 		movieDAO.deleteMovie(movieList.get(0));
-		List<Movie> movieList2 = movieDAO.selectMoviesByTitle("movieDel");
-		assertTrue(movieList2.isEmpty());
+		Movie movie = movieDAO.find(id);
+		assertNull(movie);
 	}
 	
 	@Test

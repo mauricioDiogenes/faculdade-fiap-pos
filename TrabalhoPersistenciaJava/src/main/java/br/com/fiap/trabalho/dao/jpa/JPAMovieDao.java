@@ -22,6 +22,11 @@ public class JPAMovieDao extends JPAConnection implements MovieDAO {
 		getEntityManager().getTransaction().commit();
 		return true;
 	}
+	
+	public Movie find(int id){
+		Movie movie = getEntityManager().find(Movie.class, id);
+		return movie;
+	}
 
 	public List<Movie> selectMoviesByTitle(String title) {
 		TypedQuery<Movie> query = getEntityManager().createQuery(
@@ -46,7 +51,7 @@ public class JPAMovieDao extends JPAConnection implements MovieDAO {
 	}
 
 	public List<Movie> selectMoviesByCategoryName(String categoryName) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
