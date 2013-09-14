@@ -1,6 +1,7 @@
 package br.com.fiap.trabalho.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,19 +13,31 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.fiap.trabalho.dao.AbstractDAOFactory;
+import br.com.fiap.trabalho.dao.CategoryDAO;
 import br.com.fiap.trabalho.dao.MovieDAO;
 import br.com.fiap.trabalho.dao.jpa.JPADAOFactory;
 import br.com.fiap.trabalho.entity.Actor;
+import br.com.fiap.trabalho.entity.Category;
 import br.com.fiap.trabalho.entity.Movie;
 
 @SuppressWarnings("deprecation")
 public class TestJPAMovieDao {
 	private MovieDAO movieDAO;
 
+	private CategoryDAO categoryDAO;
+	
 	@Before
 	public void init() {
 		AbstractDAOFactory abstractDAOFactory = new JPADAOFactory();
 		movieDAO = abstractDAOFactory.createMovieDAO();
+		categoryDAO = abstractDAOFactory.createCategoryDAO();
+		
+		Category category1 = new Category();
+		category1.setName("Terror");
+		categoryDAO.createCategory(category1);
+		Set<Category> categories = new HashSet<Category>();
+		categories.add(category1);
+		
 		
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
@@ -42,6 +55,7 @@ public class TestJPAMovieDao {
 		movie.setTitle("movie select");
 		movie.setYear(2013);
 		movie.setActors(actors);
+		movie.setCategories(categories);
 		movieDAO.createMovie(movie);
 		
 		Movie movie2 = new Movie();
@@ -90,4 +104,11 @@ public class TestJPAMovieDao {
 		List<Movie> movies = movieDAO.selectMoviesByActorName("actor1");
 		assertNotNull(movies);
 	}
+	
+	@Test
+	public void selectMoviesByCategoryName(){
+		List<Movie> movies = movieDAO.selectMoviesByCategoryName("");				
+	}
+	
+	
 }
