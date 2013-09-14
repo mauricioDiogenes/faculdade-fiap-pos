@@ -58,8 +58,10 @@ public class JPAMovieDao extends JPAConnection implements MovieDAO {
 	}
 
 	public List<Movie> selectMoviesByStudioName(String studioName) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Movie> query = getEntityManager().createQuery(
+				"SELECT m FROM Movie m JOIN m.studio s WHERE s.name = :name", Movie.class);
+		query.setParameter("name", studioName);
+		return (List<Movie>) query.getResultList();
 	}
 
 }

@@ -15,22 +15,26 @@ import org.junit.Test;
 import br.com.fiap.trabalho.dao.AbstractDAOFactory;
 import br.com.fiap.trabalho.dao.CategoryDAO;
 import br.com.fiap.trabalho.dao.MovieDAO;
+import br.com.fiap.trabalho.dao.StudioDAO;
 import br.com.fiap.trabalho.dao.jpa.JPADAOFactory;
 import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Category;
 import br.com.fiap.trabalho.entity.Movie;
+import br.com.fiap.trabalho.entity.Studio;
 
 @SuppressWarnings("deprecation")
 public class TestJPAMovieDao {
 	private MovieDAO movieDAO;
 
 	private CategoryDAO categoryDAO;
+	private static StudioDAO studioDAO;
 	
 	@Before
 	public void init() {
 		AbstractDAOFactory abstractDAOFactory = new JPADAOFactory();
 		movieDAO = abstractDAOFactory.createMovieDAO();
 		categoryDAO = abstractDAOFactory.createCategoryDAO();
+		studioDAO = abstractDAOFactory.createStudioDAO();
 		
 		Category category1 = new Category();
 		category1.setName("Terror");
@@ -38,6 +42,10 @@ public class TestJPAMovieDao {
 		Set<Category> categories = new HashSet<Category>();
 		categories.add(category1);
 		
+		Studio studio = new Studio();
+		studio.setName("teste studioo");
+		studioDAO.createStudio(studio);
+		studioDAO = abstractDAOFactory.createStudioDAO();
 		
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
@@ -56,6 +64,7 @@ public class TestJPAMovieDao {
 		movie.setYear(2013);
 		movie.setActors(actors);
 		movie.setCategories(categories);
+		movie.setStudio(studio);
 		movieDAO.createMovie(movie);
 		
 		Movie movie2 = new Movie();
@@ -107,8 +116,14 @@ public class TestJPAMovieDao {
 	
 	@Test
 	public void selectMoviesByCategoryName(){
-		List<Movie> movies = movieDAO.selectMoviesByCategoryName("");				
+		List<Movie> movies = movieDAO.selectMoviesByCategoryName("Terror");
+		assertNotNull(movies);
 	}
 	
+	@Test
+	public void selectMoviesByStudioName(){
+		List<Movie> movies = movieDAO.selectMoviesByStudioName("teste studioo");
+		assertNotNull(movies);
+	}
 	
 }

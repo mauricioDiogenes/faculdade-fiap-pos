@@ -35,7 +35,7 @@ public class Movie {
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idCategory"))
 	private Set<Category> categories;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(referencedColumnName="id")
 	private Studio studio;
 	
@@ -78,5 +78,15 @@ public class Movie {
 	public void setYear(int year) {
 		this.year = year;
 	}
+
+	public Studio getStudio() {
+		return studio;
+	}
+
+	public void setStudio(Studio studio) {
+		this.studio = studio;
+	}
+	
+	
 
 }
