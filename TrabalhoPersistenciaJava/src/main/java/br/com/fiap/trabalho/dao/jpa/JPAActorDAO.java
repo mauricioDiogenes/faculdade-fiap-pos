@@ -3,6 +3,7 @@ package br.com.fiap.trabalho.dao.jpa;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.TypedQuery;
 
@@ -88,9 +89,11 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO {
 	 * br.com.fiap.trabalho.dao.ActorDAO#selectActorByMovie(br.com.fiap.trabalho
 	 * .entity.Movie)
 	 */
-	public List<Actor> selectActorByMovie(Movie movie) {
-		
-		return null;
+	public List<Set<Actor>> selectActorByMovie(Movie movie) {
+		String sql = "SELECT m.actors FROM Movie m WHERE m.id = :id ";
+		TypedQuery<Set<Actor>> query = (TypedQuery<Set<Actor>>) getEntityManager().createQuery(sql);
+		query.setParameter("id", movie.getId());
+		return   query.getResultList();
 	}
 
 }
