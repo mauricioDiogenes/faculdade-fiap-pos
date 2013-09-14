@@ -1,6 +1,7 @@
 package br.com.fiap.trabalho.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Movie;
@@ -45,6 +46,6 @@ public interface ActorDAO {
 	 * @param movie {@link Movie}
 	 * @return {@link List} contendo uma lista De {@link Actor}
 	 */
-	public List<Actor> selectActorByMovie(Movie movie);
+	public List<Set<Actor>> selectActorByMovie(Movie movie);
 
 }
