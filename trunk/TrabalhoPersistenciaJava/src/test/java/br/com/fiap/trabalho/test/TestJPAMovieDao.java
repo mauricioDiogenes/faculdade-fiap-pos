@@ -36,16 +36,18 @@ public class TestJPAMovieDao {
 		categoryDAO = abstractDAOFactory.createCategoryDAO();
 		studioDAO = abstractDAOFactory.createStudioDAO();
 		
-		Category category1 = new Category();
-		category1.setName("Terror");
-		categoryDAO.createCategory(category1);
-		Set<Category> categories = new HashSet<Category>();
-		categories.add(category1);
-		
 		Studio studio = new Studio();
-		studio.setName("teste studioo");
+		studio.setName("teste studio");
 		studioDAO.createStudio(studio);
 		studioDAO = abstractDAOFactory.createStudioDAO();
+		
+		Category category = new Category();
+		category.setName("Terror");
+		categoryDAO.createCategory(category);
+		Set<Category> categories = new HashSet<Category>();
+		categories.add(category);
+		
+		
 		
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
@@ -122,7 +124,7 @@ public class TestJPAMovieDao {
 	
 	@Test
 	public void selectMoviesByStudioName(){
-		List<Movie> movies = movieDAO.selectMoviesByStudioName("teste studioo");
+		List<Movie> movies = movieDAO.selectMoviesByStudioName("teste studio");
 		assertNotNull(movies);
 	}
 	
