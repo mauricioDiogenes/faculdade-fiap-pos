@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Studio {
 	@Column
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="studio")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="studio", fetch=FetchType.LAZY)
 	private Set<Movie> movies;
 		
 	public Set<Movie> getMovies() {
