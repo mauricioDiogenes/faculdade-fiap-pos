@@ -4,7 +4,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,18 +14,29 @@ import org.junit.Test;
 
 import br.com.fiap.trabalho.dao.AbstractDAOFactory;
 import br.com.fiap.trabalho.dao.ActorDAO;
+import br.com.fiap.trabalho.dao.MovieDAO;
+import br.com.fiap.trabalho.dao.StudioDAO;
 import br.com.fiap.trabalho.dao.jpa.JPADAOFactory;
 import br.com.fiap.trabalho.entity.Actor;
+import br.com.fiap.trabalho.entity.Movie;
+import br.com.fiap.trabalho.entity.Studio;
 
 
 
 public class TestJPAActorDao {
 	private static ActorDAO actorDAO;
+	private MovieDAO movieDAO;
+	private static StudioDAO studioDAO;
+	private HashSet<Actor> actors =  new HashSet<Actor>();
+	private Studio studio1;
+	
 	
 	@Before
 	public void init(){
 		AbstractDAOFactory abstractDAOFactory = new JPADAOFactory();
 		actorDAO = abstractDAOFactory.createActorDAO();
+		movieDAO = abstractDAOFactory.createMovieDAO();
+		studioDAO = abstractDAOFactory.createStudioDAO();
 		Actor actor1 = new Actor();
 		actor1.setBirthDate(new Date("10/10/2010"));
 		actor1.setFullName("actor1");
@@ -33,6 +46,12 @@ public class TestJPAActorDao {
 		actor2.setBirthDate(new Date("10/10/2011"));
 		actor2.setFullName("actor2");
 		actorDAO.createActor(actor2);
+		actors.add(actor1);
+		actors.add(actor2);
+		
+		studio1 = new Studio();
+		studio1.setName("Studio 1");
+		studioDAO.createStudio(studio1);
 	}
 	
 	@Test
@@ -72,5 +91,18 @@ public class TestJPAActorDao {
 		}else{
 			assertTrue(true);
 		}
+	}
+	
+	@Test
+	public void selectActorByMovie(){
+		Movie movie = new Movie();
+		movie.setActors(actors);
+		movie.setTitle("Caçada ao Mundo do Java");
+		movie.setStudio(studio1);
+		movie.setYear(2013);
+		movieDAO.createMovie(movie);
+		List<Set<Actor>> list = actorDAO.selectActorByMovie(movie);
+		assertTrue(list.size() > 0);
+		
 	}
 }
