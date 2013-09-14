@@ -51,8 +51,10 @@ public class JPAMovieDao extends JPAConnection implements MovieDAO {
 	}
 
 	public List<Movie> selectMoviesByCategoryName(String categoryName) {
-		
-		return null;
+		TypedQuery<Movie> query = getEntityManager().createQuery(
+				"SELECT m FROM Movie m JOIN m.categories c WHERE c.name = :name", Movie.class);
+		query.setParameter("name", categoryName);
+		return (List<Movie>) query.getResultList();	
 	}
 
 	public List<Movie> selectMoviesByStudioName(String studioName) {
