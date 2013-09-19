@@ -13,9 +13,11 @@
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="net.sf.log4jdbc.DriverSpy" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:log4jdbc:derby:simpleDB;create=true" />
+			<!-- 
 			<property name="javax.persistence.jdbc.user" value="TrabalhoPersistenciaJava" />
 			<property name="javax.persistence.jdbc.password" value="TrabalhoPersistenciaJava" />
-        	<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>  
+			 -->
+        	<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
     		<property name ="hibernate.format_sql" value ="true"/>
 			<property name ="hibernate.show_sql" value ="true"/>
 			<property name ="hibernate.show_sql_values" value ="true"/>
