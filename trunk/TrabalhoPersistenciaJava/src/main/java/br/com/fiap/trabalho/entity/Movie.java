@@ -27,14 +27,17 @@ public class Movie {
 	@Column(name="yearr")
 	private int year;
 
+	@Column(nullable=false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idActor"))
 	private Set<Actor> actors;
 
+	@Column(nullable=false)
 	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idCategory"))
 	private Set<Category> categories;
 
+	@Column(nullable=false)
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(referencedColumnName="id")
 	private Studio studio;

@@ -27,4 +27,7 @@ public class JDBCConnection {
 		}
 		return conn;
 	}
+	public static void main(String[] args) {
+		new JDBCConnection();
+	}
 }

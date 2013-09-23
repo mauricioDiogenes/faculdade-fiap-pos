@@ -46,6 +46,6 @@ public interface ActorDAO {
 	 * @param movie {@link Movie}
 	 * @return {@link List} contendo uma lista De {@link Actor}
 	 */
-	public List<Set<Actor>> selectActorByMovie(Movie movie);
+	public Set<Actor> selectActorByMovie(Movie movie);
 
 }
