@@ -105,6 +105,5 @@ public class TestJPAActorDao {
 		movieDAO.createMovie(movie);
 		Set<Actor> list = actorDAO.selectActorByMovie(movie);
 		assertTrue(list.size() > 0);
-		
 	}
 }
