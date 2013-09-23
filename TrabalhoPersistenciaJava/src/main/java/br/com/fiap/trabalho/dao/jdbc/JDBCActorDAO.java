@@ -86,10 +86,13 @@ public class JDBCActorDAO extends JDBCConnection implements ActorDAO {
 	public Set<Actor> selectActorByMovie(Movie movie) {
 		Set<Actor> actors = new HashSet<Actor>();
 		try {
-			String sql = "SELECT A.* FROM ACTOR A "
+			String sql = "SELECT A.* FROM Actor A "
 					+ "INNER JOIN MOVIE_ACTOR MA ON "
-					+ "MA.IDACTOR INNER JOIN MOVIE M ON " + "M.ID = MA.IDMOVIE"
+					+ "MA.IDACTOR=A.ID INNER JOIN MOVIE M ON "
+					+ "M.ID = MA.IDMOVIE"
 					+ " WHERE M.ID= ? ";
+			System.out.println(sql);
+			System.out.println(movie.getId());
 			PreparedStatement stm = getConnection().prepareStatement(sql);
 			stm.setInt(1, movie.getId());
 			ResultSet rs = stm.executeQuery();
@@ -101,6 +104,7 @@ public class JDBCActorDAO extends JDBCConnection implements ActorDAO {
 				actors.add(actor);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return actors;
 		}
 		return actors;

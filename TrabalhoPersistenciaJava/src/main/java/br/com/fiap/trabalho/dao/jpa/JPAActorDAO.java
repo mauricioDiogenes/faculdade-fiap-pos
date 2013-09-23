@@ -2,9 +2,11 @@ package br.com.fiap.trabalho.dao.jpa;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.fiap.trabalho.dao.ActorDAO;
@@ -67,11 +69,10 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO {
 	 * @see br.com.fiap.trabalho.dao.ActorDAO#selectActorByAge(int)
 	 */
 	public List<Actor> selectActorByAge(int age) {
-		getEntityManager().getTransaction().begin();
 		TypedQuery<Actor> query = getEntityManager().createQuery(
-				"SELECT A FROM Actor A WHERE YEAR(birthDate) = :year",Actor.class);
+				"SELECT A FROM Actor A WHERE YEAR(birthDate) = :year",
+				Actor.class);
 		query.setParameter("year", getYear(age));
-		getEntityManager().getTransaction().commit();
 
 		return (List<Actor>) query.getResultList();
 	}
@@ -89,11 +90,11 @@ public class JPAActorDAO extends JPAConnection implements ActorDAO {
 	 * br.com.fiap.trabalho.dao.ActorDAO#selectActorByMovie(br.com.fiap.trabalho
 	 * .entity.Movie)
 	 */
-	public List<Set<Actor>> selectActorByMovie(Movie movie) {
+	public Set<Actor> selectActorByMovie(Movie movie) {
 		String sql = "SELECT m.actors FROM Movie m WHERE m.id = :id ";
-		TypedQuery<Set<Actor>> query = (TypedQuery<Set<Actor>>) getEntityManager().createQuery(sql);
+		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("id", movie.getId());
-		return   query.getResultList();
+		return new HashSet(query.getResultList());
 	}
 
 }
