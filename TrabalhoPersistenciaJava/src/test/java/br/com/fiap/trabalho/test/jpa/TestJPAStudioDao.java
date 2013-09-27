@@ -29,26 +29,6 @@ public class TestJPAStudioDao {
 		Studio studio1 = new Studio();
 		studio1.setName("Studio 1");
 		
-		Actor actor = new Actor();
-		actor.setBirthDate(new Date("10/10/2012"));
-		actor.setFullName("actor1 movie");
-		
-		Actor actor2 = new Actor();
-		actor2.setBirthDate(new Date("10/10/2011"));
-		actor2.setFullName("actor2 movie");
-		
-		Set<Actor> actors = new HashSet<Actor>();
-		actors.add(actor);
-		actors.add(actor2);
-		
-		Movie movie = new Movie();
-		movie.setTitle("movie select");
-		movie.setYear(2013);
-		movie.setActors(actors);
-		
-		Set<Movie> movies = new HashSet<Movie>();
-		movies.add(movie);
-		studio1.setMovies(movies);
 		studioDAO.createStudio(studio1);
 	}
 
