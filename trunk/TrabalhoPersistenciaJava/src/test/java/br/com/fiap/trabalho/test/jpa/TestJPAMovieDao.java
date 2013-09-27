@@ -28,39 +28,38 @@ public class TestJPAMovieDao {
 
 	private CategoryDAO categoryDAO;
 	private static StudioDAO studioDAO;
-	
+	private Set<Category> categories;
+	private Studio studio;
+
 	@Before
 	public void init() {
 		AbstractDAOFactory abstractDAOFactory = new JPADAOFactory();
 		movieDAO = abstractDAOFactory.createMovieDAO();
 		categoryDAO = abstractDAOFactory.createCategoryDAO();
 		studioDAO = abstractDAOFactory.createStudioDAO();
-		
-		Studio studio = new Studio();
+
+		studio = new Studio();
 		studio.setName("teste studio");
 		studioDAO.createStudio(studio);
-		studioDAO = abstractDAOFactory.createStudioDAO();
-		
+
 		Category category = new Category();
 		category.setName("Terror");
 		categoryDAO.createCategory(category);
-		Set<Category> categories = new HashSet<Category>();
+		categories = new HashSet<Category>();
 		categories.add(category);
-		
-		
-		
+
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
 		actor.setFullName("actor1 movie");
-		
+
 		Actor actor2 = new Actor();
 		actor2.setBirthDate(new Date("10/10/2011"));
 		actor2.setFullName("actor2 movie");
-		
+
 		Set<Actor> actors = new HashSet<Actor>();
 		actors.add(actor);
 		actors.add(actor2);
-		
+
 		Movie movie = new Movie();
 		movie.setTitle("movie select");
 		movie.setYear(2013);
@@ -68,10 +67,13 @@ public class TestJPAMovieDao {
 		movie.setCategories(categories);
 		movie.setStudio(studio);
 		movieDAO.createMovie(movie);
-		
+
 		Movie movie2 = new Movie();
-		movie2.setTitle("movieDel");
+		movie2.setTitle("movie del");
 		movie2.setYear(2013);
+		movie2.setActors(actors);
+		movie2.setCategories(categories);
+		movie2.setStudio(studio);
 		movieDAO.createMovie(movie2);
 	}
 
@@ -95,37 +97,39 @@ public class TestJPAMovieDao {
 	@Test
 	public void insertMovie() {
 		Movie movie = new Movie();
-		movie.setTitle("movie1");
+		movie.setTitle("movie insert");
 		movie.setYear(2013);
-		Movie m = movieDAO.createMovie(movie);
-		assertNotNull(m);
+		movie.setCategories(categories);
+		movie.setStudio(studio);
+		movieDAO.createMovie(movie);
+		assertNotNull(movie);
 	}
 
 	@Test
 	public void deleteMovie() {
-		List<Movie> movieList = movieDAO.selectMoviesByTitle("movieDel");
+		List<Movie> movieList = movieDAO.selectMoviesByTitle("movie del");
 		int id = movieList.get(0).getId();
 		movieDAO.deleteMovie(movieList.get(0));
 		Movie movie = movieDAO.find(id);
 		assertNull(movie);
 	}
-	
+
 	@Test
-	public void selectMovieByActor(){
+	public void selectMovieByActor() {
 		List<Movie> movies = movieDAO.selectMoviesByActorName("actor1");
 		assertNotNull(movies);
 	}
-	
+
 	@Test
-	public void selectMoviesByCategoryName(){
+	public void selectMoviesByCategoryName() {
 		List<Movie> movies = movieDAO.selectMoviesByCategoryName("Terror");
 		assertNotNull(movies);
 	}
-	
+
 	@Test
-	public void selectMoviesByStudioName(){
+	public void selectMoviesByStudioName() {
 		List<Movie> movies = movieDAO.selectMoviesByStudioName("teste studio");
 		assertNotNull(movies);
 	}
-	
+
 }
