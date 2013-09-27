@@ -20,11 +20,15 @@ public class JDBCActorDAO extends JDBCConnection implements ActorDAO {
 	public Actor createActor(Actor actor) {
 		try {
 			String sql = "INSERT INTO ACTOR (FULLNAME, BIRTHDATE) VALUES (?,?)";
-			PreparedStatement stm = getConnection().prepareStatement(sql);
+			PreparedStatement stm = getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			stm.setString(1, actor.getFullName());
 			stm.setDate(2, new Date(actor.getBirthDate().getTime()));
 			stm.execute();
+			ResultSet rs = stm.getGeneratedKeys();
+			rs.next();
+			actor.setId(rs.getInt(1));
 		} catch (SQLException e) {
+			e.printStackTrace();
 			actor = null;
 		}
 		return actor;

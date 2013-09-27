@@ -37,9 +37,8 @@ public class Movie {
 	@JoinTable(joinColumns = @JoinColumn(name = "idMovie"), inverseJoinColumns = @JoinColumn(name = "idCategory"))
 	private Set<Category> categories;
 
-	@Column(nullable=false)
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(referencedColumnName="id")
+	@JoinColumn(referencedColumnName="id", nullable=false)
 	private Studio studio;
 	
 	public Set<Category> getCategories() {
