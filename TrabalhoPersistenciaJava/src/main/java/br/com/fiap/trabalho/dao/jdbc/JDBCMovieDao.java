@@ -25,12 +25,13 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 			rs.next();
 			movie.setId(rs.getInt(1));
 
-			for (Iterator iterator = movie.getActors().iterator(); iterator
-					.hasNext();) {
-				Actor actor = (Actor) iterator.next();
-				insertMovieActor(movie.getId(), actor.getId());
-
-			}
+			/*
+			 * for (Iterator iterator = movie.getActors().iterator(); iterator
+			 * .hasNext();) { Actor actor = (Actor) iterator.next();
+			 * insertMovieActor(movie.getId(), actor.getId());
+			 * 
+			 * }
+			 */
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,11 +148,12 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 			PreparedStatement stm = getConnection().prepareStatement(sql);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
-			rs.next();
-			movie = new Movie();
-			movie.setId(rs.getInt("ID"));
-			movie.setTitle(rs.getString("TITLE"));
-			movie.setYear(rs.getInt("YEARR"));
+			if (rs.next()) {
+				movie = new Movie();
+				movie.setId(rs.getInt("ID"));
+				movie.setTitle(rs.getString("TITLE"));
+				movie.setYear(rs.getInt("YEARR"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return movie;

@@ -12,7 +12,7 @@ public class JDBCStudioDAO extends JDBCConnection implements StudioDAO {
 
 	public Studio createStudio(Studio studio) {
 		try {
-			String sql = "INSERT INTO MOVIE (NAME) VALUES (?)";
+			String sql = "INSERT INTO STUDIO (NAME) VALUES (?)";
 			PreparedStatement stm = getConnection().prepareStatement(sql,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			stm.setString(1, studio.getName());
