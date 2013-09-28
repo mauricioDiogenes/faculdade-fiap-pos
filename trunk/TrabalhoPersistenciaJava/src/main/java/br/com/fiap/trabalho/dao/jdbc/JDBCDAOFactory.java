@@ -20,11 +20,11 @@ public class JDBCDAOFactory extends AbstractDAOFactory {
 
 	@Override
 	public CategoryDAO createCategoryDAO() {
-		return null;
+		return new JDBCCategoryDAO();
 	}
 
 	@Override
 	public StudioDAO createStudioDAO() {
-		return null;
+		return new JDBCStudioDAO();
 	}
 }
