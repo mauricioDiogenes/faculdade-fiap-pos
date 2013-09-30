@@ -58,4 +58,11 @@ public class TestJDBCCategoryDao {
 		Category c = categoryDAO.createCategory(category);
 		assertNotNull(c);
 	}
+	
+	@Test
+	public void selectByCategoryName(){
+		List<Category> categoryList = categoryDAO
+				.selectCategoryByName("Category delete");
+		assertNotNull(categoryList);
+	}
 }

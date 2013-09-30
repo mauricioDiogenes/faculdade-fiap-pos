@@ -3,6 +3,7 @@ package br.com.fiap.trabalho.dao.jdbc;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.trabalho.dao.StudioDAO;
@@ -28,7 +29,7 @@ public class JDBCStudioDAO extends JDBCConnection implements StudioDAO {
 	}
 
 	public List<Studio> selectStudioByName(String name) {
-		List<Studio> studios = null;
+		List<Studio> studios = new ArrayList<Studio>();
 		try {
 			String sql = "SELECT * FROM STUDIO WHERE NAME=?";
 			PreparedStatement stm = getConnection().prepareStatement(sql);
