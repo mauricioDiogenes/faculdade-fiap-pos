@@ -44,7 +44,7 @@ public class JDBCCategoryDAO extends JDBCConnection implements CategoryDAO {
 	public List<Category> selectCategoryByName(String name) {
 		List<Category> categories = null;
 		try {
-			String sql = "SELECT * FROM MOVIE WHERE TITLE=?";
+			String sql = "SELECT * FROM CATEGORY WHERE NAME=?";
 			PreparedStatement stm = getConnection().prepareStatement(sql);
 			stm.setString(1, name);
 			ResultSet rs = stm.executeQuery();

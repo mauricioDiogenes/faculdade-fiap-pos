@@ -25,13 +25,11 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 			rs.next();
 			movie.setId(rs.getInt(1));
 
-			/*
-			 * for (Iterator iterator = movie.getActors().iterator(); iterator
-			 * .hasNext();) { Actor actor = (Actor) iterator.next();
-			 * insertMovieActor(movie.getId(), actor.getId());
-			 * 
-			 * }
-			 */
+			for (Iterator iterator = movie.getActors().iterator(); iterator
+					.hasNext();) {
+				Actor actor = (Actor) iterator.next();
+				insertMovieActor(movie.getId(), actor.getId());
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
