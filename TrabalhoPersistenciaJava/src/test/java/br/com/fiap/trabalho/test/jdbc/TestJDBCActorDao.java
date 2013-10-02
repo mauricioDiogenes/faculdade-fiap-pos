@@ -48,10 +48,6 @@ public class TestJDBCActorDao {
 		actors.add(actor1);
 		actors.add(actor2);
 
-		/*
-		 * studio1 = new Studio(); studio1.setName("Studio 1");
-		 * studioDAO.createStudio(studio1);
-		 */
 	}
 
 	@Test
@@ -113,6 +109,13 @@ public class TestJDBCActorDao {
 		movie.setTitle("Caçada ao Mundo do Java");
 		movie.setStudio(studio1);
 		movie.setYear(2013);
+		
+		Studio studio =  new Studio();
+		studio.setName("Barbero Films");
+		
+		studioDAO.createStudio(studio);
+		movie.setStudio(studio);
+		
 		movieDAO.createMovie(movie);
 		Set<Actor> list = actorDAO.selectActorByMovie(movie);
 		assertTrue(list.size() > 0);
