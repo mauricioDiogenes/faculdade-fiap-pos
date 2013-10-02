@@ -12,9 +12,8 @@ public class JDBCConnection {
 
 	public static Connection getConnection() {
 		if (conn == null) {
-			EntityManagerFactory factory = Persistence
-					.createEntityManagerFactory("persistenceUnit");
-			String URL = "jdbc:derby:simpleDB;create=true;user=TrabalhoPersistenciaJava;password=TrabalhoPersistenciaJava";
+			EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnit");
+			String URL = "jdbc:log4jdbc:derby:simpleDB;create=true";
 			String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 			try {
 				Class.forName(DRIVER);
