@@ -15,11 +15,12 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 
 	public Movie createMovie(Movie movie) {
 		try {
-			String sql = "INSERT INTO MOVIE (TITLE, YEARR) VALUES (?,?)";
+			String sql = "INSERT INTO MOVIE (TITLE, YEARR, STUDIO_ID) VALUES (?,?, ?)";
 			PreparedStatement stm = getConnection().prepareStatement(sql,
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			stm.setString(1, movie.getTitle());
 			stm.setInt(2, movie.getYear());
+			stm.setInt(3, movie.getStudio().getId());
 			stm.execute();
 			ResultSet rs = stm.getGeneratedKeys();
 			rs.next();
@@ -41,6 +42,7 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 	public boolean deleteMovie(Movie movie) {
 		Boolean result = false;
 		try {
+			deleteMovieActor(movie);
 			String sql = "DELETE FROM MOVIE WHERE ID=?";
 			PreparedStatement stm = getConnection().prepareStatement(sql);
 			stm.setInt(1, movie.getId());
@@ -49,6 +51,13 @@ public class JDBCMovieDao extends JDBCConnection implements MovieDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	private void deleteMovieActor(Movie movie) throws SQLException {
+		String sql = "DELETE FROM MOVIE_ACTOR M WHERE M.IDMOVIE = ? ";
+		PreparedStatement stm = getConnection().prepareStatement(sql);
+		stm.setInt(1, movie.getId());
+		stm.execute();
 	}
 
 	public List<Movie> selectMoviesByTitle(String title) {
