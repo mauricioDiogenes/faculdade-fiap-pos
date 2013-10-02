@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.fiap.trabalho.dao.AbstractDAOFactory;
+import br.com.fiap.trabalho.dao.ActorDAO;
 import br.com.fiap.trabalho.dao.CategoryDAO;
 import br.com.fiap.trabalho.dao.MovieDAO;
 import br.com.fiap.trabalho.dao.StudioDAO;
@@ -30,6 +31,8 @@ public class TestJDBCMovieDao {
 	private static StudioDAO studioDAO;
 	private Set<Category> categories;
 	private Studio studio;
+	private ActorDAO actorDAO;
+	private Set<Actor> actors;
 
 	@Before
 	public void init() {
@@ -37,6 +40,7 @@ public class TestJDBCMovieDao {
 		movieDAO = abstractDAOFactory.createMovieDAO();
 		categoryDAO = abstractDAOFactory.createCategoryDAO();
 		studioDAO = abstractDAOFactory.createStudioDAO();
+		actorDAO = abstractDAOFactory.createActorDAO();
 
 		studio = new Studio();
 		studio.setName("teste studio");
@@ -51,12 +55,14 @@ public class TestJDBCMovieDao {
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2012"));
 		actor.setFullName("actor1 movie");
+		actorDAO.createActor(actor);
 
 		Actor actor2 = new Actor();
 		actor2.setBirthDate(new Date("10/10/2011"));
 		actor2.setFullName("actor2 movie");
+		actorDAO.createActor(actor2);
 
-		Set<Actor> actors = new HashSet<Actor>();
+		actors = new HashSet<Actor>();
 		actors.add(actor);
 		actors.add(actor2);
 
@@ -101,6 +107,7 @@ public class TestJDBCMovieDao {
 		movie.setYear(2013);
 		movie.setCategories(categories);
 		movie.setStudio(studio);
+		movie.setActors(actors);
 		movieDAO.createMovie(movie);
 		assertNotNull(movie);
 	}
