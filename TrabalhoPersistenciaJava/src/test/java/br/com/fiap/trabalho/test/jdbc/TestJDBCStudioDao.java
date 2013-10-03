@@ -13,7 +13,15 @@ import br.com.fiap.trabalho.dao.StudioDAO;
 import br.com.fiap.trabalho.dao.jdbc.JDBCDAOFactory;
 import br.com.fiap.trabalho.entity.Studio;
 
-public class TestJDBCStudioDao {
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJDBCStudioDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+public class TestJDBCStudioDao  extends AbstractBenchmark {
 	private static StudioDAO studioDAO;
 
 	@Before

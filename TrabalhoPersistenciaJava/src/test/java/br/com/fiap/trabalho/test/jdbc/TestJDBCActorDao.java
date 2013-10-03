@@ -24,14 +24,13 @@ import br.com.fiap.trabalho.entity.Movie;
 import br.com.fiap.trabalho.entity.Studio;
 
 import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
 import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
-import com.carrotsearch.junitbenchmarks.annotation.BenchmarkHistoryChart;
 import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
-import com.carrotsearch.junitbenchmarks.annotation.LabelType;
 
-@BenchmarkHistoryChart(labelWith = LabelType.CUSTOM_KEY, maxRuns = 20)
 @AxisRange(min = 0, max = 1)
-@BenchmarkMethodChart(filePrefix = "benchmark-lists")
+@BenchmarkMethodChart(filePrefix = "TestJDBCActorDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
 @SuppressWarnings("deprecation")
 public class TestJDBCActorDao extends AbstractBenchmark {
 	private ActorDAO actorDAO;

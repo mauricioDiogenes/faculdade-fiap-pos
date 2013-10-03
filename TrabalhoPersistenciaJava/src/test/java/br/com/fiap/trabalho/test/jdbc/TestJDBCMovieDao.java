@@ -23,8 +23,16 @@ import br.com.fiap.trabalho.entity.Category;
 import br.com.fiap.trabalho.entity.Movie;
 import br.com.fiap.trabalho.entity.Studio;
 
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJDBCMovieDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
 @SuppressWarnings("deprecation")
-public class TestJDBCMovieDao {
+public class TestJDBCMovieDao  extends AbstractBenchmark{
 	private MovieDAO movieDAO;
 
 	private CategoryDAO categoryDAO;
