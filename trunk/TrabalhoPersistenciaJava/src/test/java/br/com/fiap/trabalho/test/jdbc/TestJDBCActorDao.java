@@ -1,6 +1,7 @@
 package br.com.fiap.trabalho.test.jdbc;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -22,8 +23,11 @@ import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Movie;
 import br.com.fiap.trabalho.entity.Studio;
 
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+
 @SuppressWarnings("deprecation")
-public class TestJDBCActorDao {
+public class TestJDBCActorDao extends AbstractBenchmark {
 	private ActorDAO actorDAO;
 	private MovieDAO movieDAO;
 	private StudioDAO studioDAO;
@@ -56,6 +60,7 @@ public class TestJDBCActorDao {
 	}
 
 	@Test
+	@BenchmarkOptions(benchmarkRounds = 10, warmupRounds = 1)
 	public void insertActor() {
 		Actor actor = new Actor();
 		actor.setBirthDate(new Date("10/10/2000"));
