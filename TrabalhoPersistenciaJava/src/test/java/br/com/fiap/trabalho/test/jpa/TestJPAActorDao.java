@@ -21,9 +21,16 @@ import br.com.fiap.trabalho.entity.Actor;
 import br.com.fiap.trabalho.entity.Movie;
 import br.com.fiap.trabalho.entity.Studio;
 
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJPAActorDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
 @SuppressWarnings("deprecation")
-public class TestJPAActorDao {
+public class TestJPAActorDao  extends AbstractBenchmark{
 	private ActorDAO actorDAO;
 	private MovieDAO movieDAO;
 	private StudioDAO studioDAO;
