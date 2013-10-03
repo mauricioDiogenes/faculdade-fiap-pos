@@ -1,13 +1,9 @@
 package br.com.fiap.trabalho.test.jpa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import org.apache.derby.tools.sysinfo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +11,17 @@ import org.junit.Test;
 import br.com.fiap.trabalho.dao.AbstractDAOFactory;
 import br.com.fiap.trabalho.dao.StudioDAO;
 import br.com.fiap.trabalho.dao.jpa.JPADAOFactory;
-import br.com.fiap.trabalho.entity.Actor;
-import br.com.fiap.trabalho.entity.Movie;
 import br.com.fiap.trabalho.entity.Studio;
 
-public class TestJPAStudioDao {
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJPAStudioDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+public class TestJPAStudioDao  extends AbstractBenchmark{
 	private static StudioDAO studioDAO;
 
 	@Before

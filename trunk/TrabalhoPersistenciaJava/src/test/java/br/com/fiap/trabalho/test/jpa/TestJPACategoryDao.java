@@ -1,6 +1,6 @@
 package br.com.fiap.trabalho.test.jpa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -14,7 +14,15 @@ import br.com.fiap.trabalho.dao.CategoryDAO;
 import br.com.fiap.trabalho.dao.jpa.JPADAOFactory;
 import br.com.fiap.trabalho.entity.Category;
 
-public class TestJPACategoryDao {
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJPACategoryDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+public class TestJPACategoryDao  extends AbstractBenchmark{
 	private static CategoryDAO categoryDAO;
 
 	@Before
