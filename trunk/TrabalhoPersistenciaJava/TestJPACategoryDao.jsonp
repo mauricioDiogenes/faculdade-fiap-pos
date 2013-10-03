@@ -1,0 +1,20 @@
+receiveJsonpData({
+"cols": [
+{"label": "method", "type": "string"},
+{"label": "Average time [s]", "type": "number"},
+{"label": "StdDev", "type": "number"},
+{"label": "GC time [s]", "type": "number"},
+{"label": "GC average [s]", "type": "number"},
+{"label": "StdDev", "type": "number"},
+{"label": "GC calls", "type": "number"},
+{"label": "benchmark rounds", "type": "number"},
+{"label": "warmup rounds", "type": "number"},
+{"label": "Total benchmark time", "type": "number"},
+{"label": "Total warmup time", "type": "number"}
+],
+"rows": [
+{"c": [{"v": "deleteCategory"}, {"v": 0.01}, {"v": 0.0}, {"v": 0.01}, {"v": 0.0}, {"v": 0.0}, {"v": 10}, {"v": 20}, {"v": 0}, {"v": 0.29}, {"v": 0.0}]},
+{"c": [{"v": "selectByCategoryName"}, {"v": 0.01}, {"v": 0.0}, {"v": 0.01}, {"v": 0.0}, {"v": 0.0}, {"v": 10}, {"v": 20}, {"v": 0}, {"v": 0.24}, {"v": 0.0}]},
+{"c": [{"v": "insertCategory"}, {"v": 0.01}, {"v": 0.0}, {"v": 0.01}, {"v": 0.0}, {"v": 0.0}, {"v": 7}, {"v": 20}, {"v": 0}, {"v": 0.24}, {"v": 0.0}]},
+{"c": [{"v": "validarcreateDao"}, {"v": 0.01}, {"v": 0.0}, {"v": 0.01}, {"v": 0.0}, {"v": 0.0}, {"v": 5}, {"v": 20}, {"v": 0}, {"v": 0.18}, {"v": 0.0}]}
+]});
