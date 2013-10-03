@@ -14,7 +14,16 @@ import br.com.fiap.trabalho.dao.CategoryDAO;
 import br.com.fiap.trabalho.dao.jdbc.JDBCDAOFactory;
 import br.com.fiap.trabalho.entity.Category;
 
-public class TestJDBCCategoryDao {
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
+
+
+@AxisRange(min = 0, max = 1)
+@BenchmarkMethodChart(filePrefix = "TestJDBCCategoryDao")
+@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+public class TestJDBCCategoryDao extends AbstractBenchmark {
 	private static CategoryDAO categoryDAO;
 
 	@Before
