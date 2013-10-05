@@ -30,7 +30,7 @@ import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 
 @AxisRange(min = 0, max = 1)
 @BenchmarkMethodChart(filePrefix = "TestJDBCActorDao")
-@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+@BenchmarkOptions(benchmarkRounds = 10, warmupRounds = 0)
 @SuppressWarnings("deprecation")
 public class TestJDBCActorDao extends AbstractBenchmark {
 	private ActorDAO actorDAO;
