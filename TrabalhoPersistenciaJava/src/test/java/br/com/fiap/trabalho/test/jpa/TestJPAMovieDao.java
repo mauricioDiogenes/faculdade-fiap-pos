@@ -29,7 +29,7 @@ import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 
 @AxisRange(min = 0, max = 1)
 @BenchmarkMethodChart(filePrefix = "TestJPAMovieDao")
-@BenchmarkOptions(benchmarkRounds = 20, warmupRounds = 0)
+@BenchmarkOptions(benchmarkRounds = 100, warmupRounds = 0)
 @SuppressWarnings("deprecation")
 public class TestJPAMovieDao extends AbstractBenchmark {
 	private MovieDAO movieDAO;
