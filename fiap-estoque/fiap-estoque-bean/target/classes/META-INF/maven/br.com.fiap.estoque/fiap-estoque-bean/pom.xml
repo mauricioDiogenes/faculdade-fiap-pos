@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fiap-estoque</artifactId>
+		<groupId>br.com.fiap.estoque</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>fiap-estoque-bean</artifactId>
+	<packaging>ejb</packaging>
+
+	<name>fiap-estoque-bean</name>
+
+	<properties>
+		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<compilerArguments>
+						<endorseddirs>${endorsed.dir}</endorseddirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<ejbVersion>3.1</ejbVersion>
+					 <generateClient>true</generateClient>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.openejb.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<configuration>
+					<tomeeVersion>1.5.0</tomeeVersion>
+					<tomeeClassifier>plus</tomeeClassifier>
+					<debug>false</debug>
+					<debugPort>5005</debugPort>
+					<tomeeHttpPort>8081</tomeeHttpPort>
+					<args>-Dfoo=bar</args>
+					<apps>
+						<app>br.com.fiap.estoque:fiap-estoque-bean:0.0.1-SNAPSHOT:jar</app>
+					</apps>
+					<synchronization>
+						<extensions>
+							<extension>.class</extension> 
+						</extensions>
+					</synchronization>
+					<reloadOnUpdate>true</reloadOnUpdate>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
