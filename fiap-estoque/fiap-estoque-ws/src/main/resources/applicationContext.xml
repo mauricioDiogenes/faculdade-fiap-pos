@@ -11,7 +11,7 @@
 	<context:component-scan base-package="br.com.fiap.estoque.ws" />
  
     <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter" >
-    	<property name="baseAddress" value="http://localhost:9081/"/>
+    	<property name="baseAddress" value="http://localhost:9081/fiap-estoque-web/"/>
     </bean> 	
     
     
