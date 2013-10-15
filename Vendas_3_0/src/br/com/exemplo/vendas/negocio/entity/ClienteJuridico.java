@@ -1,0 +1,38 @@
+package br.com.exemplo.vendas.negocio.entity;
+
+import javax.persistence.Column;
+
+public class ClienteJuridico extends Cliente {
+	@Column
+	private String CNPJ;
+	
+	@Column
+	private String endereco;
+	
+	@Column
+	private String IE;
+
+	public String getCNPJ() {
+		return CNPJ;
+	}
+
+	public void setCNPJ(String cNPJ) {
+		CNPJ = cNPJ;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getIE() {
+		return IE;
+	}
+
+	public void setIE(String iE) {
+		IE = iE;
+	}
+}
