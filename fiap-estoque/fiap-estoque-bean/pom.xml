@@ -19,12 +19,30 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>tomee-embedded</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>6.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+
+
+
+
+
 	</dependencies>
 
 	<build>
@@ -46,7 +64,7 @@
 				<version>2.3</version>
 				<configuration>
 					<ejbVersion>3.1</ejbVersion>
-					 <generateClient>true</generateClient>
+					<generateClient>true</generateClient>
 				</configuration>
 			</plugin>
 
@@ -65,7 +83,7 @@
 					</apps>
 					<synchronization>
 						<extensions>
-							<extension>.class</extension> 
+							<extension>.class</extension>
 						</extensions>
 					</synchronization>
 					<reloadOnUpdate>true</reloadOnUpdate>
