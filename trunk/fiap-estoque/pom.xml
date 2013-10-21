@@ -89,6 +89,12 @@
 				</exclusions>
 			</dependency>
 
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>4.0</version>
+			</dependency>
+
 
 		</dependencies>
 	</dependencyManagement>
@@ -127,6 +133,7 @@
 					<version>${jetty.version}</version>
 				</plugin>
 
+
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -139,7 +146,18 @@
 		<module>fiap-estoque-web</module>
 		<module>fiap-estoque-ws</module>
 		<module>fiap-estoque-bean</module>
+		<module>fiap-estoque-util</module>
 	</modules>
 
 	<description>Pom Pai contendo os modulos e gerenciamento de dependencias e plugins.</description>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
 </project>
