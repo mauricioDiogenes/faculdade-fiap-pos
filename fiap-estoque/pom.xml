@@ -17,6 +17,7 @@
 		<jerseyversion>1.17.1</jerseyversion>
 		<springwsversion>2.1.4.RELEASE</springwsversion>
 		<jetty.version>8.1.13.v20130916</jetty.version>
+		<log4j.version>1.2.17</log4j.version>
 	</properties>
 
 	<dependencyManagement>
@@ -27,6 +28,13 @@
 				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+
 
 			<dependency>
 				<groupId>org.springframework.ws</groupId>
