@@ -19,11 +19,14 @@
 	</properties>
 
 	<dependencies>
-
+		
+		
+		<!-- Dependencia deve ter essa ordem para que o Junit entenda o tomee-embedded -->
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>tomee-embedded</artifactId>
 			<version>1.5.2</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
