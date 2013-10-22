@@ -53,6 +53,19 @@
 			<artifactId>log4j</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>br.com.fiap.estoque</groupId>
+			<artifactId>fiap-estoque-bean</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<classifier>client</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>openejb-client</artifactId>
+			<version>4.5.2</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
