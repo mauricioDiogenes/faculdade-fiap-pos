@@ -19,7 +19,7 @@
     	<property name="baseAddress" value="http://localhost:9081/fiap-estoque-web/"/>
     </bean> 	
     
-    
+    <!-- Import de configuracao do loockup dos ejbs -->
     <import resource="service-locator-ejb.xml"/>
     
 </beans>
