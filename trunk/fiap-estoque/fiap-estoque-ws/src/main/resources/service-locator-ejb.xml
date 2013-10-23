@@ -10,16 +10,13 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
  
-	<context:component-scan base-package="br.com.fiap.estoque.ws" />
- 
-    <context:property-placeholder location="classpath:ejbclient.properties" />
     
-    
-    <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter" >
-    	<property name="baseAddress" value="http://localhost:9081/fiap-estoque-web/"/>
-    </bean> 	
-    
-    
-    <import resource="service-locator-ejb.xml"/>
+    <!-- Declaracao dos Beans do EJB -->
+    <jee:remote-slsb id="serviceExemplo" business-interface="br.com.fiap.estoque.bean.ServiceExemplo" jndi-name="ServiceExemploBeanRemote">
+    	<jee:environment>
+    		 java.naming.provider.url = ${url}
+	    	 java.naming.factory.initial = ${factory}
+    	</jee:environment>
+    </jee:remote-slsb>
     
 </beans>
