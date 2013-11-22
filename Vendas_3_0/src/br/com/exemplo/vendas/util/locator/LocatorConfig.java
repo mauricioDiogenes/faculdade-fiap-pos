@@ -1,112 +1,105 @@
-package br.com.exemplo.vendas.util.locator;
+package br.com.exemplo.vendas.util.locator ;
 
-import java.io.InputStream;
-import java.util.HashMap;
+import java.io.InputStream ;
+import java.util.HashMap ;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import javax.xml.parsers.SAXParser ;
+import javax.xml.parsers.SAXParserFactory ;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+import org.apache.commons.logging.Log ;
+import org.apache.commons.logging.LogFactory ;
 
 public class LocatorConfig
 {
-	private static final Log logger;
+	private static final Log logger ;
 
-	protected static final LocatorConfig me = new LocatorConfig( );
+	protected static final LocatorConfig me = new LocatorConfig( ) ;
 
-	private String providersFile;
+	private String providersFile ;
 
-	private String servicesFile;
+	private String servicesFile ;
 
 	public static LocatorConfig getInstance( )
 	{
-		return me;
+		return me ;
 	}
 
 	protected LocatorConfig( )
 	{
-		providersFile = System.getProperty( "sl.providers", "config/sl-providers.xml" );
-		servicesFile = System.getProperty( "sl.services",   "config/sl-services.xml" );
+		providersFile = System.getProperty( "sl.providers", "config/sl-providers.xml" ) ;
+		servicesFile = System.getProperty( "sl.services", "config/sl-services.xml" ) ;
 	}
 
 	public HashMap getProviders( )
 	{
-		InputStream input = getLocatorResourceAsStream( providersFile );
-		if ( input == null )
+		InputStream input = getLocatorResourceAsStream( providersFile ) ;
+		if (input == null)
 		{
 			logger.warn( "The configuration file [" + providersFile
-			        + "] of naming service providers was not found." );
+					+ "] of naming service providers was not found." ) ;
 		}
 		else
 		{
 			logger.info( "Initializing the naming service providers configuration from file ["
-			        + providersFile + "]." );
+					+ providersFile + "]." ) ;
 			try
 			{
-				ProvidersSaxParser handler = new ProvidersSaxParser( );
-				SAXParserFactory factory = SAXParserFactory.newInstance( );
-				SAXParser parser = factory.newSAXParser( );
-				parser.parse( input, handler );
-				return handler.getProviders( );
+				ProvidersSaxParser handler = new ProvidersSaxParser( ) ;
+				SAXParserFactory factory = SAXParserFactory.newInstance( ) ;
+				SAXParser parser = factory.newSAXParser( ) ;
+				parser.parse( input, handler ) ;
+				return handler.getProviders( ) ;
 			}
-			catch ( Exception _ex )
+			catch (Exception _ex)
 			{
-				logger.fatal(
-				        "An unexpected error parsing the naming service providers file ["
-				                + providersFile + "]: [" + _ex.getMessage( )
-				                + "].", _ex );
+				logger.fatal( "An unexpected error parsing the naming service providers file ["
+						+ providersFile + "]: [" + _ex.getMessage( ) + "].", _ex ) ;
 			}
 		}
-		return null;
+		return null ;
 	}
 
 	public HashMap getServices( )
 	{
-		InputStream input = getLocatorResourceAsStream( servicesFile );
-		if ( input == null )
+		InputStream input = getLocatorResourceAsStream( servicesFile ) ;
+		if (input == null)
 		{
-			logger.warn( "The configuration file [" + servicesFile
-			        + "] of services was not found." );
+			logger.warn( "The configuration file [" + servicesFile + "] of services was not found." ) ;
 		}
 		else
 		{
-			logger.info( "Initializing the services configuration from file ["
-			        + servicesFile + "]." );
+			logger.info( "Initializing the services configuration from file [" + servicesFile
+					+ "]." ) ;
 			try
 			{
-				ServicesSaxParser handler = new ServicesSaxParser( );
-				SAXParserFactory factory = SAXParserFactory.newInstance( );
-				SAXParser parser = factory.newSAXParser( );
-				parser.parse( input, handler );
-				return handler.getServices( );
+				ServicesSaxParser handler = new ServicesSaxParser( ) ;
+				SAXParserFactory factory = SAXParserFactory.newInstance( ) ;
+				SAXParser parser = factory.newSAXParser( ) ;
+				parser.parse( input, handler ) ;
+				return handler.getServices( ) ;
 			}
-			catch ( Exception _ex )
+			catch (Exception _ex)
 			{
-				logger.fatal(
-				        "An unexpected error parsing the naming service providers file ["
-				                + providersFile + "]: [" + _ex.getMessage( )
-				                + "].", _ex );
+				logger.fatal( "An unexpected error parsing the naming service providers file ["
+						+ providersFile + "]: [" + _ex.getMessage( ) + "].", _ex ) ;
 			}
 		}
-		return null;
+		return null ;
 	}
 
 	protected InputStream getLocatorResourceAsStream( String name )
 	{
-		ClassLoader classLoader = Thread.currentThread( )
-		        .getContextClassLoader( );
-		if ( classLoader == null )
+		ClassLoader classLoader = Thread.currentThread( ).getContextClassLoader( ) ;
+		if (classLoader == null)
 		{
-			classLoader = getClass( ).getClassLoader( );
+			classLoader = getClass( ).getClassLoader( ) ;
 		}
-		InputStream input = classLoader.getResourceAsStream( name );
-		return input;
+		InputStream input = classLoader.getResourceAsStream( name ) ;
+		return input ;
 	}
 
 	static
 	{
-		logger = LogFactory.getLog( LocatorConfig.class );
+		logger = LogFactory.getLog( LocatorConfig.class ) ;
 	}
 }

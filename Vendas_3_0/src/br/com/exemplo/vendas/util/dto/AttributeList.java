@@ -1,19 +1,19 @@
-package br.com.exemplo.vendas.util.dto;
+package br.com.exemplo.vendas.util.dto ;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable ;
+import java.util.HashMap ;
+import java.util.Map ;
 
 public class AttributeList extends HashMap implements Serializable
 {
 	public AttributeList( int arg0, float arg1 )
 	{
-		super( arg0, arg1 );
+		super( arg0, arg1 ) ;
 	}
 
 	public AttributeList( int arg0 )
 	{
-		super( arg0 );
+		super( arg0 ) ;
 	}
 
 	public AttributeList( )
@@ -22,6 +22,6 @@ public class AttributeList extends HashMap implements Serializable
 
 	public AttributeList( Map arg0 )
 	{
-		super( arg0 );
+		super( arg0 ) ;
 	}
 }

@@ -1,121 +1,131 @@
-package br.com.exemplo.vendas.util.exception;
+package br.com.exemplo.vendas.util.exception ;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Date;
+import java.io.PrintWriter ;
+import java.io.StringWriter ;
+import java.util.Date ;
 
-public class ExceptionBase extends Exception 
+public class ExceptionBase extends Exception
 {
-	private static final long serialVersionUID = 1L;
-	private String traceString = "";
+	private static final long serialVersionUID = 1L ;
+	private String traceString = "" ;
 
 	/**
-	 * Gera TraceString associada ‡ thread corrente.
+	 * Gera TraceString associada √† thread corrente.
 	 * 
-	 * A Trace String È composta pela identificaÁ„o da thread e o
-	 * timestamp.
+	 * A Trace String √© composta pela identifica√ß√£o da thread e o timestamp.
 	 * 
-	 * @return String com identificaÁ„o do erro original.
+	 * @return String com identifica√ß√£o do erro original.
 	 */
-	private static String exceptionTraceCode( ) 
+	private static String exceptionTraceCode( )
 	{
-		return ( Thread.currentThread( ).toString( ) + ( new Date( ) ) );
+		return ( Thread.currentThread( ).toString( ) + ( new Date( ) ) ) ;
 	}
-	
+
 	/**
 	 * Construtor
 	 * 
-	 * Assinatura de construtor que recebe a exceÁ„o original, n„o derivada de ExceptionBase.
+	 * Assinatura de construtor que recebe a exce√ß√£o original, n√£o derivada
+	 * de ExceptionBase.
 	 * 
-	 * Este construtor dever· ser chamada para a exception original e portanto gera a TraceString.
+	 * Este construtor dever√° ser chamada para a exception original e portanto
+	 * gera a TraceString.
+	 * 
 	 * @param e
 	 */
-	public ExceptionBase( Throwable e ) 
+	public ExceptionBase( Throwable e )
 	{
-		super( e );
-		traceString = ExceptionBase.exceptionTraceCode( );
+		super( e ) ;
+		traceString = ExceptionBase.exceptionTraceCode( ) ;
 	}
-	
+
 	/**
 	 * Construtor
 	 * 
-	 * Assinatura de construtor que recebe uma exceÁ„o derivada de ExceptionBase e portanto
-	 * j· È uma exceÁ„o que encapsula a original e j· possui TraceString, que È reaproveitada
-	 * para que possa ser usada como elemento de trace do problema.
+	 * Assinatura de construtor que recebe uma exce√ß√£o derivada de
+	 * ExceptionBase e portanto j√° √© uma exce√ß√£o que encapsula a original e
+	 * j√° possui TraceString, que √© reaproveitada para que possa ser usada
+	 * como elemento de trace do problema.
 	 * 
-	 * @param e exceÁ„o derivada de ExceptionBase
+	 * @param e
+	 *            exce√ß√£o derivada de ExceptionBase
 	 */
-	public ExceptionBase( ExceptionBase e ) 
+	public ExceptionBase( ExceptionBase e )
 	{
-		super( e );
-		traceString = e.getTraceString( );
+		super( e ) ;
+		traceString = e.getTraceString( ) ;
 	}
-	
+
 	/**
 	 * Construtor
 	 * 
-	 * Assinatura de construtor que recebe uma exceÁ„o derivada de ExceptionBase e portanto
-	 * j· È uma exceÁ„o que encapsula a original e j· possui TraceString, que È reaproveitada
-	 * para que possa ser usada como elemento de trace do problema.
+	 * Assinatura de construtor que recebe uma exce√ß√£o derivada de
+	 * ExceptionBase e portanto j√° √© uma exce√ß√£o que encapsula a original e
+	 * j√° possui TraceString, que √© reaproveitada para que possa ser usada
+	 * como elemento de trace do problema.
 	 * 
-	 * @param e exceÁ„o derivada de ExceptionBase
+	 * @param e
+	 *            exce√ß√£o derivada de ExceptionBase
 	 */
-	public ExceptionBase( String str ) 
+	public ExceptionBase( String str )
 	{
-		super( str );
-		traceString = ExceptionBase.exceptionTraceCode( );
+		super( str ) ;
+		traceString = ExceptionBase.exceptionTraceCode( ) ;
 	}
-	
+
 	/**
 	 * Construtor
 	 * 
-	 * Assinatura de construtor que recebe uma exceÁ„o derivada de ExceptionBase e portanto
-	 * j· È uma exceÁ„o que encapsula a original e j· possui TraceString, que È reaproveitada
-	 * para que possa ser usada como elemento de trace do problema.
+	 * Assinatura de construtor que recebe uma exce√ß√£o derivada de
+	 * ExceptionBase e portanto j√° √© uma exce√ß√£o que encapsula a original e
+	 * j√° possui TraceString, que √© reaproveitada para que possa ser usada
+	 * como elemento de trace do problema.
 	 * 
-	 * @param e exceÁ„o derivada de ExceptionBase
+	 * @param e
+	 *            exce√ß√£o derivada de ExceptionBase
 	 */
-	public ExceptionBase( String str, Throwable e ) 
+	public ExceptionBase( String str, Throwable e )
 	{
-		super( str, e );
-		traceString = ExceptionBase.exceptionTraceCode( );
+		super( str, e ) ;
+		traceString = ExceptionBase.exceptionTraceCode( ) ;
 	}
-	
+
 	/**
 	 * Construtor
 	 * 
-	 * Assinatura de construtor que recebe uma exceÁ„o derivada de ExceptionBase e portanto
-	 * j· È uma exceÁ„o que encapsula a original e j· possui TraceString, que È reaproveitada
-	 * para que possa ser usada como elemento de trace do problema.
+	 * Assinatura de construtor que recebe uma exce√ß√£o derivada de
+	 * ExceptionBase e portanto j√° √© uma exce√ß√£o que encapsula a original e
+	 * j√° possui TraceString, que √© reaproveitada para que possa ser usada
+	 * como elemento de trace do problema.
 	 * 
-	 * @param e exceÁ„o derivada de ExceptionBase
+	 * @param e
+	 *            exce√ß√£o derivada de ExceptionBase
 	 */
-	public ExceptionBase( String str, ExceptionBase e ) 
+	public ExceptionBase( String str, ExceptionBase e )
 	{
-		super( str,e );
-		traceString = e.getTraceString( );
+		super( str, e ) ;
+		traceString = e.getTraceString( ) ;
 	}
-	
+
 	/**
-	 * Exibe a TraceString associada ‡ exceÁ„o.
+	 * Exibe a TraceString associada √† exce√ß√£o.
 	 * 
 	 * @return String
 	 */
-	public String getTraceString( ) 
+	public String getTraceString( )
 	{
-		return traceString;
+		return traceString ;
 	}
-	
+
 	/**
 	 * Retorna uma String contendo todo o StackTrace.
 	 * 
 	 * @return String
 	 */
-	public String getStackTraceString( ) 
+	public String getStackTraceString( )
 	{
-	    StringWriter s 	= new StringWriter( );
-	    PrintWriter w 	= new PrintWriter( s );
-	    this.printStackTrace( w );
-	    return s.toString( );
+		StringWriter s = new StringWriter( ) ;
+		PrintWriter w = new PrintWriter( s ) ;
+		this.printStackTrace( w ) ;
+		return s.toString( ) ;
 	}
 }

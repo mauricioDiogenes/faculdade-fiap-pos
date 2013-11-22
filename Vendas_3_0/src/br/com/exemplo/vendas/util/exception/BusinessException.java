@@ -1,9 +1,8 @@
-package br.com.exemplo.vendas.util.exception;
-
+package br.com.exemplo.vendas.util.exception ;
 
 /**
- * Respons·vel por lanÁar a exceÁ„o BusinessException
- *
+ * Respons√°vel por lan√ßar a exce√ß√£o BusinessException
+ * 
  * @version 1.0
  */
 public class BusinessException extends LayerException
@@ -12,23 +11,22 @@ public class BusinessException extends LayerException
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L ;
 
 	/**
-	 * MÈtodo construtor para BusinessException
+	 * M√©todo construtor para BusinessException
 	 */
-   	public BusinessException(MsgException msg)
-   	{
-   		super(msg);
- 	}
+	public BusinessException( MsgException msg )
+	{
+		super( msg ) ;
+	}
 
 	/**
-	 * MÈtodo construtor para BusinessException
+	 * M√©todo construtor para BusinessException
 	 */
- 	public BusinessException(MsgExceptionList list)
- 	{
- 		super(list);
- 	}
+	public BusinessException( MsgExceptionList list )
+	{
+		super( list ) ;
+	}
 
 }
-

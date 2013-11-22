@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -8,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Compra {
+public class Compra implements Serializable{
+
+	private static final long serialVersionUID = 7517555228807224810L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private BigInteger numero;

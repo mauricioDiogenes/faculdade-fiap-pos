@@ -1,74 +1,73 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class Produto {
-	@Column
-	private BigInteger quantidade;
+public class Produto implements Serializable{
 
-	@Column
-	private BigInteger valor;
+	private static final long serialVersionUID = -1779662681972655266L;
 
-	@Column
-	private String situacao;
-
-	@Column
-	private Reserva reserva;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private BigInteger codigo;
 
 	@Column
-	private BigInteger comprar;
+	private String descricao;
 
 	@Column
-	private Produto produto;
+	private BigDecimal preco;
 
-	public BigInteger getQuantidade() {
-		return quantidade;
+	@Column
+	private String estoque;
+	
+	public Produto(BigInteger codigo, String descricao, BigDecimal preco,
+			String estoque) {
+		super();
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.estoque = estoque;
 	}
 
-	public void setQuantidade(BigInteger quantidade) {
-		this.quantidade = quantidade;
+	public Produto() {
 	}
 
-	public BigInteger getValor() {
-		return valor;
+	public BigInteger getCodigo() {
+		return codigo;
 	}
 
-	public void setValor(BigInteger valor) {
-		this.valor = valor;
+	public void setCodigo(BigInteger codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getSituacao() {
-		return situacao;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Reserva getReserva() {
-		return reserva;
+	public BigDecimal getPreco() {
+		return preco;
 	}
 
-	public void setReserva(Reserva reserva) {
-		this.reserva = reserva;
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 
-	public BigInteger getComprar() {
-		return comprar;
+	public String getEstoque() {
+		return estoque;
 	}
 
-	public void setComprar(BigInteger comprar) {
-		this.comprar = comprar;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setEstoque(String estoque) {
+		this.estoque = estoque;
 	}
 
 }

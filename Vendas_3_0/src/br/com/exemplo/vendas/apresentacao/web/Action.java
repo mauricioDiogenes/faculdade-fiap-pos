@@ -1,11 +1,12 @@
-package br.com.exemplo.vendas.apresentacao.web;
+package br.com.exemplo.vendas.apresentacao.web ;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest ;
+import javax.servlet.http.HttpServletResponse ;
 
-import br.com.exemplo.vendas.util.exception.LayerException;
+import br.com.exemplo.vendas.util.exception.LayerException ;
 
 public interface Action
 {
-	public String execute( HttpServletRequest request, HttpServletResponse response ) throws LayerException;
+	public String execute( HttpServletRequest request, HttpServletResponse response )
+			throws LayerException ;
 }

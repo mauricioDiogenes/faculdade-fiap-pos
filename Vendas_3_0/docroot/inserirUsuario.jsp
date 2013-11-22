@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" %>
 
-<html>
+<html> 
 	<head>
 		<title>Cadastrar Usuario</title>
 		<script type="text/javascript">

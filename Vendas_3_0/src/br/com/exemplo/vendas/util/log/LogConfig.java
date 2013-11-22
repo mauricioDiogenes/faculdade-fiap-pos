@@ -1,71 +1,66 @@
-package br.com.exemplo.vendas.util.log;
+package br.com.exemplo.vendas.util.log ;
 
-import java.io.InputStream;
-import java.util.Properties;
-
-import br.com.exemplo.vendas.util.Util;
+import java.io.InputStream ;
+import java.util.Properties ;
+import br.com.exemplo.vendas.util.Util ;
 
 public class LogConfig
 {
-	private static String PROPS_ENVIRONMENT = "ambiente";
-	private static String PROPS_DEV = "desenvolvimento";
-	private static String PROPS_PRD = "producao";
+	private static String PROPS_ENVIRONMENT = "ambiente" ;
+	private static String PROPS_DEV = "desenvolvimento" ;
+	private static String PROPS_PRD = "producao" ;
 
-	private String directory;
+	private String directory ;
 
 	public LogConfig( )
 	{
-		this.loadConfig( );
+		this.loadConfig( ) ;
 	}
 
 	private Properties loadProperties( )
 	{
-		Properties props = new Properties( );
+		Properties props = new Properties( ) ;
 		try
 		{
-			ClassLoader classLoader = Thread.currentThread( )
-			        .getContextClassLoader( );
-			if ( classLoader == null )
+			ClassLoader classLoader = Thread.currentThread( ).getContextClassLoader( ) ;
+			if (classLoader == null)
 			{
-				classLoader = getClass( ).getClassLoader( );
+				classLoader = getClass( ).getClassLoader( ) ;
 			}
-			InputStream input = classLoader.getResourceAsStream( Util.LOG_FILE );
-			if ( input == null )
-			{
-				System.out.println( "***** Arquivo de propriedades " + Util.LOG_FILE + " não encontrado! *****" );
-			}
-			props.load( input );
+			InputStream input = classLoader.getResourceAsStream( Util.LOG_FILE ) ;
+
+			props.load( input ) ;
 
 		}
-		catch ( Exception e )
+		catch (Exception e)
 		{
-			e.printStackTrace( );
+			e.printStackTrace( ) ;
 		}
-		return props;
+		return props ;
 	}
 
 	private void loadConfig( )
 	{
-		Properties props = loadProperties( );
+		Properties props = loadProperties( ) ;
 
-		if ( props.getProperty( PROPS_ENVIRONMENT ).equalsIgnoreCase( PROPS_DEV ) )
+		if (props.getProperty( PROPS_ENVIRONMENT ).equalsIgnoreCase( PROPS_DEV ))
 		{
-			this.setDirectory( props.getProperty( "des_directory" ) );
+			this.setDirectory( props.getProperty( "des_directory" ) ) ;
 		}
 
-		if ( props.getProperty( PROPS_ENVIRONMENT ).equalsIgnoreCase( PROPS_PRD ) )
+		if (props.getProperty( PROPS_ENVIRONMENT ).equalsIgnoreCase( PROPS_PRD ))
 		{
-			this.setDirectory( props.getProperty( "prd_directory" ) );
+			this.setDirectory( props.getProperty( "prd_directory" ) ) ;
 		}
 	}
 
 	public String getDirectory( )
 	{
-		return directory;
+		return directory ;
 	}
 
 	public void setDirectory( String _directory )
 	{
-		directory = _directory;
+		directory = _directory ;
 	}
 }

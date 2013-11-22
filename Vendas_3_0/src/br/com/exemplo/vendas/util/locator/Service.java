@@ -1,72 +1,71 @@
-package br.com.exemplo.vendas.util.locator;
+package br.com.exemplo.vendas.util.locator ;
 
-import java.util.ArrayList;
-
+import java.util.ArrayList ;
 
 public class Service
 {
-	protected String name;
+	protected String name ;
 
-	protected String desc;
+	protected String desc ;
 
-	protected boolean cacheable;
+	protected boolean cacheable ;
 
-	protected String jndiName;
+	protected String jndiName ;
 
-	protected ArrayList providers;
+	protected ArrayList providers ;
 
 	public Service( )
 	{
-		providers = new ArrayList( );
+		providers = new ArrayList( ) ;
 	}
 
 	public boolean isCacheable( )
 	{
-		return cacheable;
+		return cacheable ;
 	}
 
 	public String getDesc( )
 	{
-		return desc;
+		return desc ;
 	}
 
 	public String getName( )
 	{
-		return name;
+		return name ;
 	}
 
 	public String getJndiName( )
 	{
-		return jndiName;
+		return jndiName ;
 	}
 
 	public void setCacheable( boolean b )
 	{
-		cacheable = b;
+		cacheable = b ;
 	}
 
 	public void setDesc( String string )
 	{
-		desc = string;
+		desc = string ;
 	}
 
 	public void setName( String string )
 	{
-		name = string;
+		name = string ;
 	}
 
 	public void setJndiName( String string )
 	{
-		jndiName = string;
+		jndiName = string ;
 	}
 
 	public void addProvider( String provider )
 	{
-		providers.add( provider );
+		providers.add( provider ) ;
 	}
 
-	public String[] getProviders( )
+	public String[ ] getProviders( )
 	{
-		return (String[])providers.toArray( new String[ providers.size( ) ] );
+		return ( String[ ] ) providers.toArray( new String[ providers.size( ) ] ) ;
 	}
 }

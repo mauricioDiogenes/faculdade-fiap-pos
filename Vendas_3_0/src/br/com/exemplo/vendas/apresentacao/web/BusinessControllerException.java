@@ -1,14 +1,14 @@
-package br.com.exemplo.vendas.apresentacao.web;
+package br.com.exemplo.vendas.apresentacao.web ;
 
 public class BusinessControllerException extends Exception
 {
 	public BusinessControllerException( )
 	{
-		super( );
+		super( ) ;
 	}
 
 	public BusinessControllerException( String arg0 )
 	{
-		super( arg0 );
+		super( arg0 ) ;
 	}
 }

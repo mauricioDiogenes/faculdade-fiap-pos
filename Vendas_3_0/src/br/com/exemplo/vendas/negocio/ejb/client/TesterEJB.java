@@ -1,80 +1,67 @@
-package br.com.exemplo.vendas.negocio.ejb.client;
+/**************************************************
+ * Sistema de Vendas
+ * Trabalho de avaliacao final da
+ * disciplina Tecnologia Webservices e Restful
+ * FIAP Turma 18SCJ
+ * Artur Diniz Samora   -   RM 42934
+ * Jose Roberto Salinas -   RM 42937
+ ***************************************************/
 
-import java.util.Date;
-import java.util.Hashtable;
+package br.com.exemplo.vendas.negocio.ejb.client ;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import java.util.Date ;
+import java.util.Hashtable ;
 
-import br.com.exemplo.vendas.negocio.interfaces.UsuarioInterface;
-import br.com.exemplo.vendas.negocio.model.vo.UsuarioVO;
-import br.com.exemplo.vendas.util.dto.ServiceDTO;
+import javax.naming.Context ;
+import javax.naming.InitialContext ;
 
-public class TesterEJB {
+import br.com.exemplo.vendas.negocio.interfaces.UsuarioInterface ;
+import br.com.exemplo.vendas.negocio.model.vo.UsuarioVO ;
+import br.com.exemplo.vendas.util.dto.ServiceDTO ;
+import br.com.exemplo.vendas.util.locator.ServiceLocator ;
+import br.com.exemplo.vendas.util.locator.ServiceLocatorFactory ;
 
-	public static void main(String[] args) throws Exception
+public class TesterEJB
+{
+
+	public static void main( String[ ] args ) throws Exception
 	{
-		Hashtable prop = new Hashtable( );
-		prop.put(InitialContext.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
-		prop.put(InitialContext.PROVIDER_URL, "jnp://localhost:1099");
+		Hashtable prop = new Hashtable( ) ;
+		prop.put( InitialContext.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory" ) ;
+		prop.put( InitialContext.PROVIDER_URL, "jnp://localhost:1099" ) ;
 
 		Context ctx = new InitialContext( prop ) ;
-	   
-		UsuarioInterface remote = (UsuarioInterface) ctx.lookup("UsuarioBean/remote");
 
-		ServiceDTO requestDTO 	= new ServiceDTO( ) ;
-		ServiceDTO responseDTO 	= new ServiceDTO( ) ;
+		UsuarioInterface remoteUsuario = ( UsuarioInterface ) ctx.lookup( "UsuarioBean/remote" ) ;
+		// ProdutoInterface remoteProduto = (ProdutoInterface)
+		// ctx.lookup("ProdutoBean/remote");
+
+		ServiceLocator serviceLocator = ServiceLocatorFactory.getServiceLocator( "serviceLocator" ) ;
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
 		/**
 		 * Inserir usuario
 		 */
-		UsuarioVO vo = new UsuarioVO( "marcao1", "senha1111", "grupo1111", "perfil1111", "S", new Date( ), "marcos macedo" ) ;
-		requestDTO.set("usuarioVO", vo ) ;
-		responseDTO = remote.inserirUsuario( requestDTO ) ;
-		Boolean sucesso = ( Boolean ) responseDTO.get("resposta") ;
-		if ( sucesso.booleanValue( ) )
-		{
-			System.out.println("Sucesso na execução do processo!");
-		}
+		UsuarioVO vo = new UsuarioVO( "marcao1", "senha1111", "grupo1111", "perfil1111", "S",
+				new Date( ) ) ;
+		requestDTO.set( "usuarioVO", vo ) ;
+		responseDTO = remoteUsuario.inserirUsuario( requestDTO ) ;
+		Boolean sucesso = ( Boolean ) responseDTO.get( "resposta" ) ;
 
-//		/**
-//		 * Alterar usuario
-//		 */
-//		UsuarioVO vo = new UsuarioVO( "marcao", "123456", "grupo3333", "perfi4444", "S", new Date( ), "marcos r. macedo" ) ;
-//		requestDTO.set("usuarioVO", vo ) ;
-//		responseDTO = remote.alterarUsuario( requestDTO ) ;
-//		Boolean sucesso = ( Boolean ) responseDTO.get("resposta") ;
-//		if ( sucesso.booleanValue( ) )
-//		{
-//			System.out.println("Sucesso na execução do processo!");
-//		}
-
-//		/**
-//		 * Excluir usuario
-//		 */
-//		UsuarioVO vo = new UsuarioVO( "marcao", "123456", "grupo3333", "perfi4444", "S", new Date( ), "marcos r. macedo" ) ;
-//		requestDTO.set("usuarioVO", vo ) ;
-//		responseDTO = remote.excluirUsuario(  requestDTO ) ;
-//		Boolean sucesso = ( Boolean ) responseDTO.get("resposta") ;
-//		if ( sucesso.booleanValue( ) )
-//		{
-//			System.out.println("Sucesso na execução do processo!");
-//		}
-		
 		/**
 		 * Consultar usuario
 		 */
-//		UsuarioVO vo = new UsuarioVO( "marcao", "123456", "grupo3333", "perfi4444", "S", new Date( ), "marcos r. macedo" ) ;
-//		requestDTO.set("usuarioVO", vo ) ;
-		responseDTO = remote.selecionarTodosUsuario( requestDTO ) ;
+
+		responseDTO = remoteUsuario.selecionarTodosUsuario( requestDTO ) ;
 		UsuarioVO[ ] lista = ( UsuarioVO[ ] ) responseDTO.get( "listaUsuario" ) ;
-		if ( lista != null )
+		if (lista != null)
 		{
-			for ( int i = 0; i < lista.length; i++ )
-            {
-	            UsuarioVO usuarioVO = ( UsuarioVO ) lista[ i ] ;
-	            System.out.println( usuarioVO ) ;
-            }
+			for (int i = 0; i < lista.length; i++)
+			{
+				UsuarioVO usuarioVO = ( UsuarioVO ) lista[ i ] ;
+				System.out.println( usuarioVO ) ;
+			}
 		}
 	}
 

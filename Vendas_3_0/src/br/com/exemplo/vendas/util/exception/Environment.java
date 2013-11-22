@@ -1,34 +1,30 @@
-package br.com.exemplo.vendas.util.exception;
-
+package br.com.exemplo.vendas.util.exception ;
 
 public final class Environment
 {
 
-	public static final int PRODUCAO 			= 1;
-	public static final int DESENVOLVIMENTO 	= 2;
+	public static final int PRODUCAO = 1 ;
+	public static final int DESENVOLVIMENTO = 2 ;
 
 	/**
-	 * Método construtor para Ambiente
+	 * MÃ©todo construtor para Ambiente
 	 */
- 	private Environment()
- 	{
+	private Environment( )
+	{
 	}
 
-
-	public static int getEnvironment()
+	public static int getEnvironment( )
 	{
-		return DESENVOLVIMENTO;
+		return DESENVOLVIMENTO ;
 	}
 
-	public static boolean getLogTraceFile()
+	public static boolean getLogTraceFile( )
 	{
-		return true;
+		return true ;
 	}
 
-	public static boolean getLogTraceSystemOut()
+	public static boolean getLogTraceSystemOut( )
 	{
-		return false;
+		return false ;
 	}
 }
-
-

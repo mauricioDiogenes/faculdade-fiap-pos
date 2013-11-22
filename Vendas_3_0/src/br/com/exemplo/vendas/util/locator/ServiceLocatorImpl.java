@@ -1,4 +1,4 @@
-package br.com.exemplo.vendas.util.locator;
+package br.com.exemplo.vendas.util.locator ;
 
 public class ServiceLocatorImpl extends Locator implements ServiceLocator
 {
@@ -8,6 +8,6 @@ public class ServiceLocatorImpl extends Locator implements ServiceLocator
 
 	public Object getService( String jndiName ) throws ServiceLocatorException
 	{
-		return lookup( jndiName );
+		return lookup( jndiName ) ;
 	}
 }

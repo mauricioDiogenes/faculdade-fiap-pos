@@ -1,8 +1,8 @@
-package br.com.exemplo.vendas.negocio.ejb.interfaces;
+package br.com.exemplo.vendas.negocio.ejb.interfaces ;
 
-import javax.ejb.Local;
+import javax.ejb.Local ;
 
-import br.com.exemplo.vendas.negocio.interfaces.RecebeRequisicaoInterface;
+import br.com.exemplo.vendas.negocio.interfaces.RecebeRequisicaoInterface ;
 
 @Local
 public interface RecebeRequisicaoLocal extends RecebeRequisicaoInterface

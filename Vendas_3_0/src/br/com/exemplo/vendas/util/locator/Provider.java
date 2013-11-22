@@ -1,53 +1,52 @@
-package br.com.exemplo.vendas.util.locator;
+package br.com.exemplo.vendas.util.locator ;
 
-import java.util.Hashtable;
-
+import java.util.Hashtable ;
 
 public class Provider
 {
-	protected String name;
+	protected String name ;
 
-	protected String desc;
+	protected String desc ;
 
-	protected Hashtable properties;
+	protected Hashtable properties ;
 
 	public Provider( )
 	{
-		properties = new Hashtable( );
+		properties = new Hashtable( ) ;
 	}
 
 	public String getDesc( )
 	{
-		return desc;
+		return desc ;
 	}
 
 	public String getName( )
 	{
-		return name;
+		return name ;
 	}
 
 	public void setDesc( String string )
 	{
-		desc = string;
+		desc = string ;
 	}
 
 	public void setName( String string )
 	{
-		name = string;
+		name = string ;
 	}
 
 	public Hashtable getProperties( )
 	{
-		return properties;
+		return properties ;
 	}
 
 	public void setProperties( Hashtable properties )
 	{
-		this.properties = properties;
+		this.properties = properties ;
 	}
 
 	public void setProperty( String key, String value )
 	{
-		properties.put( key, value );
+		properties.put( key, value ) ;
 	}
 }

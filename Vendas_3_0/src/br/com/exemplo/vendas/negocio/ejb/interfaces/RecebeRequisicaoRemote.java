@@ -1,8 +1,8 @@
-package br.com.exemplo.vendas.negocio.ejb.interfaces;
+package br.com.exemplo.vendas.negocio.ejb.interfaces ;
 
-import javax.ejb.Remote;
+import javax.ejb.Remote ;
 
-import br.com.exemplo.vendas.negocio.interfaces.RecebeRequisicaoInterface;
+import br.com.exemplo.vendas.negocio.interfaces.RecebeRequisicaoInterface ;
 
 @Remote
 public interface RecebeRequisicaoRemote extends RecebeRequisicaoInterface

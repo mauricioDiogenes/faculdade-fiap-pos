@@ -1,59 +1,60 @@
-package br.com.exemplo.vendas.util.exception;
-
+package br.com.exemplo.vendas.util.exception ;
 
 /**
- * Respons·vel por lanÁar a exceÁ„o LayerException
- *
+ * Respons√°vel por lan√ßar a exce√ß√£o LayerException
+ * 
  * @version 1.0
  */
 public abstract class LayerException extends Exception
 {
 
-	private MsgExceptionList msgExceptionList;
+	private MsgExceptionList msgExceptionList ;
 
 	/**
-	 * MÈtodo construtor para LayerException
+	 * M√©todo construtor para LayerException
 	 */
- 	public LayerException()
- 	{
- 		super();
- 	}
-
-	/**
-	 * MÈtodo construtor para LayerException
-	 */
- 	public LayerException(MsgException msg)
- 	{
- 		super();
- 		this.msgExceptionList = new MsgExceptionList(msg);
- 	}
-
-	/**
-	 * MÈtodo construtor para LayerException
-	 */
- 	public LayerException(MsgExceptionList msgExceptionList)
- 	{
- 		super();
- 		this.msgExceptionList = msgExceptionList;
- 	}
-
-
-	/**
-	 * MÈtodo utilizado para recuperar uma MsgExceptionList.
-	 * @return 	MsgExceptionList
-	 * @see 	MsgExceptionList
-	 */
-	public MsgExceptionList getMsgExceptionList()
+	public LayerException( )
 	{
-		return msgExceptionList;
+		super( ) ;
 	}
 
 	/**
-	 * MÈtodo utilizado para configurar uma MsgExceptionList.
-	 * @param 	list 				informa um arrayList de MsgExceptionList
-	 * @see 	MsgExceptionList
+	 * M√©todo construtor para LayerException
 	 */
-	public void setMsgExceptionList(MsgExceptionList list)
+	public LayerException( MsgException msg )
+	{
+		super( ) ;
+		this.msgExceptionList = new MsgExceptionList( msg ) ;
+	}
+
+	/**
+	 * M√©todo construtor para LayerException
+	 */
+	public LayerException( MsgExceptionList msgExceptionList )
+	{
+		super( ) ;
+		this.msgExceptionList = msgExceptionList ;
+	}
+
+	/**
+	 * M√©todo utilizado para recuperar uma MsgExceptionList.
+	 * 
+	 * @return MsgExceptionList
+	 * @see MsgExceptionList
+	 */
+	public MsgExceptionList getMsgExceptionList( )
+	{
+		return msgExceptionList ;
+	}
+
+	/**
+	 * M√©todo utilizado para configurar uma MsgExceptionList.
+	 * 
+	 * @param list
+	 *            informa um arrayList de MsgExceptionList
+	 * @see MsgExceptionList
+	 */
+	public void setMsgExceptionList( MsgExceptionList list )
 	{
 		this.msgExceptionList = list ;
 	}

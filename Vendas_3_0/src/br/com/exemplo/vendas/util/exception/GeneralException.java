@@ -1,8 +1,8 @@
-package br.com.exemplo.vendas.util.exception;
+package br.com.exemplo.vendas.util.exception ;
 
 /**
- * Respons·vel por lanÁar a exceÁ„o GeneralException
- *
+ * Respons√°vel por lan√ßar a exce√ß√£o GeneralException
+ * 
  * @version 1.0
  */
 public final class GeneralException extends SysException
@@ -11,22 +11,21 @@ public final class GeneralException extends SysException
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L ;
 
 	/**
-	 * MÈtodo construtor para GeneralException
+	 * M√©todo construtor para GeneralException
 	 */
-	GeneralException(MsgException msg)
+	GeneralException( MsgException msg )
 	{
-		super(msg);
+		super( msg ) ;
 	}
 
 	/**
-	 * MÈtodo construtor para GeneralException
+	 * M√©todo construtor para GeneralException
 	 */
-	GeneralException(MsgExceptionList list)
+	GeneralException( MsgExceptionList list )
 	{
-		super(list);
+		super( list ) ;
 	}
 }
-

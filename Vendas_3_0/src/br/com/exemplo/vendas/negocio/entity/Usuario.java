@@ -1,119 +1,109 @@
-package br.com.exemplo.vendas.negocio.entity;
+package br.com.exemplo.vendas.negocio.entity ;
 
-import java.util.Date;
+import java.io.Serializable ;
+import javax.persistence.* ;
+import java.util.Date ;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
+/**
+ * The persistent class for the Usuario database table.
+ * 
+ */
 @Entity
-public class Usuario {	
-	
+public class Usuario implements Serializable
+{
+
+	private static final long serialVersionUID = -8819027177462398796L;
+
+	public Usuario( String login, String senha, String grupo, String perfil, Boolean bloqueado,
+			Date ultimoAcesso )
+	{
+		this.login = login ;
+		this.senha = senha ;
+		this.grupo = grupo ;
+		this.perfil = perfil ;
+		this.bloqueado = bloqueado ;
+		this.ultimoAcesso = ultimoAcesso ;
+	}
+
 	@Id
 	private String login ;
-	
+
 	@Column
-	private String senha ;
-	
+	private Boolean bloqueado ;
+
 	@Column
 	private String grupo ;
-	
+
 	@Column
 	private String perfil ;
-	
+
 	@Column
-	private String bloqueado ;
-	
-	@Column
+	private String senha ;
+
+	@Temporal( TemporalType.TIMESTAMP )
 	private Date ultimoAcesso ;
-	
-	@Column
-	private String nome ;
-	
+
 	public Usuario( )
 	{
 	}
-	
-	public Usuario( String login, String senha, String grupo, String perfil, String bloqueado, Date ultimoAcesso, String nome )
-	{
-		this.login 			= login ;
-		this.senha 			= senha ;
-		this.grupo 			= grupo ;
-		this.perfil 		= perfil ;
-		this.bloqueado 		= bloqueado ;
-		this.ultimoAcesso 	= ultimoAcesso ;
-		this.nome 			= nome;
-	}
-	
-	public String getNome( )
-    {
-    	return nome;
-    }
-
-	public void setNome( String nome )
-    {
-    	this.nome = nome;
-    }
 
 	public String getLogin( )
-    {
-    	return login;
-    }
-	
+	{
+		return this.login ;
+	}
+
 	public void setLogin( String login )
-    {
-    	this.login = login;
-    }
-	
-	public String getSenha( )
-    {
-    	return senha;
-    }
-	
-	public void setSenha( String senha )
-    {
-    	this.senha = senha;
-    }
-	
+	{
+		this.login = login ;
+	}
+
+	public Boolean getBloqueado( )
+	{
+		return this.bloqueado ;
+	}
+
+	public void setBloqueado( Boolean bloqueado )
+	{
+		this.bloqueado = bloqueado ;
+	}
+
 	public String getGrupo( )
-    {
-    	return grupo;
-    }
-	
+	{
+		return this.grupo ;
+	}
+
 	public void setGrupo( String grupo )
-    {
-    	this.grupo = grupo;
-    }
-	
+	{
+		this.grupo = grupo ;
+	}
+
 	public String getPerfil( )
-    {
-    	return perfil;
-    }
-	
+	{
+		return this.perfil ;
+	}
+
 	public void setPerfil( String perfil )
-    {
-    	this.perfil = perfil;
-    }
-	
-	public String getBloqueado( )
-    {
-    	return bloqueado;
-    }
-	
-	public void setBloqueado( String bloqueado )
-    {
-    	this.bloqueado = bloqueado;
-    }
-	
+	{
+		this.perfil = perfil ;
+	}
+
+	public String getSenha( )
+	{
+		return this.senha ;
+	}
+
+	public void setSenha( String senha )
+	{
+		this.senha = senha ;
+	}
+
 	public Date getUltimoAcesso( )
-    {
-    	return ultimoAcesso;
-    }
-	
+	{
+		return this.ultimoAcesso ;
+	}
+
 	public void setUltimoAcesso( Date ultimoAcesso )
-    {
-    	this.ultimoAcesso = ultimoAcesso;
-    }
-	
-	
+	{
+		this.ultimoAcesso = ultimoAcesso ;
+	}
 }

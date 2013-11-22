@@ -1,8 +1,8 @@
-package br.com.exemplo.vendas.util.exception;
+package br.com.exemplo.vendas.util.exception ;
 
 /**
- * Respons·vel por lanÁar a exceÁ„o DAOException
- *
+ * Respons√°vel por lan√ßar a exce√ß√£o DAOException
+ * 
  * @version 1.0
  */
 public final class DAOException extends SysException
@@ -11,23 +11,22 @@ public final class DAOException extends SysException
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L ;
 
 	/**
-	 * MÈtodo construtor para DAOException
+	 * M√©todo construtor para DAOException
 	 */
- 	DAOException(MsgException msg)
- 	{
-		super(msg);
+	DAOException( MsgException msg )
+	{
+		super( msg ) ;
 	}
 
 	/**
-	 * MÈtodo construtor para DAOException
+	 * M√©todo construtor para DAOException
 	 */
- 	DAOException(MsgExceptionList list)
- 	{
-		super(list);
+	DAOException( MsgExceptionList list )
+	{
+		super( list ) ;
 	}
 
 }
-

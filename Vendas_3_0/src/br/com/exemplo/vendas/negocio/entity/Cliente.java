@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
@@ -7,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Serializable{
+
+	private static final long serialVersionUID = -8104554056565776568L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

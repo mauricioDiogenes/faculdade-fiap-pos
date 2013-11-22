@@ -1,35 +1,34 @@
-package br.com.exemplo.vendas.util.exception;
-
+package br.com.exemplo.vendas.util.exception ;
 
 /**
- * Respons·vel por lanÁar a exceÁ„o SysException
- *
+ * Respons√°vel por lan√ßar a exce√ß√£o SysException
+ * 
  * @version 1.0
  */
 public abstract class SysException extends LayerException
 {
 
 	/**
-	 * MÈtodo construtor para SysException
+	 * M√©todo construtor para SysException
 	 */
-   	public SysException()
-   	{
- 		super();
- 	}
+	public SysException( )
+	{
+		super( ) ;
+	}
 
 	/**
-	 * MÈtodo construtor para SysException
+	 * M√©todo construtor para SysException
 	 */
-   	public SysException(MsgException msg)
-   	{
-   		super(msg);
- 	}
+	public SysException( MsgException msg )
+	{
+		super( msg ) ;
+	}
 
 	/**
-	 * MÈtodo construtor para SysException
+	 * M√©todo construtor para SysException
 	 */
- 	public SysException(MsgExceptionList list)
- 	{
- 		super(list);
- 	}
+	public SysException( MsgExceptionList list )
+	{
+		super( list ) ;
+	}
 }

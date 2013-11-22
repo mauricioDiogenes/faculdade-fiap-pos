@@ -1,111 +1,110 @@
-package br.com.exemplo.vendas.util.exception;
+package br.com.exemplo.vendas.util.exception ;
 
-import java.io.Serializable;
+import java.io.Serializable ;
 
 /**
- * Respons·vel por manipular uma MsgException
- *
+ * Respons√°vel por manipular uma MsgException
+ * 
  * @version 1.0
  */
 public class MsgException implements Serializable
 {
-    /**
+	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
-	private String code;
-    private Object[] params;
-    private Object details	= "";
+	private static final long serialVersionUID = 1L ;
+	private String code ;
+	private Object[ ] params ;
+	private Object details = "" ;
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(String code, Object[] params)
-    {
-     	this.code = code;
-     	this.params = params;
-    }
+	public MsgException( String code, Object[ ] params )
+	{
+		this.code = code ;
+		this.params = params ;
+	}
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(String code, Object[] params, Object details)
-    {
-     	this.code = code;
-     	this.params = params;
-     	this.details = details ;
-    }
+	public MsgException( String code, Object[ ] params, Object details )
+	{
+		this.code = code ;
+		this.params = params ;
+		this.details = details ;
+	}
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(String code, Object details)
-    {
-    	this.code = code ;
-     	this.details = details;
-    }
+	public MsgException( String code, Object details )
+	{
+		this.code = code ;
+		this.details = details ;
+	}
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(Object[] params, Object details)
-    {
-    	this.params = params ;
-     	this.details = details;
-    }
-
-
-	/**
-	 * MÈtodo construtor para MsgException
-	 */
-    public MsgException(String code)
-    {
-     	this.code = code;
-    }
+	public MsgException( Object[ ] params, Object details )
+	{
+		this.params = params ;
+		this.details = details ;
+	}
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(Object[] params)
-    {
-     	this.params = params;
-    }
+	public MsgException( String code )
+	{
+		this.code = code ;
+	}
 
 	/**
-	 * MÈtodo construtor para MsgException
+	 * M√©todo construtor para MsgException
 	 */
-    public MsgException(Object details)
-    {
-     	this.details = details ;
-    }
+	public MsgException( Object[ ] params )
+	{
+		this.params = params ;
+	}
 
 	/**
-	 * MÈtodo utilizado para obter o cÛdigo de uma MsgException
-	 *
-	 * @return 	String
+	 * M√©todo construtor para MsgException
 	 */
-    public String getCode()
-    {
-        return code;
-    }
+	public MsgException( Object details )
+	{
+		this.details = details ;
+	}
 
 	/**
-	 * MÈtodo utilizado para obter os par‚metros de uma MsgException
-	 *
-	 * @return 	Object[]
+	 * M√©todo utilizado para obter o c√≥digo de uma MsgException
+	 * 
+	 * @return String
 	 */
-    public Object[] getParams()
-    {
-		return this.params;
-    }
+	public String getCode( )
+	{
+		return code ;
+	}
 
 	/**
-	 * MÈtodo utilizado para obter os detalhes de uma MsgException
-	 *
-	 * @return 	Object
+	 * M√©todo utilizado para obter os par√¢metros de uma MsgException
+	 * 
+	 * @return Object[]
 	 */
-    public Object getDetails()
-    {
-    	return this.details ;
-    }
+	public Object[ ] getParams( )
+	{
+		return this.params ;
+	}
+
+	/**
+	 * M√©todo utilizado para obter os detalhes de uma MsgException
+	 * 
+	 * @return Object
+	 */
+	public Object getDetails( )
+	{
+		return this.details ;
+	}
 }

@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
@@ -7,50 +8,101 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Item {
+public class Item implements Serializable{
+
+	private static final long serialVersionUID = -6208445026980079449L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger codigo;
+	private BigInteger id;
 
 	@Column
-	private String descricao;
+	private BigInteger quantidade;
 
 	@Column
-	private BigInteger preco;
+	private BigInteger valor;
 
 	@Column
-	private String estoque;
+	private String situacao;
 
-	public BigInteger getCodigo() {
-		return codigo;
+	@Column
+	private Reserva reserva;
+
+	@Column
+	private BigInteger comprar;
+
+	@Column
+	private Produto produto;
+
+	public Item() {
 	}
 
-	public void setCodigo(BigInteger codigo) {
-		this.codigo = codigo;
+	public Item(BigInteger quantidade, BigInteger valor, String situacao,
+			Reserva reserva, BigInteger comprar, Produto produto, BigInteger id) {
+		super();
+		this.id = id;
+		this.quantidade = quantidade;
+		this.valor = valor;
+		this.situacao = situacao;
+		this.reserva = reserva;
+		this.comprar = comprar;
+		this.produto = produto;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public BigInteger getId() {
+		return id;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setId(BigInteger id) {
+		this.id = id;
 	}
 
-	public BigInteger getPreco() {
-		return preco;
+	public BigInteger getQuantidade() {
+		return quantidade;
 	}
 
-	public void setPreco(BigInteger preco) {
-		this.preco = preco;
+	public void setQuantidade(BigInteger quantidade) {
+		this.quantidade = quantidade;
 	}
 
-	public String getEstoque() {
-		return estoque;
+	public BigInteger getValor() {
+		return valor;
 	}
 
-	public void setEstoque(String estoque) {
-		this.estoque = estoque;
+	public void setValor(BigInteger valor) {
+		this.valor = valor;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
+	public BigInteger getComprar() {
+		return comprar;
+	}
+
+	public void setComprar(BigInteger comprar) {
+		this.comprar = comprar;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 }

@@ -1,12 +1,12 @@
-package br.com.exemplo.vendas.util.exception;
+package br.com.exemplo.vendas.util.exception ;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.Serializable ;
+import java.util.ArrayList ;
+import java.util.Collection ;
 
 /**
- * Respons·vel por manipular uma coleÁ„o de MsgException
- *
+ * Respons√°vel por manipular uma cole√ß√£o de MsgException
+ * 
  * @version 1.0
  */
 public class MsgExceptionList implements Serializable
@@ -15,64 +15,69 @@ public class MsgExceptionList implements Serializable
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L ;
 	private Collection msgException = null ;
 
 	/**
-	 * MÈtodo construtor para MsgExceptionList
+	 * M√©todo construtor para MsgExceptionList
 	 */
-	public MsgExceptionList()
+	public MsgExceptionList( )
 	{
-		this.msgException = new ArrayList() ;
+		this.msgException = new ArrayList( ) ;
 	}
 
 	/**
-	 * MÈtodo construtor para MsgExceptionList
+	 * M√©todo construtor para MsgExceptionList
 	 */
-	public MsgExceptionList(MsgException msg)
+	public MsgExceptionList( MsgException msg )
 	{
-		this.msgException = new ArrayList() ;
-		this.msgException.add(msg);
+		this.msgException = new ArrayList( ) ;
+		this.msgException.add( msg ) ;
 	}
 
 	/**
-	 * MÈtodo utilizado para obter uma coleÁ„o de  MsgException
-	 *
-	 * @return 	Collection
+	 * M√©todo utilizado para obter uma cole√ß√£o de MsgException
+	 * 
+	 * @return Collection
 	 */
-	public Collection getMsgException()
+	public Collection getMsgException( )
 	{
-		return msgException;
+		return msgException ;
 	}
 
 	/**
-	 * MÈtodo utilizado para informar uma coleÁ„o de MsgException
-	 *
-	 * @param 	msgException 	informar uma coleÁ„o de MsgException a ser configurada
+	 * M√©todo utilizado para informar uma cole√ß√£o de MsgException
+	 * 
+	 * @param msgException
+	 *            informar uma cole√ß√£o de MsgException a ser configurada
 	 */
-	public void setMsgException(Collection msgException)
+	public void setMsgException( Collection msgException )
 	{
-		this.msgException = new ArrayList() ;
-		this.msgException = msgException;
+		this.msgException = new ArrayList( ) ;
+		this.msgException = msgException ;
 	}
 
 	/**
-	 * MÈtodo utilizado para adicionar uma coleÁ„o de  MsgException
-	 *
-	 * @param	msg 	informar uma MsgException para ser adicionada a coleÁ„o de MsgException
+	 * M√©todo utilizado para adicionar uma cole√ß√£o de MsgException
+	 * 
+	 * @param msg
+	 *            informar uma MsgException para ser adicionada a cole√ß√£o de
+	 *            MsgException
 	 */
-	public void addMsgException(MsgException msg)
+	public void addMsgException( MsgException msg )
 	{
-		this.msgException.add(msg);
+		this.msgException.add( msg ) ;
 	}
 
 	/**
-	 * MÈtodo utilizado para remover uma coleÁ„o de  MsgException
-	 *
-	 * @param	msg 	informar uma MsgException para ser removida da coleÁ„o de MsgException
+	 * M√©todo utilizado para remover uma cole√ß√£o de MsgException
+	 * 
+	 * @param msg
+	 *            informar uma MsgException para ser removida da cole√ß√£o de
+	 *            MsgException
 	 */
-	public void removeMsgException(MsgException msg)
+	public void removeMsgException( MsgException msg )
 	{
-		this.msgException.remove(msg);
+		this.msgException.remove( msg ) ;
 	}
 }

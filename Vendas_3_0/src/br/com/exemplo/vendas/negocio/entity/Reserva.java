@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
@@ -9,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class Reserva {
+public class Reserva implements Serializable{
+
+	private static final long serialVersionUID = 3280039570070630878L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private BigInteger codigo;
