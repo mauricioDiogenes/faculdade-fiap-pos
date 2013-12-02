@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Item implements Serializable{
 
 	private static final long serialVersionUID = -6208445026980079449L;
