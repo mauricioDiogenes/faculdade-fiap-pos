@@ -6,10 +6,12 @@ import java.math.BigInteger;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Compra implements Serializable{
 
 	private static final long serialVersionUID = 7517555228807224810L;

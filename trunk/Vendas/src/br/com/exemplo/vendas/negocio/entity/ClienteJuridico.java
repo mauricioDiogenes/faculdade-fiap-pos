@@ -1,7 +1,8 @@
 package br.com.exemplo.vendas.negocio.entity;
 
 import javax.persistence.Column;
-
+import javax.persistence.Entity;
+@Entity
 public class ClienteJuridico extends Cliente {
 
 	private static final long serialVersionUID = 1540832604941937922L;
