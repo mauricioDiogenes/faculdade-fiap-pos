@@ -2,6 +2,7 @@ package br.com.exemplo.vendas.negocio.entity ;
 
 import java.io.Serializable ;
 import javax.persistence.* ;
+
 import java.util.Date ;
 
 /**
@@ -26,6 +27,7 @@ public class Usuario implements Serializable
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String login ;
 
 	@Column
