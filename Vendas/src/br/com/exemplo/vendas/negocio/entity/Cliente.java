@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente extends Usuario implements Serializable{
+public class Cliente  implements Serializable{
 
 	private static final long serialVersionUID = -8104554056565776568L;
 
