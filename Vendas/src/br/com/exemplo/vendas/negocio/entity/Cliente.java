@@ -15,8 +15,8 @@ public class Cliente  implements Serializable{
 	private static final long serialVersionUID = -8104554056565776568L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger codigo;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
 
 	@Column
 	private String nome;
@@ -30,12 +30,14 @@ public class Cliente  implements Serializable{
 	@Column
 	private String situacao;
 
-	public BigInteger getCodigo() {
-		return codigo;
+	
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCodigo(BigInteger codigo) {
-		this.codigo = codigo;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
