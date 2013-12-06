@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -9,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-@Entity
 
+@Entity
 public class Produto implements Serializable{
 
 	private static final long serialVersionUID = -1779662681972655266L;
