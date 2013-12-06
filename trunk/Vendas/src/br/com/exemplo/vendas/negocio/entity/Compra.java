@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Compra implements Serializable{
@@ -35,7 +36,7 @@ public class Compra implements Serializable{
 	@Column
 	private Reserva reserva;
 
-	@Column
+	@JoinColumn(referencedColumnName="id")
 	private Cliente cliente;
 
 	public Compra(){
