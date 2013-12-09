@@ -10,7 +10,7 @@ import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class CompraVO implements Serializable
 {
-	private BigInteger numero;
+	private Integer numero;
 	private Date data;
 	private String responsavel;
 	private String situacao;
@@ -22,11 +22,11 @@ public class CompraVO implements Serializable
 	{
 	}
 
-	public CompraVO(BigInteger numero){
+	public CompraVO(Integer numero){
 		this.numero = numero;
 	}
 	
-	public CompraVO(BigInteger numero, Date data, String responsavel,
+	public CompraVO(Integer numero, Date data, String responsavel,
 			String situacao, BigDecimal valor, Reserva reserva, Cliente cliente) {
 		super();
 		this.numero = numero;
@@ -47,11 +47,11 @@ public class CompraVO implements Serializable
 	}
 	
 
-	public BigInteger getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(BigInteger numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

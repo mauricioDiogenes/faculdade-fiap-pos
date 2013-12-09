@@ -1,12 +1,16 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class ClienteFisico extends Cliente {
+@Table(name="cliente_fisico")
+public class ClienteFisico extends Cliente implements Serializable {
 
-	private static final long serialVersionUID = -201445427728095064L;
+	private static final long serialVersionUID = -6238863104603472348L;
 
 	@Column
 	private String RG;

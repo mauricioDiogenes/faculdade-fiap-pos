@@ -15,7 +15,7 @@ public class ExcluirCompraACT implements Action
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
 	{
-		BigInteger numero = new BigInteger(request.getParameter("numero"));
+		Integer numero = new Integer(request.getParameter("numero"));
 
 		CompraVO vo = new CompraVO(numero);
 

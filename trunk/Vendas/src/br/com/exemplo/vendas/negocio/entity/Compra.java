@@ -5,21 +5,23 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Compra implements Serializable{
 
-	private static final long serialVersionUID = 7517555228807224810L;
+	private static final long serialVersionUID = 7639030727551914737L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger numero;
+	private Integer numero;
 
 	@Column
 	private Date data;
@@ -33,17 +35,17 @@ public class Compra implements Serializable{
 	@Column
 	private BigDecimal valor;
 
-	@Column
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Reserva reserva;
 
-	@JoinColumn(referencedColumnName="id")
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Cliente cliente;
 
 	public Compra(){
 		
 	}
 			
-	public Compra(BigInteger numero, Date data, String responsavel,
+	public Compra(Integer numero, Date data, String responsavel,
 			String situacao, BigDecimal valor, Reserva reserva, Cliente cliente) {
 		super();
 		this.numero = numero;
@@ -55,11 +57,11 @@ public class Compra implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public BigInteger getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(BigInteger numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

@@ -17,7 +17,7 @@ import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class ReservaVO implements Serializable {
 
-	private BigInteger codigo;
+	private Integer codigo;
 
 	private Date data;
 
@@ -32,7 +32,7 @@ public class ReservaVO implements Serializable {
 	public ReservaVO() {
 	}
 
-	public ReservaVO(BigInteger codigo, Date data, String atendente,
+	public ReservaVO(Integer codigo, Date data, String atendente,
 			String situacao, BigDecimal valor, Cliente cliente) {
 		super();
 		this.codigo = codigo;
@@ -43,11 +43,11 @@ public class ReservaVO implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public BigInteger getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(BigInteger codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 

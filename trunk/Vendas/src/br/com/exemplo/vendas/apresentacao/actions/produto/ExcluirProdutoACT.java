@@ -18,7 +18,7 @@ public class ExcluirProdutoACT implements Action
 		String codigo = request.getParameter( "codigo" ) ;
 
 
-		ProdutoVO vo = new ProdutoVO(new BigInteger(codigo));
+		ProdutoVO vo = new ProdutoVO(new Integer(codigo));
 
 		ServiceProduto service = new ServiceProduto( ) ;
 		Boolean sucesso = service.excluir( vo ) ;

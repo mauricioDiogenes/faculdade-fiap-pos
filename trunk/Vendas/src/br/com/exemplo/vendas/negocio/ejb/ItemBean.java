@@ -87,7 +87,7 @@ public class ItemBean implements ItemRemote, ItemLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO getItem(ServiceDTO requestDTO, BigInteger id)
+	public ServiceDTO getItem(ServiceDTO requestDTO, Integer id)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
 		Item item = new Item();

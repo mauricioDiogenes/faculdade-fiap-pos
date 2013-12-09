@@ -12,11 +12,12 @@ import javax.persistence.Id;
 @Entity
 public class Item implements Serializable{
 
-	private static final long serialVersionUID = -6208445026980079449L;
+
+	private static final long serialVersionUID = 1703816910654885123L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger id;
+	private Integer id;
 
 	@Column
 	private BigInteger quantidade;
@@ -40,7 +41,7 @@ public class Item implements Serializable{
 	}
 
 	public Item(BigInteger quantidade, BigInteger valor, String situacao,
-			Reserva reserva, Compra comprar, Produto produto, BigInteger id) {
+			Reserva reserva, Compra comprar, Produto produto, Integer id) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
@@ -51,11 +52,11 @@ public class Item implements Serializable{
 		this.produto = produto;
 	}
 
-	public BigInteger getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -1,17 +1,24 @@
 package br.com.exemplo.vendas.negocio.entity;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-public class Cliente{
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Cliente implements Serializable{
+
+	private static final long serialVersionUID = 8355079123707018509L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Integer id;
 
 	@Column

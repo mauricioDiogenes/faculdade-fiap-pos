@@ -5,20 +5,23 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reserva implements Serializable{
 
-	private static final long serialVersionUID = 3280039570070630878L;
+	private static final long serialVersionUID = -5983632021074300535L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger codigo;
+	private Integer codigo;
 
 	@Column
 	private Date data;
@@ -32,14 +35,14 @@ public class Reserva implements Serializable{
 	@Column
 	private BigDecimal valor;
 
-	@Column
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private Cliente cliente;
 	
 	public Reserva(){
 		
 	}
 
-	public Reserva(BigInteger codigo, Date data, String atendente,
+	public Reserva(Integer codigo, Date data, String atendente,
 			String situacao, BigDecimal valor, Cliente cliente) {
 		super();
 		this.codigo = codigo;
@@ -50,11 +53,11 @@ public class Reserva implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public BigInteger getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(BigInteger codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 

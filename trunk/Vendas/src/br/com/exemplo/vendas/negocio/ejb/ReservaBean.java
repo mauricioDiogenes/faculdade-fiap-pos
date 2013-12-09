@@ -80,7 +80,7 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO getReserva(ServiceDTO requestDTO, BigInteger id)
+	public ServiceDTO getReserva(ServiceDTO requestDTO, Integer id)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
 		Reserva reserva = new Reserva();

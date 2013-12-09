@@ -14,11 +14,11 @@ import javax.persistence.Id;
 @Entity
 public class Produto implements Serializable{
 
-	private static final long serialVersionUID = -1779662681972655266L;
+	private static final long serialVersionUID = 1663957961878354379L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private BigInteger codigo;
+	private Integer codigo;
 
 	@Column
 	private String descricao;
@@ -29,7 +29,7 @@ public class Produto implements Serializable{
 	@Column
 	private String estoque;
 	
-	public Produto(BigInteger codigo, String descricao, BigDecimal preco,
+	public Produto(Integer codigo, String descricao, BigDecimal preco,
 			String estoque) {
 		super();
 		this.codigo = codigo;
@@ -41,11 +41,11 @@ public class Produto implements Serializable{
 	public Produto() {
 	}
 
-	public BigInteger getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(BigInteger codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 

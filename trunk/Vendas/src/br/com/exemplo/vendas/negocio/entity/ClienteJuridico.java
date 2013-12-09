@@ -1,17 +1,18 @@
 package br.com.exemplo.vendas.negocio.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 @Entity
-public class ClienteJuridico extends Cliente {
+@Table(name="cliente_juridico")
+public class ClienteJuridico extends Cliente implements Serializable {
 
-	private static final long serialVersionUID = 1540832604941937922L;
+	private static final long serialVersionUID = -3831500280786803770L;
 
 	@Column
 	private String CNPJ;
-	
-	@Column
-	private String endereco;
 	
 	@Column
 	private String IE;
@@ -22,14 +23,6 @@ public class ClienteJuridico extends Cliente {
 
 	public void setCNPJ(String cNPJ) {
 		CNPJ = cNPJ;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getIE() {

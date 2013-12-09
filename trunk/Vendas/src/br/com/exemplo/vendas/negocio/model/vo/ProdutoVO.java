@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 public class ProdutoVO implements Serializable {
 
-	private BigInteger codigo;
+	private Integer codigo;
 
 	private String descricao;
 
@@ -17,7 +17,7 @@ public class ProdutoVO implements Serializable {
 	public ProdutoVO() {
 	}
 
-	public ProdutoVO(BigInteger codigo, String descricao, BigDecimal preco,
+	public ProdutoVO(Integer codigo, String descricao, BigDecimal preco,
 			String estoque) {
 		super();
 		this.codigo = codigo;
@@ -26,7 +26,7 @@ public class ProdutoVO implements Serializable {
 		this.estoque = estoque;
 	}
 	
-	public ProdutoVO(BigInteger codigo){
+	public ProdutoVO(Integer codigo){
 		this.codigo = codigo;
 	}
 
@@ -36,11 +36,11 @@ public class ProdutoVO implements Serializable {
 				+ ", preco=" + preco + ", estoque=" + estoque + "]";
 	}
 
-	public BigInteger getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(BigInteger codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
