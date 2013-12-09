@@ -21,6 +21,6 @@ public interface ItemInterface
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 
 	public br.com.exemplo.vendas.util.dto.ServiceDTO getItem(
-			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO, BigInteger codigo )
+			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO, Integer codigo )
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 }

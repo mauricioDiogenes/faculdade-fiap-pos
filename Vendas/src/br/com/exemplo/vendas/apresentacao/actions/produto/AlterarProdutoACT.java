@@ -17,7 +17,7 @@ public class AlterarProdutoACT implements Action
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
 	{
-		BigInteger codigo = new BigInteger(request.getParameter( "codigo" )) ;
+		Integer codigo = new Integer(request.getParameter( "codigo" )) ;
 		String descricao = request.getParameter( "descricao" ) ;
 		BigDecimal preco = new BigDecimal(request.getParameter( "preco" )) ;
 		String estoque = request.getParameter( "estoque" ) ;

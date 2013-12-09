@@ -13,7 +13,7 @@ import java.util.Date ;
 public class Usuario implements Serializable
 {
 
-	private static final long serialVersionUID = -8819027177462398796L;
+	private static final long serialVersionUID = -1837228910141706157L;
 
 	public Usuario( String login, String senha, String grupo, String perfil, Boolean bloqueado,
 			Date ultimoAcesso )

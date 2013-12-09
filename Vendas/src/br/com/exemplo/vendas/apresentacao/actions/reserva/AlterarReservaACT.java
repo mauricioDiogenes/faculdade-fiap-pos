@@ -18,7 +18,7 @@ public class AlterarReservaACT implements Action {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws LayerException {
 
-		BigInteger numero = new BigInteger(request.getParameter("numero"));
+		Integer numero = new Integer(request.getParameter("numero"));
 		Date data = new Date(request.getParameter("data"));
 		String responsavel = request.getParameter("responsavel");
 		String situacao = request.getParameter("situacao");

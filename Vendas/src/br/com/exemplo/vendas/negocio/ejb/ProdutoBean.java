@@ -88,7 +88,7 @@ public class ProdutoBean implements ProdutoRemote, ProdutoLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO getProduto(ServiceDTO requestDTO, BigInteger codigo)
+	public ServiceDTO getProduto(ServiceDTO requestDTO, Integer codigo)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
 		Produto produto = new Produto();

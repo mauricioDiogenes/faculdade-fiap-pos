@@ -96,7 +96,7 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO getCompra(ServiceDTO requestDTO, BigInteger numero)
+	public ServiceDTO getCompra(ServiceDTO requestDTO, Integer numero)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
 		Compra compra = new Compra();

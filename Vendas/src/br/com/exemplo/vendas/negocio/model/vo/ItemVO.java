@@ -9,7 +9,7 @@ import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class ItemVO implements Serializable {
 
-	private BigInteger id;
+	private Integer id;
 
 	private BigInteger quantidade;
 
@@ -27,7 +27,7 @@ public class ItemVO implements Serializable {
 	}
 
 	public ItemVO(BigInteger quantidade, BigInteger valor, String situacao,
-			Reserva reserva, Compra comprar, Produto produto, BigInteger id) {
+			Reserva reserva, Compra comprar, Produto produto, Integer id) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
@@ -38,11 +38,11 @@ public class ItemVO implements Serializable {
 		this.produto = produto;
 	}
 
-	public BigInteger getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

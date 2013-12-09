@@ -19,7 +19,7 @@ public class InserirReservaACT implements Action {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws LayerException {
 		
-		BigInteger codigo = new BigInteger(request.getParameter("codigo"));
+		Integer codigo = new Integer(request.getParameter("codigo"));
 		Date data = new Date(request.getParameter("data"));
 		String atendente = request.getParameter("atendente");
 		String situacao = request.getParameter("situacao");
