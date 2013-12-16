@@ -27,7 +27,6 @@ public class RelatorioController {
 		
 		Map<String,Object> parameterMap = new HashMap<String,Object>();
 		parameterMap.put("dataSourceCliente", jrDataSource);
-		parameterMap.put("format", datasource);
 
 		 
 		// pdfReport is the View of our application
