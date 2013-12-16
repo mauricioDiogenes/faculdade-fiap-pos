@@ -24,6 +24,7 @@ public class Controller extends BusinessController
 		}
 		catch (BusinessControllerException _exception)
 		{
+			_exception.printStackTrace();
 		}
 	}
 
