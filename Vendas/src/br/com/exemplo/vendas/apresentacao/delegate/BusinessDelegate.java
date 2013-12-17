@@ -154,8 +154,8 @@ public class BusinessDelegate
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 		try
 		{
-			responseDTO = ( ( ProdutoInterface ) serviceLocator.getService( "ProdutoBean/remote" ) )
-					.inserirProduto( requestDTO ) ;
+			ProdutoInterface bean = (ProdutoInterface) serviceLocator.getService("ProdutoBean/remote");
+			responseDTO = bean.inserirProduto(requestDTO);
 		}
 		catch (RemoteException remoteException)
 		{
