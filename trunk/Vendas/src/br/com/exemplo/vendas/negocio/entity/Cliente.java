@@ -12,13 +12,34 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable{
 
-	private static final long serialVersionUID = 8355079123707018509L;
+	private static final long serialVersionUID = -9125367753983052403L;
+
+	public Cliente(){
+		
+	}
+	
+
+	public Cliente(Cliente cliente){
+		this(cliente.getId(), cliente.getNome(), cliente.getEndereco(),
+				cliente.getTelefone(), cliente.getSituacao());
+	}
+
+	public Cliente(Integer id, String nome, String endereco, String telefone,
+			String situacao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.telefone = telefone;
+		this.situacao = situacao;
+	}
+	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column
@@ -33,7 +54,7 @@ public class Cliente implements Serializable{
 	@Column
 	private String situacao;
 
-	
+
 
 	public Integer getId() {
 		return id;

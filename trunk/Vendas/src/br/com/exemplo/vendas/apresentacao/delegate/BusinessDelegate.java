@@ -2,6 +2,7 @@ package br.com.exemplo.vendas.apresentacao.delegate ;
 
 import java.rmi.RemoteException;
 
+import br.com.exemplo.vendas.negocio.interfaces.ClienteInterface;
 import br.com.exemplo.vendas.negocio.interfaces.CompraInterface;
 import br.com.exemplo.vendas.negocio.interfaces.ItemInterface;
 import br.com.exemplo.vendas.negocio.interfaces.ProdutoInterface;
@@ -308,6 +309,24 @@ public class BusinessDelegate
 	
 	//*******Compra*********
 	
+	
+	public ServiceDTO findCompra( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( CompraInterface ) serviceLocator.getService( "CompraBean/remote" ) ).getCompra(requestDTO);
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
 	public ServiceDTO inserirCompra( ServiceDTO requestDTO ) throws LayerException
 	{
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
@@ -463,4 +482,81 @@ public class BusinessDelegate
 		return responseDTO ;
 	}
 
+	//*******Cliente*********
+	
+	public ServiceDTO inserirCliente( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ClienteInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.inserirCliente( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+
+	public ServiceDTO excluirCliente( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.excluirReserva( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+
+	public ServiceDTO alterarCliente( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.alterarReserva( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+
+	public ServiceDTO findCliente( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.selecionarTodasReservas( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}	
 }

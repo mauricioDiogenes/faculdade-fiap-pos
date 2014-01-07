@@ -18,6 +18,8 @@ public final class DaoFactory
 
 	private static ReservaDAO reservaDAO_instance ;
 	
+	private static ClienteDAO clienteDAO_instance ;
+	
 	private DaoFactory( ) throws SysException
 	{
 	}
@@ -79,5 +81,17 @@ public final class DaoFactory
 		}
 		return reservaDAO_instance ;
 	}
+	
+	public static ClienteDAO getClienteDAO( EntityManager em ) throws SysException
+	{
+		initialize( ) ;
+		if (clienteDAO_instance == null)
+		{
+			clienteDAO_instance = new ClienteDAO( em ) ;
+		}
+		return clienteDAO_instance ;
+	}
+	
+	
 
 }

@@ -4,12 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.exemplo.vendas.apresentacao.delegate.BusinessDelegate;
+import br.com.exemplo.vendas.negocio.entity.Compra;
 import br.com.exemplo.vendas.negocio.model.vo.CompraVO;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 public class ServiceCompra
 {
+	
+	public CompraVO find(CompraVO vo) throws LayerException{
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		requestDTO.set("CompraVO", vo);
+		responseDTO = BusinessDelegate.getInstance( ).findCompra( requestDTO ) ;
+		CompraVO compra = (CompraVO) responseDTO.get( "compra" ) ;
+		return compra;
+	}
+	
 	public Boolean inserir( CompraVO vo ) throws LayerException
 	{
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
