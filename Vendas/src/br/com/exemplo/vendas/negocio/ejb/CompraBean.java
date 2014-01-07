@@ -96,11 +96,12 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO getCompra(ServiceDTO requestDTO, Integer numero)
+	public ServiceDTO getCompra(ServiceDTO requestDTO)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
+		CompraVO compraVO = (CompraVO)requestDTO.get("CompraVO");
 		Compra compra = new Compra();
-		compra.setNumero(numero);
+		compra.setNumero(compraVO.getNumero());
 		Compra lista = DaoFactory.getCompraDAO(em).localizarPorId(compra);
 		if (lista != null) {
 			compra = (Compra) lista;

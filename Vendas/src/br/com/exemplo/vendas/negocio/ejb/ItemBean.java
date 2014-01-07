@@ -25,7 +25,7 @@ public class ItemBean implements ItemRemote, ItemLocal {
 		ItemVO vo = (ItemVO) requestDTO.get("ItemVO");
 		if (vo != null) {
 			Item item = new Item(vo.getQuantidade(), vo.getValor(),
-					vo.getSituacao(), vo.getReserva(), vo.getComprar(),
+					vo.getSituacao(), vo.getReserva(), vo.getCompra(),
 					vo.getProduto(), vo.getId());
 
 			if (DaoFactory.getItemDAO(em).inserir(item)) {
@@ -42,7 +42,7 @@ public class ItemBean implements ItemRemote, ItemLocal {
 		ItemVO vo = (ItemVO) requestDTO.get("ItemVO");
 		if (vo != null) {
 			Item item = new Item(vo.getQuantidade(), vo.getValor(),
-					vo.getSituacao(), vo.getReserva(), vo.getComprar(),
+					vo.getSituacao(), vo.getReserva(), vo.getCompra(),
 					vo.getProduto(), vo.getId());
 			if (DaoFactory.getItemDAO(em).alterar(item)) {
 				responseDTO.set("resposta", new Boolean(true));
@@ -79,7 +79,7 @@ public class ItemBean implements ItemRemote, ItemLocal {
 				item = (Item) lista.get(i);
 				ItemVO itemVO = new ItemVO(item.getQuantidade(),
 						item.getValor(), item.getSituacao(), item.getReserva(),
-						item.getComprar(), item.getProduto(), item.getId());
+						item.getCompra(), item.getProduto(), item.getId());
 				items[i] = itemVO;
 			}
 			responseDTO.set("listaItem", items);
@@ -96,7 +96,7 @@ public class ItemBean implements ItemRemote, ItemLocal {
 		if (lista != null) {
 			item = (Item) lista;
 			ItemVO itemVO = new ItemVO(item.getQuantidade(), item.getValor(),
-					item.getSituacao(), item.getReserva(), item.getComprar(),
+					item.getSituacao(), item.getReserva(), item.getCompra(),
 					item.getProduto(), item.getId());
 			responseDTO.set("getItem", itemVO);
 		}

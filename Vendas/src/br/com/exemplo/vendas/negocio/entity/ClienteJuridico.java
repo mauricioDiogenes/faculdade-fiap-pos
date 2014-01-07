@@ -4,16 +4,28 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+
 @Entity
-@Table(name="cliente_juridico")
 public class ClienteJuridico extends Cliente implements Serializable {
 
-	private static final long serialVersionUID = -3831500280786803770L;
+	private static final long serialVersionUID = 1974370346224922714L;
+
+	public ClienteJuridico() {
+
+	}
+
+	public ClienteJuridico(Cliente cliente) {
+		super(cliente);
+	}
+
+	public ClienteJuridico(Integer id, String nome, String endereco,
+			String telefone, String situacao) {
+		super(id, nome, endereco, telefone, situacao);
+	}
 
 	@Column
 	private String CNPJ;
-	
+
 	@Column
 	private String IE;
 

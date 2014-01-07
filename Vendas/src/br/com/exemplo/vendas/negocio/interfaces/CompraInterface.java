@@ -21,6 +21,6 @@ public interface CompraInterface
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 
 	public br.com.exemplo.vendas.util.dto.ServiceDTO getCompra(
-			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO, Integer codigo )
+			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO)
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 }

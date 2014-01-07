@@ -7,7 +7,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>
@@ -18,7 +18,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>
@@ -31,7 +31,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>
@@ -42,7 +42,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>
@@ -54,7 +54,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>
@@ -65,7 +65,7 @@
     <cacheable>true</cacheable>
     <providers>
         <provider>
-            <name>jboss@localhost:118080</name>
+            <name>jboss@localhost:18080</name>
         </provider>
     </providers>
   </service>

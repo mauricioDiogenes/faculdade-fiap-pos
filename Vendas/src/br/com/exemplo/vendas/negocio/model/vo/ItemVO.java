@@ -19,7 +19,7 @@ public class ItemVO implements Serializable {
 
 	private Reserva reserva;
 
-	private Compra comprar;
+	private Compra compra;
 
 	private Produto produto;
 
@@ -27,14 +27,14 @@ public class ItemVO implements Serializable {
 	}
 
 	public ItemVO(BigInteger quantidade, BigInteger valor, String situacao,
-			Reserva reserva, Compra comprar, Produto produto, Integer id) {
+			Reserva reserva, Compra compra, Produto produto, Integer id) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
 		this.valor = valor;
 		this.situacao = situacao;
 		this.reserva = reserva;
-		this.comprar = comprar;
+		this.compra = compra;
 		this.produto = produto;
 	}
 
@@ -78,12 +78,12 @@ public class ItemVO implements Serializable {
 		this.reserva = reserva;
 	}
 
-	public Compra getComprar() {
-		return comprar;
+	public Compra getCompra() {
+		return compra;
 	}
 
-	public void setComprar(Compra comprar) {
-		this.comprar = comprar;
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 
 	public Produto getProduto() {

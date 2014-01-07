@@ -15,7 +15,7 @@ public class ServiceProduto
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
-		requestDTO.set( "produtoVO", vo ) ;
+		requestDTO.set( "ProdutoVO", vo ) ;
 		responseDTO = BusinessDelegate.getInstance( ).inserirProduto( requestDTO ) ;
 		Boolean sucesso = ( Boolean ) responseDTO.get( "resposta" ) ;
 
