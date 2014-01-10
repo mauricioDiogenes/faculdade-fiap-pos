@@ -19,7 +19,6 @@ public class InserirReservaACT implements Action {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws LayerException {
 		
-		Integer codigo = new Integer(request.getParameter("codigo"));
 		Date data = new Date(request.getParameter("data"));
 		String atendente = request.getParameter("atendente");
 		String situacao = request.getParameter("situacao");
@@ -29,7 +28,7 @@ public class InserirReservaACT implements Action {
 		Cliente cliente = new Cliente();
 		Reserva reserva = new Reserva();
 
-		ReservaVO reservaVO = new ReservaVO(codigo, data, atendente, situacao,valor, cliente);
+		ReservaVO reservaVO = new ReservaVO(null, data, atendente, situacao,valor, cliente);
 		ServiceReserva service = new ServiceReserva();
 		Boolean sucesso = service.inserir(reservaVO);
 
