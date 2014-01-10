@@ -225,5 +225,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 6.0/lib/wstx.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 6.0/lib/xmlsec.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 6.0/lib/xnio-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/agenka/Downloads/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
