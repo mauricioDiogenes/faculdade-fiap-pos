@@ -546,8 +546,8 @@ public class BusinessDelegate
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 		try
 		{
-			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
-					.selecionarTodasReservas( requestDTO ) ;
+			responseDTO = ( ( ClienteInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.selecionarTodosCliente( requestDTO ) ;
 		}
 		catch (RemoteException remoteException)
 		{
