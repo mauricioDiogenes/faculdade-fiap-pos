@@ -35,7 +35,7 @@ public class Reserva implements Serializable{
 	@Column
 	private BigDecimal valor;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Cliente cliente;
 	
 	public Reserva(){

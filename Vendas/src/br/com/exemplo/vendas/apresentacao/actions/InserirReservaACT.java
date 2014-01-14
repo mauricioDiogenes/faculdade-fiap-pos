@@ -1,7 +1,6 @@
 package br.com.exemplo.vendas.apresentacao.actions;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +10,17 @@ import br.com.exemplo.vendas.apresentacao.service.ServiceReserva;
 import br.com.exemplo.vendas.apresentacao.web.Action;
 import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Reserva;
+import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 import br.com.exemplo.vendas.negocio.model.vo.ReservaVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 public class InserirReservaACT implements Action {
 
+	@SuppressWarnings("deprecation")
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) throws LayerException {
+		
+		request.getSession().setAttribute("listaClientes", null);
 		
 		Date data = new Date(request.getParameter("data"));
 		String atendente = request.getParameter("atendente");
@@ -27,13 +30,15 @@ public class InserirReservaACT implements Action {
 
 		Cliente cliente = new Cliente();
 		Reserva reserva = new Reserva();
-
-		ReservaVO reservaVO = new ReservaVO(null, data, atendente, situacao,valor, cliente);
+		cliente.setId(Integer.parseInt(clienteRequest));
+		ReservaVO reservaVO = new ReservaVO(null, data, atendente, situacao,valor, new ClienteVO(cliente));
 		ServiceReserva service = new ServiceReserva();
 		Boolean sucesso = service.inserir(reservaVO);
 
 		if (sucesso.booleanValue()) {
-			request.setAttribute("sucesso", sucesso);
+			return "index.html";
+		}else if(!sucesso.booleanValue()){
+			return "erro.html";
 		}
 		return "index.html";
 	}

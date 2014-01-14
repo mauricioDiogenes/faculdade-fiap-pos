@@ -10,7 +10,9 @@ import br.com.exemplo.vendas.negocio.interfaces.RecebeRequisicaoInterface;
 import br.com.exemplo.vendas.negocio.interfaces.ReservaInterface;
 import br.com.exemplo.vendas.negocio.interfaces.UsuarioInterface;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
+import br.com.exemplo.vendas.util.exception.BusinessException;
 import br.com.exemplo.vendas.util.exception.LayerException;
+import br.com.exemplo.vendas.util.exception.MsgException;
 import br.com.exemplo.vendas.util.exception.SysExceptionFactory;
 import br.com.exemplo.vendas.util.locator.ServiceLocator;
 import br.com.exemplo.vendas.util.locator.ServiceLocatorException;
@@ -481,6 +483,25 @@ public class BusinessDelegate
 		}
 		return responseDTO ;
 	}
+	
+	public ServiceDTO listarPorCliente( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ReservaBean/remote" ) )
+					.listarPorCliente( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
 
 	//*******Cliente*********
 	
@@ -548,6 +569,10 @@ public class BusinessDelegate
 		{
 			responseDTO = ( ( ClienteInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
 					.selecionarTodosCliente( requestDTO ) ;
+			if(responseDTO.get("listaCliente") == null){
+				throw new BusinessException(new MsgException(
+						"inserirCliente.jsp", "semcliente") );
+			}
 		}
 		catch (RemoteException remoteException)
 		{

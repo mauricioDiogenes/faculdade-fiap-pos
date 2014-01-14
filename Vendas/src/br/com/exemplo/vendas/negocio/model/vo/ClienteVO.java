@@ -2,6 +2,8 @@ package br.com.exemplo.vendas.negocio.model.vo;
 
 import java.io.Serializable;
 
+import br.com.exemplo.vendas.negocio.entity.Cliente;
+
 public class ClienteVO implements Serializable {
 
 	private Integer id;
@@ -20,6 +22,14 @@ public class ClienteVO implements Serializable {
 		this.endereco = vo.getEndereco();
 		this.telefone = vo.getTelefone();
 		this.situacao = vo.getSituacao();
+	}
+	
+	public ClienteVO(Cliente cliente) {
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.endereco = cliente.getEndereco();
+		this.telefone = cliente.getTelefone();
+		this.situacao = cliente.getSituacao();
 	}
 
 	public ClienteVO(Integer id, String nome, String endereco, String telefone,

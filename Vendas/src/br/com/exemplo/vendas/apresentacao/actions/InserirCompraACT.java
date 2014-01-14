@@ -18,11 +18,10 @@ public class InserirCompraACT implements Action
 {
 	
 	
+	@SuppressWarnings("deprecation")
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
 	{
-		
-		Integer numero = new Integer(request.getParameter("numero"));
 		Date data = new Date(request.getParameter("data"));
 		String responsavel = request.getParameter("responsavel");
 		String situacao = request.getParameter("situacao");
@@ -32,8 +31,9 @@ public class InserirCompraACT implements Action
 
 		Cliente cliente = new Cliente();
 		Reserva reserva = new Reserva();
-		
-		CompraVO compraVO = new CompraVO(numero, data, responsavel, situacao, valor, reserva, cliente);
+		cliente.setId(new Integer(clienteRequest));
+		reserva.setCodigo(new Integer(reservaRequest));
+		CompraVO compraVO = new CompraVO(null, data, responsavel, situacao, valor, reserva, cliente);
 		
 		ServiceCompra service = new ServiceCompra( ) ;
 		Boolean sucesso = service.inserir( compraVO ) ;

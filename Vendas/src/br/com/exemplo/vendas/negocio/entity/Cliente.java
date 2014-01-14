@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable{
@@ -21,6 +23,9 @@ public class Cliente implements Serializable{
 		
 	}
 	
+	public Cliente(Integer id){
+		this.id = id;
+	}
 
 	public Cliente(Cliente cliente){
 		this(cliente.getId(), cliente.getNome(), cliente.getEndereco(),
@@ -35,6 +40,14 @@ public class Cliente implements Serializable{
 		this.endereco = endereco;
 		this.telefone = telefone;
 		this.situacao = situacao;
+	}
+	public Cliente(ClienteVO vo) {
+		super();
+		this.id = vo.getId();
+		this.nome = vo.getNome();
+		this.endereco = vo.getEndereco();
+		this.telefone = vo.getTelefone();
+		this.situacao = vo.getSituacao();
 	}
 	
 

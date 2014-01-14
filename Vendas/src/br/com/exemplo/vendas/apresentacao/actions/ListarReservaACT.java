@@ -5,9 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.exemplo.vendas.apresentacao.service.ServiceCompra;
+import br.com.exemplo.vendas.apresentacao.service.ServiceReserva;
 import br.com.exemplo.vendas.apresentacao.web.Action;
-import br.com.exemplo.vendas.negocio.model.vo.CompraVO;
+import br.com.exemplo.vendas.negocio.model.vo.ReservaVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 public class ListarReservaACT implements Action
@@ -16,11 +16,12 @@ public class ListarReservaACT implements Action
 			throws LayerException
 	{
 
-		ServiceCompra service = new ServiceCompra( ) ;
-		List<CompraVO> lista = service.listar( ) ;
+		String page = request.getParameter("page");
+		ServiceReserva service = new ServiceReserva( ) ;
+		List<ReservaVO> lista = service.listar( );
 
-		request.getSession( ).setAttribute( "listaCompras", lista ) ;
+		request.getSession( ).setAttribute( "listarReserva", lista ) ;
 
-		return "cadastroCompras.jsp" ;
+		return page;
 	}
 }

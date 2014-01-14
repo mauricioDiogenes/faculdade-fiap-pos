@@ -15,12 +15,12 @@ public class ListarProdutosACT implements Action
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
 	{
-
+		String page = request.getParameter("page");
 		ServiceProduto service = new ServiceProduto( ) ;
 		List<ProdutoVO> lista = service.listar( ) ;
 
-		request.getSession( ).setAttribute( "listaProdutos", lista ) ;
+		request.getSession( ).setAttribute( "listarProdutos", lista ) ;
 
-		return "cadastroProduto.jsp" ;
+		return page;
 	}
 }

@@ -5,7 +5,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Compra;
+import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class CompraDAO extends GenericDAO<Compra> {
 	public CompraDAO(EntityManager em) {
@@ -32,6 +34,14 @@ public class CompraDAO extends GenericDAO<Compra> {
 			}
 
 			if (existenteCompra == null) {
+				Cliente cliente = DaoFactory.getClienteDAO(em).find(
+						compra.getCliente());
+				compra.setCliente(cliente);
+				
+				compra.setReserva(DaoFactory.getReservaDAO(em).localizarPorId(
+						compra.getReserva()));
+				compra.setCliente(DaoFactory.getClienteDAO(em).find(
+						compra.getCliente()));
 				em.persist(compra);
 			} else {
 				compra.setNumero(existenteCompra.getNumero());

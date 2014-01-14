@@ -1,6 +1,5 @@
 package br.com.exemplo.vendas.negocio.ejb;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,7 +9,9 @@ import javax.persistence.PersistenceContext;
 import br.com.exemplo.vendas.negocio.dao.DaoFactory;
 import br.com.exemplo.vendas.negocio.ejb.interfaces.ReservaLocal;
 import br.com.exemplo.vendas.negocio.ejb.interfaces.ReservaRemote;
+import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Reserva;
+import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 import br.com.exemplo.vendas.negocio.model.vo.ReservaVO;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
 import br.com.exemplo.vendas.util.exception.LayerException;
@@ -22,9 +23,11 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 
 	public ServiceDTO inserirReserva(ServiceDTO requestDTO) throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
+		System.out.println("inserindo reserva");
 		ReservaVO vo = (ReservaVO) requestDTO.get("ReservaVO");
 		if (vo != null) {
-			Reserva reserva = new Reserva(vo.getCodigo(), vo.getData(), vo.getAtendente(), vo.getSituacao(), vo.getValor(), vo.getCliente());
+			Cliente cliente = new Cliente(vo.getCliente());
+			Reserva reserva = new Reserva(vo.getCodigo(), vo.getData(), vo.getAtendente(), vo.getSituacao(), vo.getValor(), cliente);
 			if (DaoFactory.getReservaDAO(em).inserir(reserva)) {
 				responseDTO.set("resposta", new Boolean(true));
 			} else {
@@ -38,7 +41,8 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 		ServiceDTO responseDTO = new ServiceDTO();
 		ReservaVO vo = (ReservaVO) requestDTO.get("ReservaVO");
 		if (vo != null) {
-			Reserva reserva = new Reserva(vo.getCodigo(), vo.getData(), vo.getAtendente(), vo.getSituacao(), vo.getValor(), vo.getCliente());
+			Cliente cliente = new Cliente(vo.getCliente());
+			Reserva reserva = new Reserva(vo.getCodigo(), vo.getData(), vo.getAtendente(), vo.getSituacao(), vo.getValor(), cliente);
 			if (DaoFactory.getReservaDAO(em).alterar(reserva)) {
 				responseDTO.set("resposta", new Boolean(true));
 			} else {
@@ -72,13 +76,33 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 			ReservaVO[] reservas = new ReservaVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {
 				reserva = (Reserva) lista.get(i);
-				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), reserva.getCliente());
+				ClienteVO cliente = new ClienteVO(reserva.getCliente());
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
 				reservas[i] = reservaVO;
 			}
 			responseDTO.set("listaReserva", reservas);
 		}
 		return responseDTO;
 	}
+	
+	public ServiceDTO listarPorCliente(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		ClienteVO clienteVO = (ClienteVO)requestDTO.get("clienteVO");
+		List<Reserva> lista = DaoFactory.getReservaDAO(em).listarPorCliente(clienteVO.getId());
+		if ((lista != null) && (!lista.isEmpty())) {
+			ReservaVO[] reservas = new ReservaVO[lista.size()];
+			for (int i = 0; i < lista.size(); i++) {
+				Reserva reserva = (Reserva) lista.get(i);
+				ClienteVO cliente = new ClienteVO(reserva.getCliente());
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+				reservas[i] = reservaVO;
+			}
+			responseDTO.set("listaReserva", reservas);
+		}
+		return responseDTO;
+	}
+	
 
 	public ServiceDTO getReserva(ServiceDTO requestDTO, Integer id)
 			throws LayerException {
@@ -88,7 +112,8 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 		Reserva lista = DaoFactory.getReservaDAO(em).localizarPorId(reserva);
 		if (lista != null) {
 			reserva = (Reserva) lista;
-			ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), reserva.getCliente());
+			ClienteVO cliente = new ClienteVO(reserva.getCliente());
+			ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
 			responseDTO.set("getReserva", reservaVO);
 		}
 		return responseDTO;

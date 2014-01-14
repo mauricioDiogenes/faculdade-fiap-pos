@@ -1,6 +1,5 @@
 package br.com.exemplo.vendas.apresentacao.actions ;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import br.com.exemplo.vendas.apresentacao.web.Action;
 import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
-public class ListarClientesParaReservaACT implements Action
+public class findClienteACT implements Action
 {
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
@@ -19,8 +18,17 @@ public class ListarClientesParaReservaACT implements Action
 
 		ServiceCliente service = new ServiceCliente( ) ;
 		List<ClienteVO> lista = service.listar( ) ;
-		request.getSession( ).setAttribute( "listaClientes", lista) ;
+		if(lista != null){
+			request.getSession( ).setAttribute( "listaClientes", lista) ;
+		}
 		System.out.println("Listando Clientes");
-		return "inserirReserva.jsp" ;
+		if("inserirReserva".equals(request.getParameter("page"))){
+			return "inserirReserva.jsp" ;	
+		}else if("inserirCompra".equals(request.getParameter("page"))){
+			return "inserirCompra.jsp" ;
+		}else{
+			return "";
+		}
+		
 	}
 }
