@@ -1,14 +1,16 @@
 package br.com.exemplo.vendas.apresentacao.web ;
 
-import java.io.IOException ;
-import java.util.HashMap ;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import javax.servlet.http.HttpServlet ;
-import javax.servlet.http.HttpServletRequest ;
-import javax.servlet.http.HttpServletResponse ;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import br.com.exemplo.vendas.util.Util ;
-import br.com.exemplo.vendas.util.exception.LayerException ;
+import br.com.exemplo.vendas.util.Util;
+import br.com.exemplo.vendas.util.exception.LayerException;
+import br.com.exemplo.vendas.util.exception.MsgException;
 
 public class BusinessController extends HttpServlet
 {
@@ -38,6 +40,15 @@ public class BusinessController extends HttpServlet
 		}
 		catch (LayerException layerExcpetion)
 		{
+			for (Iterator iterator = layerExcpetion.getMsgExceptionList()
+					.getMsgException().iterator(); iterator.hasNext();) {
+				MsgException msg = (MsgException) iterator.next();
+				try{
+					_response.sendRedirect(msg.getCode()) ;
+				}catch (IOException ioexception){
+					ioexception.printStackTrace();
+				}
+			}
 			// verificar se é businessException ou sysException e
 			// realiza o tratamento (por exemplo: forward para paginas
 			// diferentes)

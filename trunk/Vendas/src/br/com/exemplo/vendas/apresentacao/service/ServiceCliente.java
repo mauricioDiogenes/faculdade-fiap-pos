@@ -28,8 +28,11 @@ public class ServiceCliente
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
 		responseDTO = BusinessDelegate.getInstance( ).findCliente( requestDTO ) ;
-		ClienteVO[ ] clientes = ( ClienteVO[ ] ) responseDTO.get( "listaCliente" ) ;
-		List<ClienteVO> lista = Arrays.asList( clientes ) ;
+		List<ClienteVO> lista = null;
+		if(responseDTO.getAllAttributes().size() > 0){
+			ClienteVO[ ] clientes = ( ClienteVO[ ] ) responseDTO.get( "listaCliente" ) ;
+			lista = Arrays.asList( clientes ) ;
+		}
 		return lista ;
 	}
 

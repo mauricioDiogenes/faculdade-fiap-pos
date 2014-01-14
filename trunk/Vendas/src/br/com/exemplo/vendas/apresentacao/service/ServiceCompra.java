@@ -26,7 +26,7 @@ public class ServiceCompra
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
-		requestDTO.set( "compraVO", vo ) ;
+		requestDTO.set( "CompraVO", vo ) ;
 		responseDTO = BusinessDelegate.getInstance( ).inserirCompra( requestDTO ) ;
 		Boolean sucesso = ( Boolean ) responseDTO.get( "resposta" ) ;
 

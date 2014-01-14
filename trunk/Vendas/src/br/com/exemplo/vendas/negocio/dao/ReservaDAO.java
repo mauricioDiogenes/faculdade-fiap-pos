@@ -1,10 +1,13 @@
 package br.com.exemplo.vendas.negocio.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class ReservaDAO extends GenericDAO<Reserva> {
@@ -32,6 +35,9 @@ public class ReservaDAO extends GenericDAO<Reserva> {
 			}
 
 			if (existenteReserva == null) {
+				Cliente cliente = DaoFactory.getClienteDAO(em).find(
+						reserva.getCliente());
+				reserva.setCliente(cliente);
 				em.persist(reserva);
 			} else {
 				reserva.setCodigo(existenteReserva.getCodigo());
@@ -91,6 +97,22 @@ public class ReservaDAO extends GenericDAO<Reserva> {
 			Query q = em.createQuery("from Reserva where codigo = :codigo");
 			q.setParameter("codigo", reserva.getCodigo());
 			obj = (Reserva) q.getSingleResult();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
+	
+	
+	public List<Reserva> listarPorCliente(Integer idCliente) {
+		List<Reserva> obj = null;
+		try {
+			Query q = em.createQuery(
+					"from Reserva r WHERE r.cliente.id=" + idCliente);
+				//.setParameter("idCliente", idCliente);
+			obj = (List<Reserva>)q.getResultList();
 		} catch (Exception e) {
 			if (debugInfo) {
 				e.printStackTrace();

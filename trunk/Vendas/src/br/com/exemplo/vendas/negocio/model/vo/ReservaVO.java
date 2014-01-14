@@ -27,13 +27,13 @@ public class ReservaVO implements Serializable {
 
 	private BigDecimal valor;
 
-	private Cliente cliente;
+	private ClienteVO cliente;
 
 	public ReservaVO() {
 	}
 
 	public ReservaVO(Integer codigo, Date data, String atendente,
-			String situacao, BigDecimal valor, Cliente cliente) {
+			String situacao, BigDecimal valor, ClienteVO cliente) {
 		super();
 		this.codigo = codigo;
 		this.data = data;
@@ -83,11 +83,11 @@ public class ReservaVO implements Serializable {
 		this.valor = valor;
 	}
 
-	public Cliente getCliente() {
+	public ClienteVO getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(ClienteVO cliente) {
 		this.cliente = cliente;
 	}
 
