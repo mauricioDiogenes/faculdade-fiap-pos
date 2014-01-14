@@ -2,7 +2,7 @@
 
 <html> 
 	<head>
-		<title>Cadastrar Usuario</title>
+		<title>Cadastrar Produto</title>
 		<script type="text/javascript">
 		<!--
 			function setarFoco( campo ) {

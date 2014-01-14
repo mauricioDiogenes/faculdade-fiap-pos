@@ -1,8 +1,17 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+<c:if test="${ empty sessionScope.listarReserva }">
+	<c:redirect url="vendas.do?action=ListarReserva&page=inserirItem.jsp" />
+</c:if>
+
+<c:if test="${ empty sessionScope.listarProdutos }">
+	<c:redirect url="vendas.do?action=ListarProdutos&page=inserirItem.jsp" />
+</c:if>
 
 <html> 
 	<head>
-		<title>Cadastrar Usuario</title>
+		<title>Cadastrar Item</title>
 		<script type="text/javascript">
 		<!--
 			function setarFoco( campo ) {
@@ -87,13 +96,34 @@
 	      					<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Reserva&nbsp;</div></td>
 					      	<td bgcolor="#F5F5F7"><input name="estoque" type="text" class="forms" size="20" maxlength="20" /></td>
 					    </tr>
-					    <tr id="uc54_status">
-					      	<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Produto&nbsp;</div></td>
-					      	<td bgcolor="#F5F5F7" class="texto_titulos">
-					      		<input name="produto" type="radio" value="produto1" checked="checked" /> Produto1
-					        	<input name="produto" type="radio" value="produto1" /> Produto1
-					        </td>
+					    
+					    
+					    <tr>
+						    <td width="200" height="20">&nbsp;</td>
+						    <td>
+						    	<c:if test="${ not empty sessionScope.reservaList }">
+									<select name="reserva" id="reserva">
+							      		<c:forEach var="reserva" items="${sessionScope.reservaList}">
+							      			<option value="${reserva.codigo }">${reserva.codigo}</option>
+								      	</c:forEach>
+									</select>
+						    	</c:if>
+						    </td>
 					    </tr>
+
+					    <tr>
+						    <td width="200" height="20">&nbsp;</td>
+						    <td>
+						    	<c:if test="${ not empty sessionScope.listarProdutos }">
+									<select name="reserva" id="reserva">
+							      		<c:forEach var="produto" items="${sessionScope.listarProdutos}">
+							      			<option value="${produto.codigo }">${produto.codigo} ${produto.descricao}</option>
+								      	</c:forEach>
+									</select>
+						    	</c:if>
+						    </td>
+					    </tr>
+
 				 	</table>
 					<table width="95%" border="0" cellpadding="0" cellspacing="3">				    
 						<tr id="uc54_Cadastrar">
