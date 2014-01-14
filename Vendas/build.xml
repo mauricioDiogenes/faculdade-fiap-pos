@@ -3,8 +3,8 @@
 <project name="Projeto Exemplo - J2EE" default="_packaging_generation_">
 
 	
-	<property name="jboss.home" value="C:/Users/agenka/Desktop/jboss-5.1.0.GA" />
-	<property name="tomcat.web" value="C:/Program Files/Apache Software Foundation/Tomcat 6.0" />
+	<property name="jboss.home" value="F:/Programas/jboss-6.1.0.Final" />
+	<property name="tomcat.web" value="F:/Programas/Tomcat6" />
 	
 	<property name="projeto.webservice" value="Vendas_3_0_WebService" />
 	<property name="jboss.server.config" value="default" />
