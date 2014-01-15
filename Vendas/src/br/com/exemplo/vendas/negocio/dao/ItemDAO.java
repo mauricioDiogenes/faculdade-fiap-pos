@@ -5,7 +5,10 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import br.com.exemplo.vendas.negocio.entity.Compra;
 import br.com.exemplo.vendas.negocio.entity.Item;
+import br.com.exemplo.vendas.negocio.entity.Produto;
+import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class ItemDAO extends GenericDAO<Item> {
 	public ItemDAO(EntityManager em) {
@@ -32,7 +35,21 @@ public class ItemDAO extends GenericDAO<Item> {
 			}
 
 			if (existenteItem == null) {
-				em.persist(item);
+				Reserva reserva = DaoFactory.getReservaDAO(em).localizarPorId(
+						item.getReserva());
+				Compra compra = DaoFactory.getCompraDAO(em).localizarPorId(
+						item.getCompra());
+				Produto produto = DaoFactory.getProdutoDAO(em)
+						.localizarPorCodigo(item.getProduto());
+				item.setReserva(reserva);
+				item.setCompra(compra);
+				item.setProduto(produto);
+				try{
+					em.persist(item);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
 			} else {
 				item.setId(existenteItem.getId());
 			}

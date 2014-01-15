@@ -1,6 +1,7 @@
 
 package br.com.exemplo.vendas.apresentacao.service ;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,13 +27,19 @@ public class ServiceReserva
 
 	public List<ReservaVO> listar( ) throws LayerException
 	{
+		List<ReservaVO> lista = null;
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
 		responseDTO = BusinessDelegate.getInstance( ).selectionarTodasReservas( requestDTO ) ;
 		ReservaVO[ ] reservas = ( ReservaVO[ ] ) responseDTO.get( "listaReserva" ) ;
-		List<ReservaVO> lista = Arrays.asList( reservas ) ;
-		return lista ;
+		if(reservas.length > 0){
+			lista = new ArrayList();
+			for (int i = 0; i < reservas.length; i++) {
+				lista.add(reservas[i]);
+			}
+		}
+		return lista;
 	}
 
 	public Boolean alterar( ReservaVO vo ) throws LayerException

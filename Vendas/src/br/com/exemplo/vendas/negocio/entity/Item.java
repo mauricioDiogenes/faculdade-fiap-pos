@@ -1,19 +1,27 @@
 package br.com.exemplo.vendas.negocio.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Item implements Serializable{
 
 
-	private static final long serialVersionUID = 1703816910654885123L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6426176302004903672L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,24 +31,24 @@ public class Item implements Serializable{
 	private BigInteger quantidade;
 
 	@Column
-	private BigInteger valor;
+	private BigDecimal valor;
 
 	@Column
 	private String situacao;
 
-	@Column
+	@OneToOne(cascade = CascadeType.ALL)
 	private Reserva reserva;
 
-	@Column
+	@OneToOne(cascade = CascadeType.ALL)
 	private Compra compra;
 
-	@Column
+	@OneToOne(cascade = CascadeType.ALL)
 	private Produto produto;
 
 	public Item() {
 	}
 
-	public Item(BigInteger quantidade, BigInteger valor, String situacao,
+	public Item(BigInteger quantidade, BigDecimal valor, String situacao,
 			Reserva reserva, Compra compra, Produto produto, Integer id) {
 		super();
 		this.id = id;
@@ -68,11 +76,11 @@ public class Item implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public BigInteger getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(BigInteger valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

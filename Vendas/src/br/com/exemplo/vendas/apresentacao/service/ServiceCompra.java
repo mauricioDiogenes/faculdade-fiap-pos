@@ -39,7 +39,7 @@ public class ServiceCompra
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
 		responseDTO = BusinessDelegate.getInstance( ).selectionarTodasCompras( requestDTO ) ;
-		CompraVO[ ] compras = ( CompraVO[ ] ) responseDTO.get( "litaCompra" ) ;
+		CompraVO[ ] compras = ( CompraVO[ ] ) responseDTO.get( "listaCompra" ) ;
 		List<CompraVO> lista = Arrays.asList( compras ) ;
 		return lista ;
 	}
@@ -67,4 +67,20 @@ public class ServiceCompra
 
 		return sucesso ;
 	}
+	
+	public List<CompraVO> listarValorEntre(int val1, int val2) throws LayerException
+	{
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		requestDTO.set("valor1", val1);
+		requestDTO.set("valor2", val2);
+		responseDTO = BusinessDelegate.getInstance( ).listarValorEntre( requestDTO ) ;
+		CompraVO[ ] compras = ( CompraVO[ ] ) responseDTO.get( "listaCompra" ) ;
+		List<CompraVO> lista = Arrays.asList( compras ) ;
+		return lista ;
+	}
+	
+	
+	
+	
 }

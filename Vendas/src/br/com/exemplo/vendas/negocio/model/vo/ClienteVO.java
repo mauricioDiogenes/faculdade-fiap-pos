@@ -6,6 +6,11 @@ import br.com.exemplo.vendas.negocio.entity.Cliente;
 
 public class ClienteVO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6114560390106301210L;
+
 	private Integer id;
 
 	private String nome;

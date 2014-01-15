@@ -9,6 +9,10 @@
 	<c:redirect url="vendas.do?action=ListarProdutos&page=inserirItem.jsp" />
 </c:if>
 
+<c:if test="${ empty sessionScope.listaCompras }">
+	<c:redirect url="vendas.do?action=ListarCompra&page=inserirItem.jsp" />
+</c:if>
+
 <html> 
 	<head>
 		<title>Cadastrar Item</title>
@@ -23,39 +27,11 @@
 			function setStatus( texto ) {
 				window.status=texto;
 			}
-		
-			function validationForm() {
-				var descricao 	  			= document.formulario.descricao.value;
-				var preco 	  			= document.formulario.preco.value;
-				var estoque 	  			= document.formulario.estoque.value;
-				var msgError			= "Campo obrigatório não informado";
-				
-				if ( descricao == "" || descricao <= 0 ) 
-				{
-					window.alert( msgError );
-					document.formulario.login.focus();
-					return false;
-				}
-				if ( preco == "" || preco <= 0 ) 
-				{
-					window.alert( msgError );
-					document.formulario.senha.focus();
-					return false;
-				}
-				if ( estoque == "" || estoque <= 0 ) 
-				{
-					window.alert( msgError );
-					document.formulario.grupo.focus();
-					return false;
-				}
-			}
 
 			function confirmation() {
-				if ( validationForm() ) {
-					var answer = confirm("Confirma a inserção ?")
-					if ( answer ) {
-						document.formulario.submit();
-					}
+				var answer = confirm("Confirma a inserção ?");
+				if ( answer ) {
+					document.formulario.submit();
 				}	
 			}
 		//-->
@@ -72,9 +48,9 @@
 	<div id="conteudo-fb">
 		<div id="margem">
 			<div id="uc54_tela_principal_cadastrar_sistema">
-				<span class="texto_corpo_pequeno">Cadastros  </span><span class="texto_titulos_pequeno">&raquo; Cadastrar Produto <br />  <br /></span>  <span class="texto_titulos_grande">&raquo; Cadastrar Usuário <br />  <br /></span><span class="texto_titulos_grande"> </span>
+				<span class="texto_corpo_pequeno">Cadastros  </span><span class="texto_titulos_pequeno">&raquo; Cadastrar Item <br />  <br /></span>  <span class="texto_titulos_grande">&raquo; Cadastrar Usuário <br />  <br /></span><span class="texto_titulos_grande"> </span>
 				
-				<form id="formulario" name="formulario" action="vendas.do?action=InserirProduto" method="post">
+				<form id="formulario" name="formulario" action="vendas.do?action=InserirItem" method="post">
 	  				
 	  				<table width="95%" border="0" cellspacing="3" cellpadding="0">
 	    				<tr>
@@ -82,29 +58,37 @@
 	    				</tr>
 	    				<tr>
 	      					<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Quantidade&nbsp;</div></td>
-					      	<td bgcolor="#F5F5F7"><input name="descricao" type="text" class="forms" size="15" maxlength="15" /></td>
+					      	<td bgcolor="#F5F5F7"><input name="quantidade" type="text" class="forms" size="15" maxlength="15" /></td>
 					    </tr>
 					    <tr>
 	      					<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Valor&nbsp;</div></td>
-					      	<td bgcolor="#F5F5F7"><input name="preco" type="text" class="forms" size="8" maxlength="8" /></td>
+					      	<td bgcolor="#F5F5F7"><input name="valor" type="text" class="forms" size="8" maxlength="8" /></td>
 					    </tr>
 					    <tr>
 	      					<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Situacao&nbsp;</div></td>
-					      	<td bgcolor="#F5F5F7"><input name="estoque" type="text" class="forms" size="20" maxlength="20" /></td>
-					    </tr>
-					    <tr>
-	      					<td width="200" height="20" bgcolor="#F5F5F7" class="texto_corpo"><div align="right"><span class="texto_vermelho">*</span> Reserva&nbsp;</div></td>
-					      	<td bgcolor="#F5F5F7"><input name="estoque" type="text" class="forms" size="20" maxlength="20" /></td>
+					      	<td bgcolor="#F5F5F7"><input name="situacao" type="text" class="forms" size="20" maxlength="20" /></td>
 					    </tr>
 					    
-					    
 					    <tr>
-						    <td width="200" height="20">&nbsp;</td>
+						    <td width="200" height="20">Reserva&nbsp;</td>
 						    <td>
-						    	<c:if test="${ not empty sessionScope.reservaList }">
+						    	<c:if test="${ not empty sessionScope.listarReserva }">
 									<select name="reserva" id="reserva">
-							      		<c:forEach var="reserva" items="${sessionScope.reservaList}">
+							      		<c:forEach var="reserva" items="${sessionScope.listarReserva}">
 							      			<option value="${reserva.codigo }">${reserva.codigo}</option>
+								      	</c:forEach>
+									</select>
+						    	</c:if>
+						    </td>
+					    </tr>
+					    
+					    <tr>
+						    <td width="200" height="20">Compra&nbsp;</td>
+						    <td>
+						    	<c:if test="${ not empty sessionScope.listaCompras }">
+									<select name="compra" id="compra">
+							      		<c:forEach var="compra" items="${sessionScope.listaCompras}">
+							      			<option value="${compra.numero}">${compra.numero}</option>
 								      	</c:forEach>
 									</select>
 						    	</c:if>
@@ -112,10 +96,10 @@
 					    </tr>
 
 					    <tr>
-						    <td width="200" height="20">&nbsp;</td>
+						    <td width="200" height="20">Produto&nbsp;</td>
 						    <td>
 						    	<c:if test="${ not empty sessionScope.listarProdutos }">
-									<select name="reserva" id="reserva">
+									<select name="produto" id="produto">
 							      		<c:forEach var="produto" items="${sessionScope.listarProdutos}">
 							      			<option value="${produto.codigo }">${produto.codigo} ${produto.descricao}</option>
 								      	</c:forEach>

@@ -23,4 +23,10 @@ public interface CompraInterface
 	public br.com.exemplo.vendas.util.dto.ServiceDTO getCompra(
 			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO)
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
+	
+	public br.com.exemplo.vendas.util.dto.ServiceDTO listarValorEntre(
+			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO)
+			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
+	
 }
+

@@ -2,7 +2,6 @@ package br.com.exemplo.vendas.negocio.model.vo ;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 import br.com.exemplo.vendas.negocio.entity.Cliente;
@@ -10,6 +9,10 @@ import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class CompraVO implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 792902696334733058L;
 	private Integer numero;
 	private Date data;
 	private String responsavel;

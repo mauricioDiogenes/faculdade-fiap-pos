@@ -1,6 +1,5 @@
 package br.com.exemplo.vendas.negocio.entity;
 
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -12,9 +11,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 
-	private static final long serialVersionUID = 1663957961878354379L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -472510834628340848L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +30,7 @@ public class Produto implements Serializable{
 
 	@Column
 	private String estoque;
-	
+
 	public Produto(Integer codigo, String descricao, BigDecimal preco,
 			String estoque) {
 		super();
@@ -36,6 +38,10 @@ public class Produto implements Serializable{
 		this.descricao = descricao;
 		this.preco = preco;
 		this.estoque = estoque;
+	}
+
+	public Produto(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Produto() {

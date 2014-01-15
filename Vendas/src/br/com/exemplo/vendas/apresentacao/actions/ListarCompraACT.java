@@ -15,12 +15,13 @@ public class ListarCompraACT implements Action
 	public String execute( HttpServletRequest request, HttpServletResponse response )
 			throws LayerException
 	{
-
+		
+		String page = request.getParameter("page");
 		ServiceCompra service = new ServiceCompra( ) ;
 		List<CompraVO> lista = service.listar( ) ;
 
 		request.getSession( ).setAttribute( "listaCompras", lista ) ;
 
-		return "cadastroCompras.jsp" ;
+		return page;
 	}
 }

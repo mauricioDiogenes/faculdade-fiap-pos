@@ -1,8 +1,5 @@
 package br.com.exemplo.vendas.negocio.ejb;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,9 +9,7 @@ import javax.persistence.PersistenceContext;
 import br.com.exemplo.vendas.negocio.dao.DaoFactory;
 import br.com.exemplo.vendas.negocio.ejb.interfaces.CompraLocal;
 import br.com.exemplo.vendas.negocio.ejb.interfaces.CompraRemote;
-import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Compra;
-import br.com.exemplo.vendas.negocio.entity.Reserva;
 import br.com.exemplo.vendas.negocio.model.vo.CompraVO;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
 import br.com.exemplo.vendas.util.exception.LayerException;
@@ -113,4 +108,27 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		return responseDTO;
 	}
 
+	public ServiceDTO listarValorEntre(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		Compra compra = null;
+		int val1 = Integer.parseInt(requestDTO.get("valor1").toString());
+		int val2 = Integer.parseInt(requestDTO.get("valor2").toString());
+		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre(val1, val2);
+		if ((lista != null) && (!lista.isEmpty())) {
+			CompraVO[] comprasVO = new CompraVO[lista.size()];
+			for (int i = 0; i < lista.size(); i++) {
+				compra = (Compra) lista.get(i);
+				CompraVO vo = new CompraVO(compra.getNumero(),
+						compra.getData(), compra.getResponsavel(),
+						compra.getSituacao(), compra.getValor(),
+						compra.getReserva(), compra.getCliente());
+				comprasVO[i] = vo;
+
+			}
+			responseDTO.set("listaCompra", comprasVO);
+		}
+		return responseDTO;
+	}
+	
 }
