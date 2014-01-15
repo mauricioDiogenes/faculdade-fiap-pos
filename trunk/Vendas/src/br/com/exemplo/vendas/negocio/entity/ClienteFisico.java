@@ -9,6 +9,11 @@ import javax.persistence.Entity;
 @Entity
 public class ClienteFisico extends Cliente implements Serializable {
 
+	
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 4096229010954491432L;
 
 	public ClienteFisico(Integer id, String nome, String endereco,

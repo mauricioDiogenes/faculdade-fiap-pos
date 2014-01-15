@@ -405,6 +405,25 @@ public class BusinessDelegate
 		return responseDTO ;
 	}
 	
+	public ServiceDTO listarValorEntre( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( CompraInterface ) serviceLocator.getService( "CompraBean/remote" ) )
+					.listarValorEntre( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+	
 	
 	//*******Reserva*********
 	

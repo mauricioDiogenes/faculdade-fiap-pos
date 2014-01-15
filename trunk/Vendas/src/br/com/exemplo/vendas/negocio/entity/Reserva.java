@@ -15,9 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Reserva implements Serializable{
+public class Reserva implements Serializable {
 
-	private static final long serialVersionUID = -5983632021074300535L;
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1798821853102905675L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,11 +40,15 @@ public class Reserva implements Serializable{
 	@Column
 	private BigDecimal valor;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cliente cliente;
-	
-	public Reserva(){
-		
+
+	public Reserva() {
+
+	}
+
+	public Reserva(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Reserva(Integer codigo, Date data, String atendente,

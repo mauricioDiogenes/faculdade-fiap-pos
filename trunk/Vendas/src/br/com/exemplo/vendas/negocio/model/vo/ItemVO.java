@@ -1,6 +1,7 @@
 package br.com.exemplo.vendas.negocio.model.vo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import br.com.exemplo.vendas.negocio.entity.Compra;
@@ -9,11 +10,16 @@ import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class ItemVO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4658321814604753364L;
+
 	private Integer id;
 
 	private BigInteger quantidade;
 
-	private BigInteger valor;
+	private BigDecimal valor;
 
 	private String situacao;
 
@@ -26,7 +32,7 @@ public class ItemVO implements Serializable {
 	public ItemVO() {
 	}
 
-	public ItemVO(BigInteger quantidade, BigInteger valor, String situacao,
+	public ItemVO(BigInteger quantidade, BigDecimal valor, String situacao,
 			Reserva reserva, Compra compra, Produto produto, Integer id) {
 		super();
 		this.id = id;
@@ -54,11 +60,11 @@ public class ItemVO implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public BigInteger getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(BigInteger valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

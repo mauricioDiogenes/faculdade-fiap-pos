@@ -11,13 +11,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Compra implements Serializable{
 
-	private static final long serialVersionUID = 7639030727551914737L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6101755760977795689L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,15 +38,18 @@ public class Compra implements Serializable{
 	@Column
 	private BigDecimal valor;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Reserva reserva;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Cliente cliente;
 
 	public Compra(){
 		
 	}
+	public Compra(Integer numero){
+		this.numero = numero;
+	}	
 			
 	public Compra(Integer numero, Date data, String responsavel,
 			String situacao, BigDecimal valor, Reserva reserva, Cliente cliente) {

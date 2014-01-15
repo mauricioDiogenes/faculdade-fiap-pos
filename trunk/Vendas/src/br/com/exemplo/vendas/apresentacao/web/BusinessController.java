@@ -44,7 +44,7 @@ public class BusinessController extends HttpServlet
 					.getMsgException().iterator(); iterator.hasNext();) {
 				MsgException msg = (MsgException) iterator.next();
 				try{
-					_response.sendRedirect(msg.getCode()) ;
+					_response.sendRedirect(msg.getCode());
 				}catch (IOException ioexception){
 					ioexception.printStackTrace();
 				}

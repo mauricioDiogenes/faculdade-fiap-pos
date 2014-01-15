@@ -17,7 +17,12 @@ import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable{
 
-	private static final long serialVersionUID = -9125367753983052403L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3545009067181834222L;
+
+
 
 	public Cliente(){
 		
@@ -41,6 +46,7 @@ public class Cliente implements Serializable{
 		this.telefone = telefone;
 		this.situacao = situacao;
 	}
+	
 	public Cliente(ClienteVO vo) {
 		super();
 		this.id = vo.getId();

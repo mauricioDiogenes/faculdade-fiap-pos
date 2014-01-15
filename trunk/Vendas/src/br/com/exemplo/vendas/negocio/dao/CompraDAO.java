@@ -1,5 +1,7 @@
 package br.com.exemplo.vendas.negocio.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
@@ -7,7 +9,6 @@ import javax.persistence.Query;
 
 import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Compra;
-import br.com.exemplo.vendas.negocio.entity.Reserva;
 
 public class CompraDAO extends GenericDAO<Compra> {
 	public CompraDAO(EntityManager em) {
@@ -108,5 +109,24 @@ public class CompraDAO extends GenericDAO<Compra> {
 		}
 		return obj;
 	}
+	
+	public List<Compra> listarValorEntre(int val1, int val2) {
+		List<Compra> obj = null;
+		boolean result = false;
+		try {
+			Query q = em.createQuery("from Compra c where c.valor between :valor1 AND :valor2");
+			q.setParameter("valor1", val1);
+			q.setParameter("valor2", val2);
+			obj = (List<Compra>) q.getResultList();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
+	
+	
+	
 
 }

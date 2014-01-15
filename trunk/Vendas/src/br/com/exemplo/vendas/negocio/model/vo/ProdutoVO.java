@@ -2,9 +2,13 @@ package br.com.exemplo.vendas.negocio.model.vo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 public class ProdutoVO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1544932225823990638L;
 
 	private Integer codigo;
 
