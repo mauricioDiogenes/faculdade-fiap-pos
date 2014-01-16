@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.exemplo.vendas.apresentacao.delegate.BusinessDelegate;
+import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
 import br.com.exemplo.vendas.util.exception.LayerException;
@@ -58,5 +59,18 @@ public class ServiceCliente
 		Boolean sucesso = ( Boolean ) responseDTO.get( "resposta" ) ;
 
 		return sucesso ;
+	}
+	
+	public List<ClienteVO> listarClientesComCompra() throws LayerException{
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+
+		responseDTO = BusinessDelegate.getInstance( ).selecionarClientesComCompra( requestDTO ) ;
+		List<ClienteVO> lista = null;
+		if(responseDTO.getAllAttributes().size() > 0){
+			ClienteVO[ ] clientes = ( ClienteVO[ ] ) responseDTO.get( "listaCliente" ) ;
+			lista = Arrays.asList( clientes ) ;
+		}
+		return lista;
 	}
 }

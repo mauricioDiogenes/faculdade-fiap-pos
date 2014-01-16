@@ -1,5 +1,7 @@
 package br.com.exemplo.vendas.negocio.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
@@ -98,5 +100,19 @@ public class ClienteDAO extends GenericDAO<Cliente> {
 		}
 		return obj;
 	}
+	
+	public List<Cliente> selecionarClientesComCompra() {
+		List<Cliente> obj = null;
+		try {
+			Query q = em.createQuery("from Cliente cli INNER JOIN Compra com");
+			obj =  (List<Cliente>)q.getResultList();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
+	
 
 }

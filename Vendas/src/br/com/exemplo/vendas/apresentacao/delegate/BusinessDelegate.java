@@ -228,6 +228,26 @@ public class BusinessDelegate
 		return responseDTO ;
 	}
 	
+
+	public ServiceDTO listarPorPrecoEstoque( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ProdutoInterface ) serviceLocator.getService( "ProdutoBean/remote" ) )
+					.listarPorPrecoEstoque( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+	
 	
 	//*******ITEM*********
 	
@@ -603,4 +623,26 @@ public class BusinessDelegate
 		}
 		return responseDTO ;
 	}	
+	
+	public ServiceDTO selecionarClientesComCompra( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ClienteInterface ) serviceLocator.getService( "ClienteBean/remote" ) )
+					.selecionarClientesComCompra( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}	
+	
+	
+	
 }
