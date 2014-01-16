@@ -1,8 +1,9 @@
 package br.com.exemplo.vendas.negocio.ejb;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-import javax.ejb.Stateless ;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -100,6 +101,27 @@ public class ProdutoBean implements ProdutoRemote, ProdutoLocal {
 					produto.getDescricao(), produto.getPreco(),
 					produto.getEstoque());
 			responseDTO.set("getProduto", produtoVO);
+		}
+		return responseDTO;
+	}
+	
+	public ServiceDTO listarPorPrecoEstoque(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		BigDecimal preco = new BigDecimal(requestDTO.get("preco").toString());
+		int estoque = Integer.parseInt(requestDTO.get("estoque").toString());
+		
+		List<Produto> lista = DaoFactory.getProdutoDAO(em).listarPorPrecoEstoque(preco, estoque);
+		if ((lista != null) && (!lista.isEmpty())) {
+			ProdutoVO[] produtos = new ProdutoVO[lista.size()];
+			for (int i = 0; i < lista.size(); i++) {
+				Produto produto = lista.get(i);
+				ProdutoVO produtoVO = new ProdutoVO(produto.getCodigo(),
+						produto.getDescricao(), produto.getPreco(),
+						produto.getEstoque());
+				produtos[i] = produtoVO;
+			}
+			responseDTO.set("listaProduto", produtos);
 		}
 		return responseDTO;
 	}

@@ -1,9 +1,11 @@
 package br.com.exemplo.vendas.apresentacao.service ;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
 import br.com.exemplo.vendas.apresentacao.delegate.BusinessDelegate;
+import br.com.exemplo.vendas.negocio.entity.Produto;
 import br.com.exemplo.vendas.negocio.model.vo.ProdutoVO;
 import br.com.exemplo.vendas.util.dto.ServiceDTO;
 import br.com.exemplo.vendas.util.exception.LayerException;
@@ -56,4 +58,19 @@ public class ServiceProduto
 
 		return sucesso ;
 	}
+	
+	public List<ProdutoVO> listarPorPrecoEstoque( BigDecimal preco, int estoque ) throws LayerException
+	{
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		requestDTO.set("preco", preco);
+		requestDTO.set("estoque", estoque);
+
+		responseDTO = BusinessDelegate.getInstance( ).listarPorPrecoEstoque( requestDTO ) ;
+		ProdutoVO[ ] produtos = ( ProdutoVO[ ] ) responseDTO.get( "listaProduto" ) ;
+		List<ProdutoVO> lista = Arrays.asList( produtos ) ;
+		return lista ;
+	}
+	
+	
 }

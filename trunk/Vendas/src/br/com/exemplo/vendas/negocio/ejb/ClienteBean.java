@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.ejb;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -118,5 +119,26 @@ public class ClienteBean implements ClienteRemote, ClienteLocal {
 		}
 		return responseDTO;
 	}
+	
+	
+	public ServiceDTO selecionarClientesComCompra(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		Cliente cliente = null;
+		List<Cliente> lista = DaoFactory.getClienteDAO(em).selecionarClientesComCompra();
+		if ((lista != null) && (!lista.isEmpty())) {
+			ClienteVO[] clientes = new ClienteVO[lista.size()];
+			for (int i = 0; i < lista.size(); i++) {
+				cliente = (Cliente) lista.get(i);
+				ClienteVO clienteVO = new ClienteVO(cliente.getId(),
+						cliente.getNome(), cliente.getEndereco(),
+						cliente.getTelefone(), cliente.getSituacao());
+				clientes[i] = clienteVO;
+			}
+			responseDTO.set("listaCliente", clientes);
+		}
+		return responseDTO;
+	}
 
+	
 }

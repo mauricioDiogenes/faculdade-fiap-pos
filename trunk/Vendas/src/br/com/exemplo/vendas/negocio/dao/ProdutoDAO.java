@@ -1,5 +1,8 @@
 package br.com.exemplo.vendas.negocio.dao;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
@@ -98,5 +101,22 @@ public class ProdutoDAO extends GenericDAO<Produto> {
 		}
 		return obj;
 	}
+	
+	public List<Produto> listarPorPrecoEstoque(BigDecimal preco, int estoque) {
+		List<Produto> obj = null;
+		boolean result = false;
+		try {
+			Query q = em.createQuery("from Produto where preco < :preco and estoque >= :estoque");
+			q.setParameter("codigo", preco);
+			q.setParameter("estoque", estoque);
+			obj = (List<Produto>) q.getResultList();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
 
+	
 }

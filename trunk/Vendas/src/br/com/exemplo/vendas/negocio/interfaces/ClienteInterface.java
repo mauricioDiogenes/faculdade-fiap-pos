@@ -22,5 +22,8 @@ public interface ClienteInterface
 			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO )
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 	
+	public br.com.exemplo.vendas.util.dto.ServiceDTO selecionarClientesComCompra(
+			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO )
+			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 	
 }

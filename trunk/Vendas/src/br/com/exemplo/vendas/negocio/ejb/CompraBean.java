@@ -73,21 +73,9 @@ public class CompraBean implements CompraRemote, CompraLocal {
 	public ServiceDTO selecionarTodasCompras(ServiceDTO requestDTO)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
-		Compra compra = null;
 		List<Compra> lista = DaoFactory.getCompraDAO(em).listar();
-		if ((lista != null) && (!lista.isEmpty())) {
-			CompraVO[] comprasVO = new CompraVO[lista.size()];
-			for (int i = 0; i < lista.size(); i++) {
-				compra = (Compra) lista.get(i);
-				CompraVO vo = new CompraVO(compra.getNumero(),
-						compra.getData(), compra.getResponsavel(),
-						compra.getSituacao(), compra.getValor(),
-						compra.getReserva(), compra.getCliente());
-				comprasVO[i] = vo;
-
-			}
-			responseDTO.set("listaCompra", comprasVO);
-		}
+		CompraVO[] comprasVO = getList(lista);
+		responseDTO.set("listaCompra", comprasVO);
 		return responseDTO;
 	}
 
@@ -97,24 +85,24 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		CompraVO compraVO = (CompraVO)requestDTO.get("CompraVO");
 		Compra compra = new Compra();
 		compra.setNumero(compraVO.getNumero());
-		Compra lista = DaoFactory.getCompraDAO(em).localizarPorId(compra);
-		if (lista != null) {
-			compra = (Compra) lista;
-			CompraVO vo = new CompraVO(compra.getNumero(), compra.getData(),
-					compra.getResponsavel(), compra.getSituacao(),
-					compra.getValor(), compra.getReserva(), compra.getCliente());
-			responseDTO.set("getCompra", vo);
-		}
+		Compra compraRet = DaoFactory.getCompraDAO(em).localizarPorId(compra);
+		responseDTO.set("getCompra", getCompraVO(compraRet));
 		return responseDTO;
 	}
 
 	public ServiceDTO listarValorEntre(ServiceDTO requestDTO)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
-		Compra compra = null;
 		int val1 = Integer.parseInt(requestDTO.get("valor1").toString());
 		int val2 = Integer.parseInt(requestDTO.get("valor2").toString());
 		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre(val1, val2);
+		CompraVO[] comprasVO = getList(lista);
+		responseDTO.set("listaCompra", comprasVO);
+		return responseDTO;
+	}
+
+	private CompraVO[] getList(List lista){
+		Compra compra = null;
 		if ((lista != null) && (!lista.isEmpty())) {
 			CompraVO[] comprasVO = new CompraVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {
@@ -124,11 +112,21 @@ public class CompraBean implements CompraRemote, CompraLocal {
 						compra.getSituacao(), compra.getValor(),
 						compra.getReserva(), compra.getCliente());
 				comprasVO[i] = vo;
-
 			}
-			responseDTO.set("listaCompra", comprasVO);
+			return comprasVO;
 		}
-		return responseDTO;
+		return null;
+	}
+	
+	private CompraVO getCompraVO(Compra compra){
+		CompraVO vo = null;
+		if (compra != null) {
+			vo = new CompraVO(compra.getNumero(), compra.getData(),
+					compra.getResponsavel(), compra.getSituacao(),
+					compra.getValor(), compra.getReserva(), compra.getCliente());
+			
+		}
+		return vo;
 	}
 	
 }
