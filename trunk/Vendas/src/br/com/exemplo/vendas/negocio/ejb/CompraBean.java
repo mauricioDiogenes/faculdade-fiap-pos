@@ -90,16 +90,6 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		return responseDTO;
 	}
 
-	public ServiceDTO listarValorEntre(ServiceDTO requestDTO)
-			throws LayerException {
-		ServiceDTO responseDTO = new ServiceDTO();
-		int val1 = Integer.parseInt(requestDTO.get("valor1").toString());
-		int val2 = Integer.parseInt(requestDTO.get("valor2").toString());
-		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre(val1, val2);
-		CompraVO[] comprasVO = getList(lista);
-		responseDTO.set("listaCompra", comprasVO);
-		return responseDTO;
-	}
 
 	private CompraVO[] getList(List lista){
 		Compra compra = null;
@@ -128,5 +118,27 @@ public class CompraBean implements CompraRemote, CompraLocal {
 		}
 		return vo;
 	}
+	
+	public ServiceDTO listarValorEntre(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		int val1 = Integer.parseInt(requestDTO.get("valor1").toString());
+		int val2 = Integer.parseInt(requestDTO.get("valor2").toString());
+		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre(val1, val2);
+		CompraVO[] comprasVO = getList(lista);
+		responseDTO.set("listaCompra", comprasVO);
+		return responseDTO;
+	}
+
+	
+	public ServiceDTO listarComprasComReserva(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		List<Compra> lista = DaoFactory.getCompraDAO(em).listarComprasComReserva();
+		CompraVO[] comprasVO = getList(lista);
+		responseDTO.set("listaCompra", comprasVO);
+		return responseDTO;
+	}
+	
 	
 }

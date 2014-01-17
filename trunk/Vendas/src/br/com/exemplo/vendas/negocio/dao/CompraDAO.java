@@ -126,7 +126,19 @@ public class CompraDAO extends GenericDAO<Compra> {
 		return obj;
 	}
 	
-	
+	public List<Compra> listarComprasComReserva() {
+		List<Compra> obj = null;
+		boolean result = false;
+		try {
+			Query q = em.createQuery("from Compra c where c.reserva is not null");
+			obj = (List<Compra>) q.getResultList();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
 	
 
 }
