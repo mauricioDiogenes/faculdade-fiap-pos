@@ -445,6 +445,26 @@ public class BusinessDelegate
 	}
 	
 	
+	public ServiceDTO listarComprasComReserva( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( CompraInterface ) serviceLocator.getService( "CompraBean/remote" ) )
+					.listarComprasComReserva( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
+	
+	
 	//*******Reserva*********
 	
 	public ServiceDTO inserirReserva( ServiceDTO requestDTO ) throws LayerException

@@ -8,13 +8,15 @@ import br.com.exemplo.vendas.util.exception.LayerException;
 
 public class CompraWebService {
 
-	/*public List<CompraVO> listarValorEntre(int val1, int val2) throws LayerException{
+	public CompraVO[] listarValorEntre(int val1, int val2) throws LayerException{
 		ServiceCompra service = new ServiceCompra();
-		List<CompraVO> lista = service.listar();
+		CompraVO[] lista = service.listarValorEntre(val1, val2);
 		return lista;
-	}*/
+	}
 	
-	public int teste(){
-		return 1+1;
+	public CompraVO[] listarComprasComReserva() throws LayerException{
+		ServiceCompra service = new ServiceCompra();
+		CompraVO[] lista = service.listarComprasComReserva();
+		return lista;
 	}
 }

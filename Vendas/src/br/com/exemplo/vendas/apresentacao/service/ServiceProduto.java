@@ -59,7 +59,7 @@ public class ServiceProduto
 		return sucesso ;
 	}
 	
-	public List<ProdutoVO> listarPorPrecoEstoque( BigDecimal preco, int estoque ) throws LayerException
+	public ProdutoVO[] listarPorPrecoEstoque( BigDecimal preco, int estoque ) throws LayerException
 	{
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
@@ -68,8 +68,7 @@ public class ServiceProduto
 
 		responseDTO = BusinessDelegate.getInstance( ).listarPorPrecoEstoque( requestDTO ) ;
 		ProdutoVO[ ] produtos = ( ProdutoVO[ ] ) responseDTO.get( "listaProduto" ) ;
-		List<ProdutoVO> lista = Arrays.asList( produtos ) ;
-		return lista ;
+		return produtos;
 	}
 	
 	

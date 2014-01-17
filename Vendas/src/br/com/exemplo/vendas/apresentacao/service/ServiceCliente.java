@@ -61,16 +61,15 @@ public class ServiceCliente
 		return sucesso ;
 	}
 	
-	public List<ClienteVO> listarClientesComCompra() throws LayerException{
+	public ClienteVO[] selecionarClientesComCompra() throws LayerException{
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
 
 		responseDTO = BusinessDelegate.getInstance( ).selecionarClientesComCompra( requestDTO ) ;
-		List<ClienteVO> lista = null;
+		ClienteVO[ ] clientes = null;
 		if(responseDTO.getAllAttributes().size() > 0){
-			ClienteVO[ ] clientes = ( ClienteVO[ ] ) responseDTO.get( "listaCliente" ) ;
-			lista = Arrays.asList( clientes ) ;
+			clientes = ( ClienteVO[ ] ) responseDTO.get( "listaCliente" ) ;
 		}
-		return lista;
+		return clientes;
 	}
 }
