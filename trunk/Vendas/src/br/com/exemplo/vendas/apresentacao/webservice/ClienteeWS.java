@@ -8,7 +8,7 @@ import br.com.exemplo.vendas.negocio.model.vo.ClienteVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 @Path("/cliente")
-public class ClienteWebService {
+public class ClienteeWS {
 
 	@GET
 	public ClienteVO[] selecionarClientesComCompra() throws LayerException{
