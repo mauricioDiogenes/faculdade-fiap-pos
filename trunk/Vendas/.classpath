@@ -459,5 +459,10 @@
 	<classpathentry kind="lib" path="C:/workspaceTrabalhoRest/Vendas/WebContent/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/workspaceTrabalhoRest/Vendas/WebContent/WEB-INF/lib/XmlSchema-1.4.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/lala/Downloads/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lala/Desktop/axis2-1.6.2/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lala/Desktop/axis2-1.6.2/jersey-core-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lala/Desktop/axis2-1.6.2/jersey-json-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lala/Desktop/axis2-1.6.2/jersey-server-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/lala/Desktop/axis2-1.6.2/jsr311-api-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
