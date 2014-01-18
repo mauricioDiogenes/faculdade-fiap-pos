@@ -1,7 +1,5 @@
 package br.com.exemplo.vendas.negocio.interfaces ;
 
-import java.math.BigInteger;
-
 public interface ItemInterface
 {
 	public br.com.exemplo.vendas.util.dto.ServiceDTO inserirItem(
