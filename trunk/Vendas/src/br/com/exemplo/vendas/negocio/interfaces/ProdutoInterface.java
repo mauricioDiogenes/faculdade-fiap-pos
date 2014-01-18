@@ -1,6 +1,5 @@
 package br.com.exemplo.vendas.negocio.interfaces ;
 
-import java.math.BigInteger;
 
 public interface ProdutoInterface
 {
