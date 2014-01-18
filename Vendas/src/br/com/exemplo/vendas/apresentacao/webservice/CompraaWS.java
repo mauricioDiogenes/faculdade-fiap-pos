@@ -8,7 +8,7 @@ import br.com.exemplo.vendas.negocio.model.vo.CompraVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 @Path("/compra")
-public class CompraWebService {
+public class CompraaWS {
 
 	@GET
 	public CompraVO[] listarValorEntre(int val1, int val2) throws LayerException{

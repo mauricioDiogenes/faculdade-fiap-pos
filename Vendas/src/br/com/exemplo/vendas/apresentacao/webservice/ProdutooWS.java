@@ -12,7 +12,7 @@ import br.com.exemplo.vendas.negocio.model.vo.ProdutoVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
 @Path("/produto")
-public class ProdutoWebService {
+public class ProdutooWS {
 	
 	
 	public ProdutoVO[] listarPorPrecoEstoque() throws LayerException{
