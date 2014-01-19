@@ -59,12 +59,10 @@ public class ServiceProduto
 		return sucesso ;
 	}
 	
-	public ProdutoVO[] listarPorPrecoEstoque( BigDecimal preco, int estoque ) throws LayerException
+	public ProdutoVO[] listarPorPrecoEstoque() throws LayerException
 	{
 		ServiceDTO requestDTO = new ServiceDTO( ) ;
 		ServiceDTO responseDTO = new ServiceDTO( ) ;
-		requestDTO.set("preco", preco);
-		requestDTO.set("estoque", estoque);
 
 		responseDTO = BusinessDelegate.getInstance( ).listarPorPrecoEstoque( requestDTO ) ;
 		ProdutoVO[ ] produtos = ( ProdutoVO[ ] ) responseDTO.get( "listaProduto" ) ;

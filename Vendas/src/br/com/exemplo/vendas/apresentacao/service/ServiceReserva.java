@@ -79,4 +79,13 @@ public class ServiceReserva
 		return lista ;
 	}
 	
+	public ReservaVO[] pedidosDia() throws LayerException
+	{
+		ServiceDTO requestDTO = new ServiceDTO( ) ;
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		responseDTO = BusinessDelegate.getInstance( ).pedidosDia( requestDTO ) ;
+		ReservaVO[ ] reservas = ( ReservaVO[ ] ) responseDTO.get( "listaReserva" ) ;
+		return reservas;
+	}
+		
 }

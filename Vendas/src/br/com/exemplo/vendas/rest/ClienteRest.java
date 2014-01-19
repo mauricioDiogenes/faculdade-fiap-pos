@@ -13,6 +13,7 @@ import br.com.exemplo.vendas.util.exception.LayerException;
 public class ClienteRest {
 
 	@GET
+	@Path("/selecionarClientesComCompra")
 	@Produces(MediaType.APPLICATION_XML)
 	public ClienteVO[] selecionarClientesComCompra() throws LayerException{
 		ServiceCliente service = new ServiceCliente();

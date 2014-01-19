@@ -2,8 +2,11 @@ package br.com.exemplo.vendas.negocio.model.vo;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.com.exemplo.vendas.negocio.entity.Cliente;
 
+@XmlRootElement(name="ClienteVO")
 public class ClienteVO implements Serializable {
 
 	/**

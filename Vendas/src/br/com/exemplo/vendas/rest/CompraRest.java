@@ -13,16 +13,16 @@ import br.com.exemplo.vendas.util.exception.LayerException;
 public class CompraRest {
 
 	@GET
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_XML)
 	@Path("/listarValorEntre")
-	public CompraVO[] listarValorEntre(int val1, int val2) throws LayerException{
+	public CompraVO[] listarValorEntre() throws LayerException{
 		ServiceCompra service = new ServiceCompra();
-		CompraVO[] lista = service.listarValorEntre(val1, val2);
+		CompraVO[] lista = service.listarValorEntre();
 		return lista;
 	}
 	
 	@GET
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_XML)
 	@Path("/listarComprasComReserva")
 	public CompraVO[] listarComprasComReserva() throws LayerException{
 		ServiceCompra service = new ServiceCompra();

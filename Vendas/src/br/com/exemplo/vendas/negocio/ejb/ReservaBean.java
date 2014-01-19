@@ -1,5 +1,6 @@
 package br.com.exemplo.vendas.negocio.ejb;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -118,4 +119,23 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 		}
 		return responseDTO;
 	}
+	
+	public ServiceDTO pedidosDia(ServiceDTO requestDTO)
+			throws LayerException {
+		ServiceDTO responseDTO = new ServiceDTO();
+		ClienteVO clienteVO = (ClienteVO)requestDTO.get("clienteVO");
+		List<Reserva> lista = DaoFactory.getReservaDAO(em).pedidosDia();
+		if ((lista != null) && (!lista.isEmpty())) {
+			ReservaVO[] reservas = new ReservaVO[lista.size()];
+			for (int i = 0; i < lista.size(); i++) {
+				Reserva reserva = (Reserva) lista.get(i);
+				ClienteVO cliente = new ClienteVO(reserva.getCliente());
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+				reservas[i] = reservaVO;
+			}
+			responseDTO.set("listaReserva", reservas);
+		}
+		return responseDTO;
+	}
+
 }

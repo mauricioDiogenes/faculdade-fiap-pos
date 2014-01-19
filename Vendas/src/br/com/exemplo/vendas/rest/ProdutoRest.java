@@ -15,10 +15,11 @@ import br.com.exemplo.vendas.util.exception.LayerException;
 public class ProdutoRest {
 
 	@GET
-	@Produces(MediaType.TEXT_HTML)
+	@Path("/listarPorPrecoEstoque")
+	@Produces(MediaType.APPLICATION_XML)
 	public ProdutoVO[] listarPorPrecoEstoque() throws LayerException {
 		ServiceProduto service = new ServiceProduto();
-		ProdutoVO[] produtos = service.listarPorPrecoEstoque(new BigDecimal(1000), 2);
+		ProdutoVO[] produtos = service.listarPorPrecoEstoque();
 		return produtos;
 	}
 

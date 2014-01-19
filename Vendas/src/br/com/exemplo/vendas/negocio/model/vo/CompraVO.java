@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import br.com.exemplo.vendas.negocio.entity.Cliente;
 import br.com.exemplo.vendas.negocio.entity.Reserva;
 
+@XmlRootElement(name="CompraVO")
 public class CompraVO implements Serializable
 {
 	/**

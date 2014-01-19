@@ -120,5 +120,20 @@ public class ReservaDAO extends GenericDAO<Reserva> {
 		}
 		return obj;
 	}
+	
+	
+	public List<Reserva> pedidosDia() {
+		List<Reserva> obj = null;
+		try {
+			Query q = em.createQuery(
+					"from Reserva r WHERE r.data = current_date()");
+			obj = (List<Reserva>)q.getResultList();
+		} catch (Exception e) {
+			if (debugInfo) {
+				e.printStackTrace();
+			}
+		}
+		return obj;
+	}
 
 }
