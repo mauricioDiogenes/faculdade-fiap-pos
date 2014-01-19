@@ -108,10 +108,8 @@ public class ProdutoBean implements ProdutoRemote, ProdutoLocal {
 	public ServiceDTO listarPorPrecoEstoque(ServiceDTO requestDTO)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
-		BigDecimal preco = new BigDecimal(requestDTO.get("preco").toString());
-		int estoque = Integer.parseInt(requestDTO.get("estoque").toString());
 		
-		List<Produto> lista = DaoFactory.getProdutoDAO(em).listarPorPrecoEstoque(preco, estoque);
+		List<Produto> lista = DaoFactory.getProdutoDAO(em).listarPorPrecoEstoque();
 		if ((lista != null) && (!lista.isEmpty())) {
 			ProdutoVO[] produtos = new ProdutoVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {

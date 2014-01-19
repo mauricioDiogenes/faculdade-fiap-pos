@@ -3,6 +3,9 @@ package br.com.exemplo.vendas.negocio.model.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="ProdutoVO")
 public class ProdutoVO implements Serializable {
 
 	/**

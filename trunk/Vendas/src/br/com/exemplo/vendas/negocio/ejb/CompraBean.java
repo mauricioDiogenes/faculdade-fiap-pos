@@ -122,9 +122,7 @@ public class CompraBean implements CompraRemote, CompraLocal {
 	public ServiceDTO listarValorEntre(ServiceDTO requestDTO)
 			throws LayerException {
 		ServiceDTO responseDTO = new ServiceDTO();
-		int val1 = Integer.parseInt(requestDTO.get("valor1").toString());
-		int val2 = Integer.parseInt(requestDTO.get("valor2").toString());
-		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre(val1, val2);
+		List<Compra> lista = DaoFactory.getCompraDAO(em).listarValorEntre();
 		CompraVO[] comprasVO = getList(lista);
 		responseDTO.set("listaCompra", comprasVO);
 		return responseDTO;

@@ -110,13 +110,11 @@ public class CompraDAO extends GenericDAO<Compra> {
 		return obj;
 	}
 	
-	public List<Compra> listarValorEntre(int val1, int val2) {
+	public List<Compra> listarValorEntre() {
 		List<Compra> obj = null;
 		boolean result = false;
 		try {
-			Query q = em.createQuery("from Compra c where c.valor between :valor1 AND :valor2");
-			q.setParameter("valor1", val1);
-			q.setParameter("valor2", val2);
+			Query q = em.createQuery("from Compra c where c.valor between 0 AND 500");
 			obj = (List<Compra>) q.getResultList();
 		} catch (Exception e) {
 			if (debugInfo) {

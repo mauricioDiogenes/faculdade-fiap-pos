@@ -561,6 +561,25 @@ public class BusinessDelegate
 		}
 		return responseDTO ;
 	}
+	
+	public ServiceDTO pedidosDia( ServiceDTO requestDTO ) throws LayerException
+	{
+		ServiceDTO responseDTO = new ServiceDTO( ) ;
+		try
+		{
+			responseDTO = ( ( ReservaInterface ) serviceLocator.getService( "ReservaBean/remote" ) )
+					.pedidosDia( requestDTO ) ;
+		}
+		catch (RemoteException remoteException)
+		{
+			throw SysExceptionFactory.getException( remoteException ) ;
+		}
+		catch (ServiceLocatorException serviceLocatorException)
+		{
+			throw SysExceptionFactory.getException( serviceLocatorException ) ;
+		}
+		return responseDTO ;
+	}
 
 	//*******Cliente*********
 	

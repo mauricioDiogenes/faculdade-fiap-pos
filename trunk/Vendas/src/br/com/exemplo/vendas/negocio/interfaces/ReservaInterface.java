@@ -27,4 +27,8 @@ public interface ReservaInterface
 			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO )
 			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
 	
+	public br.com.exemplo.vendas.util.dto.ServiceDTO pedidosDia(
+			br.com.exemplo.vendas.util.dto.ServiceDTO requestDTO )
+			throws br.com.exemplo.vendas.util.exception.LayerException, java.rmi.RemoteException ;
+	
 }

@@ -102,13 +102,11 @@ public class ProdutoDAO extends GenericDAO<Produto> {
 		return obj;
 	}
 	
-	public List<Produto> listarPorPrecoEstoque(BigDecimal preco, int estoque) {
+	public List<Produto> listarPorPrecoEstoque() {
 		List<Produto> obj = null;
 		boolean result = false;
 		try {
-			Query q = em.createQuery("from Produto where preco < :preco and estoque >= :estoque");
-			q.setParameter("codigo", preco);
-			q.setParameter("estoque", estoque);
+			Query q = em.createQuery("from Produto where preco < 1000 and estoque >= 2");
 			obj = (List<Produto>) q.getResultList();
 		} catch (Exception e) {
 			if (debugInfo) {
