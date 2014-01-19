@@ -5,7 +5,7 @@ import br.com.exemplo.vendas.negocio.model.vo.CompraVO;
 import br.com.exemplo.vendas.negocio.model.vo.ProdutoVO;
 import br.com.exemplo.vendas.util.exception.LayerException;
 
-public interface VendasWebServiceInterface {
+public interface VendaWebServiceInterface {
 	public ClienteVO[] selecionarClientesComCompra() throws LayerException;
 
 	public CompraVO[] listarValorEntre() throws LayerException;
