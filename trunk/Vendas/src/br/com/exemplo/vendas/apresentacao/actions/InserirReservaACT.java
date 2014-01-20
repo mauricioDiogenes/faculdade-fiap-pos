@@ -31,7 +31,13 @@ public class InserirReservaACT implements Action {
 		Cliente cliente = new Cliente();
 		Reserva reserva = new Reserva();
 		cliente.setId(Integer.parseInt(clienteRequest));
-		ReservaVO reservaVO = new ReservaVO(null, data, atendente, situacao,valor, new ClienteVO(cliente));
+		ClienteVO cli = new ClienteVO();
+		cli.setId(cliente.getId());
+		cli.setNome(cliente.getNome());
+		cli.setEndereco(cliente.getEndereco());
+		cli.setTelefone(cliente.getTelefone());
+		cli.setSituacao(cliente.getSituacao());
+		ReservaVO reservaVO = new ReservaVO(null, data, atendente, situacao,valor, cli);
 		ServiceReserva service = new ServiceReserva();
 		Boolean sucesso = service.inserir(reservaVO);
 

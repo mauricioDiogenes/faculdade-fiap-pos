@@ -32,13 +32,6 @@ public class ClienteVO implements Serializable {
 		this.situacao = vo.getSituacao();
 	}
 	
-	public ClienteVO(Cliente cliente) {
-		this.id = cliente.getId();
-		this.nome = cliente.getNome();
-		this.endereco = cliente.getEndereco();
-		this.telefone = cliente.getTelefone();
-		this.situacao = cliente.getSituacao();
-	}
 
 	public ClienteVO(Integer id, String nome, String endereco, String telefone,
 			String situacao) {

@@ -77,8 +77,13 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 			ReservaVO[] reservas = new ReservaVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {
 				reserva = (Reserva) lista.get(i);
-				ClienteVO cliente = new ClienteVO(reserva.getCliente());
-				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+				ClienteVO cli = new ClienteVO();
+				cli.setId(reserva.getCliente().getId());
+				cli.setNome(reserva.getCliente().getNome());
+				cli.setEndereco(reserva.getCliente().getEndereco());
+				cli.setTelefone(reserva.getCliente().getTelefone());
+				cli.setSituacao(reserva.getCliente().getSituacao());
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cli);
 				reservas[i] = reservaVO;
 			}
 			responseDTO.set("listaReserva", reservas);
@@ -95,8 +100,14 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 			ReservaVO[] reservas = new ReservaVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {
 				Reserva reserva = (Reserva) lista.get(i);
-				ClienteVO cliente = new ClienteVO(reserva.getCliente());
-				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+				ClienteVO cli = new ClienteVO();
+				cli.setId(reserva.getCliente().getId());
+				cli.setNome(reserva.getCliente().getNome());
+				cli.setEndereco(reserva.getCliente().getEndereco());
+				cli.setTelefone(reserva.getCliente().getTelefone());
+				cli.setSituacao(reserva.getCliente().getSituacao());
+
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cli);
 				reservas[i] = reservaVO;
 			}
 			responseDTO.set("listaReserva", reservas);
@@ -113,8 +124,13 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 		Reserva lista = DaoFactory.getReservaDAO(em).localizarPorId(reserva);
 		if (lista != null) {
 			reserva = (Reserva) lista;
-			ClienteVO cliente = new ClienteVO(reserva.getCliente());
-			ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+			ClienteVO cli = new ClienteVO();
+			cli.setId(reserva.getCliente().getId());
+			cli.setNome(reserva.getCliente().getNome());
+			cli.setEndereco(reserva.getCliente().getEndereco());
+			cli.setTelefone(reserva.getCliente().getTelefone());
+			cli.setSituacao(reserva.getCliente().getSituacao());
+			ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cli);
 			responseDTO.set("getReserva", reservaVO);
 		}
 		return responseDTO;
@@ -129,8 +145,13 @@ public class ReservaBean implements ReservaRemote, ReservaLocal {
 			ReservaVO[] reservas = new ReservaVO[lista.size()];
 			for (int i = 0; i < lista.size(); i++) {
 				Reserva reserva = (Reserva) lista.get(i);
-				ClienteVO cliente = new ClienteVO(reserva.getCliente());
-				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cliente);
+				ClienteVO cli = new ClienteVO();
+				cli.setId(reserva.getCliente().getId());
+				cli.setNome(reserva.getCliente().getNome());
+				cli.setEndereco(reserva.getCliente().getEndereco());
+				cli.setTelefone(reserva.getCliente().getTelefone());
+				cli.setSituacao(reserva.getCliente().getSituacao());
+				ReservaVO reservaVO = new ReservaVO(reserva.getCodigo(), reserva.getData(), reserva.getAtendente(), reserva.getSituacao(), reserva.getValor(), cli);
 				reservas[i] = reservaVO;
 			}
 			responseDTO.set("listaReserva", reservas);
