@@ -16,6 +16,7 @@ public class ClienteRest {
 	@Path("/selecionarClientesComCompra")
 	@Produces(MediaType.APPLICATION_XML)
 	public ClienteVO[] selecionarClientesComCompra() throws LayerException{
+		System.out.println("ENTROU REST**********************************");
 		ServiceCliente service = new ServiceCliente();
 		ClienteVO[] clientes = service.selecionarClientesComCompra();
 		return clientes;
