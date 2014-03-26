@@ -56,7 +56,7 @@ $('#form').ajaxForm({
 		$('progress').attr('value', '100');
 		$('#porcentagem').html('100%');
 		$('pre').html(data);
-		$('#imagemPizza').html(data);
+		$('#imagemPizza').text(JSON.stringify(data));
 	}
 
 });
