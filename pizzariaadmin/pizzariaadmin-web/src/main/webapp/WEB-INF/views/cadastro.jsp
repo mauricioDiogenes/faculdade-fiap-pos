@@ -17,7 +17,34 @@ $("document").ready(function(){
     $("#file").change(function() {
     	$("#form").submit();
    });
+
+
+    $("#salvarPizza").click(function(){
+    	   alert('chamou');
+        $.ajax({
+		
+            
+             
+            type: "POST",
+            data: { primeiro:a, segundo:b },
+             
+            url: "./pizza/salvar",
+            dataType: "json",
+            success: function(result){
+            },
+            beforeSend: function(){
+                $('#loading').css({display:"block"});
+            },
+            complete: function(msg){
+                $('#loading').css({display:"none"});
+            }
+        });
+         
+    });
 });
+
+
+
 
 $('#form').ajaxForm({
 
@@ -45,7 +72,7 @@ $('#form').ajaxForm({
 
 	<input type="hidden" id="imagemPizza" />
 	
-	<input>
+	<input type="button" value="salvar" id="salvarPizza" />
 
 	<form action="./upload" method="post" id="form">
 
