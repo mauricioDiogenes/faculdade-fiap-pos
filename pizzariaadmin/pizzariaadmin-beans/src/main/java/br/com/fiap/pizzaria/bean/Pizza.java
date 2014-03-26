@@ -26,6 +26,8 @@ public class Pizza implements Serializable {
 	
 	private static final long serialVersionUID = -2743288978643632264L;
 	
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -49,7 +51,7 @@ public class Pizza implements Serializable {
 	private BigDecimal valor;
 	
 	
-	@OneToOne(cascade=CascadeType.ALL, optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(cascade=CascadeType.ALL, optional = true, fetch = FetchType.EAGER, orphanRemoval = true)
 	private Imagem imagem;
 	
 	

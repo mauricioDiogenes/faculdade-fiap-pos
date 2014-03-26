@@ -23,6 +23,8 @@
 		<validation.version>1.1.0.Final</validation.version>
 		<spring.asm.version>3.1.4.RELEASE</spring.asm.version>
 		<commonsio.version>2.4</commonsio.version>
+		<commons-fileupload.version>1.2.1</commons-fileupload.version>
+		<commons-io.version>1.4</commons-io.version>
 	</properties>
 
 	<dependencies>
@@ -149,6 +151,29 @@
 				<groupId>org.hibernate.javax.persistence</groupId>
 				<artifactId>hibernate-jpa-2.1-api</artifactId>
 				<version>1.0.0.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.13</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.3.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
 			</dependency>
 
 

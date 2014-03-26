@@ -3,6 +3,7 @@ package br.com.fiap.pizzaria.dao;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.commons.io.IOUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -82,6 +84,14 @@ public class PizzaDaoTest {
 		List<PedidoPizza> lisPedidoPizzas = new ArrayList<PedidoPizza>();
 		lisPedidoPizzas.add(pedidoPizza);
 		pedido.setPizzas(lisPedidoPizzas);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		StringWriter stringWriter = new StringWriter();
+		
+		mapper.writeValue(stringWriter, pizza);
+		
+		System.out.println(stringWriter.toString());
+
 		pedidoDao.save(pedido);
 		
 		
