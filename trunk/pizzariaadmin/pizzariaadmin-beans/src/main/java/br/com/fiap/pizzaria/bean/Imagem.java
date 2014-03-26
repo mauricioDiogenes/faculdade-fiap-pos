@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 @Entity
 @Table(name="imagem")
 public class Imagem implements Serializable {
@@ -27,6 +30,8 @@ public class Imagem implements Serializable {
 	
 	@Lob
 	@Basic(fetch=FetchType.LAZY)
+	@JsonSerialize(using=ByteArraySerializer.class)
+	@JsonDeserialize(using=StringBase64Deserializer.class)
 	private byte[] imagem;
 	
 
