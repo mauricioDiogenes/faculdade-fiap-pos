@@ -17,10 +17,6 @@ import br.com.fiap.pizzaria.bean.Imagem;
 @RequestMapping("image")
 public class UploadController {
 	
-	@RequestMapping( value = "cadastro", method=RequestMethod.GET)
-	public String init(){
-		return "cadastro";
-	}
 
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public @ResponseBody Imagem upload(HttpServletRequest request) throws IOException {
