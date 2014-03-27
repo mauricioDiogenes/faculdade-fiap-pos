@@ -1,5 +1,7 @@
 package br.com.fiap.pizzaria.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +21,11 @@ public class PizzaServiceImpl implements PizzaService {
 	@Override
 	public void salvar(Pizza pizza) {
 		pizzaDao.save(pizza);
+	}
+
+	@Override
+	public List<Pizza> listar() {
+		return pizzaDao.findAll();
 	}
 
 }
