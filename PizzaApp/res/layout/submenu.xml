@@ -9,12 +9,22 @@
         android:layout_height="match_parent" >
 
         <LinearLayout
-            android:id="@id/conteudoSubMenu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            
-            
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@id/conteudoSubMenuPizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/conteudoSubMenuBebida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -2,13 +2,13 @@ package br.com.fiap.pizza;
 
 import java.io.Serializable;
 
-public class PizzaEntity implements Serializable {
+public class Item implements Serializable {
 
 	private static final long serialVersionUID = -3466201884162565191L;
 	private Integer id;
 	private String nome;
-	private Double valor;
 	private String conteudo;
+	private Double valor;
 
 	public Integer getId() {
 		return id;

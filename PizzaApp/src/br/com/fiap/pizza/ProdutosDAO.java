@@ -29,37 +29,43 @@ public class ProdutosDAO extends SQLiteOpenHelper {
 		String criaBase = "CREATE TABLE PRODUTOS (id, tipo, nome, conteudo, valor)";
 		db.execSQL(criaBase);
 
-		addPizza(db, 1, "Peperone", "Queijo, Peperone", 30D);
-		addPizza(db, 2, "Mussarela", "Queijo, Molho", 25D);
-		addPizza(db, 3, "Frango", "Frango, Queijo", 35D);
-		addPizza(db, 4, "Portuguesa", "Queijo, Tomate, Calabresa", 40D);
-		addPizza(db, 5, "Quatro queijos",
-				"mozzarella, gorg., parmesão e Catupiry", 45D);
+		addProduto(db, 1, "pizza", "Peperone", "Queijo, Peperone", 30D);
+		addProduto(db, 2, "pizza", "Mussarela", "Queijo, Molho", 25D);
+		addProduto(db, 3, "pizza", "Frango", "Frango, Queijo", 35D);
+		addProduto(db, 4, "pizza", "Portuguesa", "Queijo, Tomate, Calabresa", 40D);
+		addProduto(db, 5, "pizza", "Quatro queijos", "mozzarella, gorg., parmesão e Catupiry", 45D);
+		
+		addProduto(db, 6, "bebidas", "Coca", "", 5D);
+		addProduto(db, 7, "bebidas", "Fanta", "", 5D);
+		addProduto(db, 8, "bebidas", "Guarana", "", 5D);
+		
+		
 	}
 
-	public void addPizza(SQLiteDatabase db, Integer id, String nome,
+	public void addProduto(SQLiteDatabase db, Integer id, String tipo, String nome,
 			String conteudo, Double preco) {
 		ContentValues values = new ContentValues();
 		values.put("id", id);
-		values.put("tipo", "pizza");
+		values.put("tipo", tipo);
 		values.put("nome", nome);
 		values.put("conteudo", conteudo);
 		values.put("valor", preco);
 		db.insert("PRODUTOS", null, values);
 	}
+	
 
-	public List<PizzaEntity> getPizzas() {
+	public List<Item> getProdutos(String tipo) {
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.query("PRODUTOS", new String[] { "id", "tipo",
 				"nome", "conteudo", "valor" }, " tipo = ?",
-				new String[] { "pizza" }, null, null, null, null);
+				new String[] { tipo }, null, null, null, null);
 
-		List<PizzaEntity> pizzaList = null;
+		List<Item> pizzaList = null;
 
 		if (cursor != null) {
-			pizzaList = new ArrayList<PizzaEntity>();
+			pizzaList = new ArrayList<Item>();
 			while (cursor.moveToNext()) {
-				PizzaEntity p = new PizzaEntity();
+				Item p = new Item();
 				p.setId(cursor.getInt(0));
 				p.setNome(cursor.getString(2));
 				p.setConteudo(cursor.getString(3));
@@ -68,21 +74,6 @@ public class ProdutosDAO extends SQLiteOpenHelper {
 			}
 		}
 		return pizzaList;
-	}
-
-	public PizzaEntity getPizzaById(String id) {
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor cursor = db.query("PRODUTOS", new String[] { "id", "tipo",
-				"nome", "conteudo", "valor" }, " id = ?", new String[] { id },
-				null, null, null, null);
-		PizzaEntity p = new PizzaEntity();
-		p.setId(cursor.getInt(0));
-		p.setNome(cursor.getString(2));
-		p.setConteudo(cursor.getString(3));
-		p.setValor(cursor.getDouble(4));
-
-		return p;
-
 	}
 
 	@Override

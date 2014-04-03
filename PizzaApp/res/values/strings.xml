@@ -12,5 +12,8 @@
     <string name="pasta">Pasta</string>
     <string name="bordas">Bordas</string>
     <string name="sobremesa">Sobremesa</string>
-
+    <string name="cont">Bordas</string>
+    <string name="tipo">Sobremesa</string>
+    
+    
 </resources>
