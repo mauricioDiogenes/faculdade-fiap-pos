@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="entregaBtn" type="id"/>
+    <item name="levarBtn" type="id" />
+    <item name="conteudoSubMenuPizza" type="id" />
+    <item name="conteudoSubMenuBebida" type="id" />
+    <item name="proximoBtn" type="id" />
+    <item name="resumoLayout" type="id" />
+    
+</resources>
